@@ -1,0 +1,113 @@
+//Placeholder FGD created by Gvarados
+
+//DOWNLOAD UPDATES AT:
+//https://github.com/gvarados1/Half-Life-Alyx-FGD
+
+
+@include "base.fgd"
+@include "lights.fgd"
+@include "ai_basenpc.fgd"
+@include "steamtours.fgd"
+
+// ----------------------------------------- MONSTERS -----------------------------------------
+@PointClass base(Targetname) editormodel("models/creatures/headcrab_classic/headcrab_classic.vmdl") = npc_headcrab : "Placeholder"
+[
+]
+@PointClass base(Targetname) editormodel("models/creatures/headcrab_black/headcrab_black.vmdl") = npc_headcrab_black : "Placeholder"
+[
+]
+@PointClass base(Targetname) editormodel("models/creatures/headcrab/headcrab.vmdl") = npc_headcrab_poison : "Placeholder"
+[
+]
+@PointClass base(Targetname) editormodel("models/creatures/headcrab/headcrab.vmdl") = npc_headcrab_fast : "Placeholder. DOES NOT MAKE SOUNDS"
+[
+]
+@PointClass base(Targetname) editormodel("models/creatures/headcrab_armored/headcrab_armored.vmdl") = npc_headcrab_armored : "Placeholder"
+[
+]
+
+@PointClass base(Targetname) editormodel("models/creatures/zombie_classic/zombie_classic.vmdl") = npc_zombie : "Placeholder"
+[
+]
+@PointClass base(Targetname) editormodel("models/creatures/zombie_blind/zombie_blind.vmdl") = npc_zombie_blind : "Placeholder"
+[
+]
+
+@PointClass base(Targetname) editormodel("models/characters/combine_grunt/combine_grunt.vmdl") = npc_combine_s : "Placeholder"
+[
+]
+
+@PointClass base(Targetname) editormodel("models/creatures/manhack/manhack.vmdl") = npc_manhack : "Placeholder"
+[
+]
+@PointClass base(Targetname) editormodel("models/creatures/barnacle/barnacle.vmdl") = npc_barnacle : "Placeholder"
+[
+]
+@PointClass base(Targetname, BasePhysicsSimulated) editormodel("models/combine_turrets/floor_turret.vmdl") = npc_turret_floor : "Placeholder"
+[
+]
+
+@PointClass base(Targetname) editormodel("models/creatures/antlion/antlion.vmdl") = npc_antlion : "Placeholder"
+[
+]
+
+@PointClass base(Targetname) editormodel("models/characters/eli/eli.vmdl") = npc_eli : "Placeholder"
+[
+]
+
+// ----------------------------------------- ITEMS -----------------------------------------
+@PointClass base(Targetname) editormodel("models/props_combine/health_charger/combine_health_charger_vr.vmdl") = item_healthcharger : "SPAWNS WITH GRUB. TODO: ADD OPTION TO NOT HAVE GRUB"
+[
+]
+@PointClass base(Targetname) editormodel("models/props_combine/combine_printer/combine_crafting_station.vmdl") = prop_hlvr_crafting_station : "Placeholder"
+[
+]
+
+// ----------------------------------------- PICKUPS -----------------------------------------
+@PointClass base(Targetname, BasePhysicsSimulated) editormodel("models/weapons/vr_alyxhealth/vr_health_pen.vmdl") = item_healthvial : "Placeholder"
+[
+]
+@PointClass base(Targetname, BasePhysicsSimulated) editormodel("models/weapons/vr_grenade/grenade_unarmed.vmdl") = item_hlvr_grenade_frag : "Placeholder"
+[
+]
+@PointClass base(Targetname, BasePhysicsSimulated) editormodel("models/weapons/vr_alyxgun/vr_alyxgun_clip.vmdl") = item_hlvr_clip_energygun : "Placeholder"
+[
+]
+@PointClass base(Targetname, BasePhysicsSimulated) editormodel("models/weapons/vr_alyxgun/vr_alyxgun_assembled_skin01.vmdl") = hlvr_weapon_energygun : "Placeholder"
+[
+]
+@PointClass base(Targetname) editormodel("models/items/crafting_metal/resin_puck01.vmdl") = item_hlvr_crafting_currency_small : "Placeholder"
+[
+]
+@PointClass base(Targetname) editormodel("models/items/crafting_metal/resin_puck_stack.vmdl") = item_hlvr_crafting_currency_large : "Placeholder"
+[
+]
+@PointClass base(Targetname) editormodel("models/weapons/vr_alyxtool/alyx_tool.vmdl") = Item_hlvr_multitool : "Placeholder"
+[
+]
+@PointClass base(Targetname) editormodel("models/weapons/vr_shotgun/shell_hand.vmdl") = Item_hlvr_clip_shotgun_single : "Placeholder"
+[
+]
+@PointClass base(Targetname) editormodel("models/weapons/vr_shotgun/vr_flip_shotgun_body.vmdl") = item_hlvr_weapon_shotgun : "Placeholder"
+[
+]
+@PointClass base(Targetname) editormodel("models/weapons/vr_ipistol/vr_ipistol.vmdl") = item_hlvr_weapon_rapidfire : "Placeholder"
+[
+]
+@PointClass base(Targetname) editormodel("models/weapons/vr_ipistol/capsule_power_cell.vmdl") = Item_hlvr_clip_rapidfire : "Placeholder"
+[
+]
+
+// ----------------------------------------- LOGIC -----------------------------------------
+@PointClass base(Targetname, EnableDisable) tags( Logic ) iconsprite("editor/logic_relay.vmat") = info_hlvr_equip_player : "Placeholder. I assume this is for equiping the gravity gloves (see inputs)"
+[
+	// Inputs
+	input equipnow(void) : "Probably gives gravity gloves"
+	input enablebackpack(void) : "Probably lets you collect ammo and resen"
+	input enableinventory(void) : "Probably enables wrist pockets"
+	input use(void) : "Probably doesn't do anything"
+]
+
+@PointClass base(Targetname) editormodel("") = item_placeholder : "Placeholder"
+[
+]
