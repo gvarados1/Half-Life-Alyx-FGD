@@ -107,7 +107,3 @@
 	input enableinventory(void) : "Probably enables wrist pockets"
 	input use(void) : "Probably doesn't do anything"
 ]
-
-@PointClass base(Targetname) editormodel("") = item_placeholder : "Placeholder"
-[
-]
