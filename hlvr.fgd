@@ -61,6 +61,9 @@
 @PointClass base(Targetname) editormodel("models/props_combine/combine_printer/combine_crafting_station.vmdl") = prop_hlvr_crafting_station : "Placeholder"
 [
 ]
+@PointClass base(BasePropDoorRotating) model() = prop_door_rotating_physics : "Placeholder door."
+[
+]
 
 // ----------------------------------------- PICKUPS -----------------------------------------
 @PointClass base(Targetname, BasePhysicsSimulated) editormodel("models/weapons/vr_alyxhealth/vr_health_pen.vmdl") = item_healthvial : "Placeholder"
