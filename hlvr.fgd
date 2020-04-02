@@ -54,6 +54,11 @@
 [
 ]
 
+// ----------------------------------------- TILE ENTITIES -----------------------------------------
+@SolidClass base(Targetname) = func_dry_erase_board : "Placeholder"
+[
+]
+
 // ----------------------------------------- ITEMS -----------------------------------------
 @PointClass base(Targetname) editormodel("models/props_combine/health_charger/combine_health_charger_vr.vmdl") = item_healthcharger : "SPAWNS WITH GRUB. TODO: ADD OPTION TO NOT HAVE GRUB"
 [
@@ -64,15 +69,27 @@
 @PointClass base(BasePropDoorRotating) model() = prop_door_rotating_physics : "Placeholder door."
 [
 ]
+@PointClass base(func_brush) = prop_animinteractable : "Placeholder"
+[
+]
 
 // ----------------------------------------- PICKUPS -----------------------------------------
 @PointClass base(Targetname, BasePhysicsSimulated) editormodel("models/weapons/vr_alyxhealth/vr_health_pen.vmdl") = item_healthvial : "Placeholder"
 [
 ]
+@PointClass base(Targetname, BasePhysicsSimulated) editormodel("models/props_combine/health_charger/health_vial.vmdl") = item_hlvr_health_station_vial : "Placeholder"
+[
+]
 @PointClass base(Targetname, BasePhysicsSimulated) editormodel("models/weapons/vr_grenade/grenade_unarmed.vmdl") = item_hlvr_grenade_frag : "Placeholder"
 [
 ]
+@PointClass base(Targetname, BasePhysicsSimulated) editormodel("models/weapons/vr_xen_grenade/vr_xen_grenade.vmdl") = item_hlvr_grenade_xen : "Placeholder"
+[
+]
 @PointClass base(Targetname, BasePhysicsSimulated) editormodel("models/weapons/vr_alyxgun/vr_alyxgun_clip.vmdl") = item_hlvr_clip_energygun : "Placeholder"
+[
+]
+@PointClass base(Targetname, BasePhysicsSimulated) editormodel("models/weapons/vr_alyxgun/pistol_clip_holder.vmdl") = item_hlvr_clip_energygun_multiple : "Placeholder"
 [
 ]
 @PointClass base(Targetname, BasePhysicsSimulated) editormodel("models/weapons/vr_alyxgun/vr_alyxgun_assembled_skin01.vmdl") = hlvr_weapon_energygun : "Placeholder"
@@ -87,7 +104,13 @@
 @PointClass base(Targetname) editormodel("models/weapons/vr_alyxtool/alyx_tool.vmdl") = Item_hlvr_multitool : "Placeholder"
 [
 ]
-@PointClass base(Targetname) editormodel("models/weapons/vr_shotgun/shell_hand.vmdl") = Item_hlvr_clip_shotgun_single : "Placeholder"
+@PointClass base(Targetname) editormodel("models/weapons/vr_shotgun/shell_hand.vmdl") = Item_hlvr_clip_shotgun_single : "SINGLE SHELL"
+[
+]
+@PointClass base(Targetname) editormodel("models/weapons/vr_shotgun/shell_hand.vmdl") = item_hlvr_clip_shotgun_shells_pair : "TWO SHELLS"
+[
+]
+@PointClass base(Targetname) editormodel("models/weapons/vr_ammo/shotgun_shell_ammo_box.vmdl") = item_hlvr_clip_shotgun_multiple : "FOUR SHELLS"
 [
 ]
 @PointClass base(Targetname) editormodel("models/weapons/vr_shotgun/vr_flip_shotgun_body.vmdl") = item_hlvr_weapon_shotgun : "Placeholder"
@@ -100,6 +123,18 @@
 [
 ]
 @PointClass base(Targetname) editormodel("models/weapons/vr_tripmine/tripmine.vmdl") = item_hlvr_weapon_tripmine : "Placeholder"
+[
+]
+@PointClass base(Targetname) editormodel("models/props_combine/combine_battery/combine_battery_large.vmdl") = item_hlvr_prop_battery : "Placeholder"
+[
+]
+@PointClass base(Targetname) editormodel("models/creatures/headcrab_reviver/reviver_heart.vmdl") = prop_reviver_heart : "Placeholder"
+[
+]
+@PointClass base(Targetname) editormodel("models/props/headcrab_guts/headcrab_gland.vmdl") = item_hlvr_headcrab_gland : "Placeholder"
+[
+]
+@PointClass base(prop_physics) model() = prop_dry_erase_marker : "Placeholder"
 [
 ]
 
