@@ -99,10 +99,50 @@
 @PointClass base(Targetname) editormodel("models/weapons/vr_ipistol/capsule_power_cell.vmdl") = Item_hlvr_clip_rapidfire : "Placeholder"
 [
 ]
+@PointClass base(Targetname) editormodel("models/weapons/vr_tripmine/tripmine.vmdl") = item_hlvr_weapon_tripmine : "Placeholder"
+[
+]
 
 // ----------------------------------------- LOGIC -----------------------------------------
 @PointClass base(Targetname, EnableDisable) tags( Logic ) iconsprite("editor/logic_relay.vmat") = info_hlvr_equip_player : "Placeholder. I assume this is for equiping the gravity gloves (see inputs)"
 [
+	// Properties
+	equip_on_mapstart(boolean) : "Equip on Map Start": 0
+	start_weapons_empty(boolean) : "Start Weapons Empty" : 0
+	energygun(boolean) : "Pistol" : 0
+	shotgun(boolean) : "Shotgun" : 0
+	rapidfire(boolean) : "Rapid Fire" : 0
+	flashlight(boolean) : "Flashlight" : 0
+	flashlight_enabled(boolean) : "Flashlight Enabled" : 0
+	crowbar(boolean) : "Crowbar" : 0
+	grabbitygloves(boolean) : "Grabbity Gloves" : 0
+	slingshot(boolean) : "Slingshot" : 0
+	itemholder(boolean) : "Item Holder" : 0
+	radio(boolean) : "Radio" : 0
+	multitool(boolean) : "Multitool" : 0
+	set_ammo(integer) : "Pistol Ammo" : 0
+	set_ammo_rapidfire(integer) : "Rapid Fire Ammo" : 0
+	set_ammo_shotgun(integer) : "Shotgun Ammo" : 0
+	set_resin(integer) : "Resin" : 0
+	pistol_upgrade_lasersight(boolean) : "Pistol Laser Sight Upgrade" : 0
+	pistol_upgrade_reflexsight(boolean) : "Pistol Reflex Sight Upgrade" : 0
+	pistol_upgrade_bullethopper(boolean) : "Pistol Bullet Hopper Upgrade" : 0
+	pistol_upgrade_burstfire(boolean) : "Pistol Burst Fire Upgrade" : 0
+	rapidfire_upgrade_explodingclusters(boolean) : "Rapid Fire Exploding Bullets Upgrade" : 0
+	rapidfire_upgrade_reflexsight(boolean) : "Rapid Fire Reflex Sight Upgrade" : 0
+	rapidfire_upgrade_lasersight(boolean) : "Rapid Fire Laser Sight Upgrade" : 0
+	rapidfire_upgrade_extended_magazine(boolean) : "Rapid Fire Extended Magazine Upgrade" : 0
+	shotgun_upgrade_autoloader(boolean) : "Shotgun Autoloader Upgrade" : 0
+	shotgun_upgrade_grenade(boolean) : "Shotgun Grenade Launcher Upgrade" : 0
+	shotgun_upgrade_lasersight(boolean) : "Shotgun Laser Sight Upgrade" : 0
+	shotgun_upgrade_quickfire(boolean) : "Shotgun Quick Fire Upgrade" : 0
+	shotgun_has_grenade(boolean) : "Shotgun has grenade equipped" : 0
+	energygun_loaded_ammo(integer) : "Loaded Pistol Ammo" : 0
+	rapidfire_loaded_ammo(integer) : "Loaded Rapid Fire Ammo" : 0
+	shotgun_loaded_ammo(integer) : "Loaded Shotgun Amo" : 0
+	inventory_enabled(boolean) : "Inventory Enabled" : 0
+	backpack_enabled(boolean) : "Backpack Enabled" : 0
+	allow_removal(boolean) : "Allow Removal" : 0
 	// Inputs
 	input equipnow(void) : "Probably gives gravity gloves"
 	input enablebackpack(void) : "Probably lets you collect ammo and resen"
