@@ -32,9 +32,6 @@
 [
 ]
 
-@PointClass base(Targetname) editormodel("models/characters/combine_grunt/combine_grunt.vmdl") = npc_combine_s : "Placeholder"
-[
-]
 
 @PointClass base(Targetname) editormodel("models/creatures/manhack/manhack.vmdl") = npc_manhack : "Placeholder"
 [
@@ -52,6 +49,16 @@
 
 @PointClass base(Targetname) editormodel("models/characters/eli/eli.vmdl") = npc_eli : "Placeholder"
 [
+]
+@NPCClass base(BaseNPC) studio("models/characters/combine_grunt/combine_grunt.vmdl") = npc_combine_s : "PLACEHOLDER Combine Soldier"
+[
+	model(choices) : "Model" : "models/characters/combine_grunt/combine_grunt.vmdl" : "Combine Grunt" = 
+	[
+		"models/characters/combine_grunt/combine_grunt.vmdl" : "Combine Grunt"
+		"models/characters/combine_suppressor/combine_suppressor.vmdl" : "Combine Suppressor"
+		"models/characters/combine_soldier_heavy/combine_soldier_heavy.vmdl" : "Combine Heavy"
+		"models/characters/combine_soldier_captain/combine_captain.vmdl" : "Combine Captain"
+	]
 ]
 
 // ----------------------------------------- TILE ENTITIES -----------------------------------------
