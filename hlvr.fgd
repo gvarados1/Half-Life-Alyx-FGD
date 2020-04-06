@@ -8,6 +8,8 @@
 @include "lights.fgd"
 @include "ai_basenpc.fgd"
 
+// ------test
+
 // ----------------------------------------- MONSTERS -----------------------------------------
 @PointClass base(Targetname) editormodel("models/creatures/headcrab_classic/headcrab_classic.vmdl") = npc_headcrab : "Placeholder"
 [
