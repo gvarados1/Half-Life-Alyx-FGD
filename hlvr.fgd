@@ -86,8 +86,10 @@
 @PointClass base(Targetname) editormodel("models/props_combine/health_charger/combine_health_charger_vr.vmdl") = item_healthcharger : "SPAWNS WITH GRUB. TODO: ADD OPTION TO NOT HAVE GRUB"
 [
 ]
-@PointClass base(Targetname) editormodel("models/props_combine/combine_printer/combine_crafting_station.vmdl") = prop_hlvr_crafting_station_console : "Placeholder"
+@PointClass base(Targetname) editormodel("models/props_combine/combine_printer/combine_crafting_station.vmdl") = prop_hlvr_crafting_station : "Placeholder"
 [
+	// Inputs
+	input HackingPlugSuccess(void) : "Activates console, allowing weapons to be upgraded."
 ]
 @PointClass base(Targetname) editormodel("models/props_combine/combine_doors/combine_hacking_interact_point.vmdl") = info_hlvr_holo_hacking_plug : "Placeholder"
 [
