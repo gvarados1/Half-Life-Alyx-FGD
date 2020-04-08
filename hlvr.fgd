@@ -10,40 +10,40 @@
 @include "markup_volumes.fgd"
 
 // ----------------------------------------- MONSTERS -----------------------------------------
-@PointClass base(Targetname) editormodel("models/creatures/headcrab_classic/headcrab_classic.vmdl") = npc_headcrab : "Placeholder"
+@PointClass base(BaseNPC) editormodel("models/creatures/headcrab_classic/headcrab_classic.vmdl") = npc_headcrab : "Placeholder"
 [
 ]
-@PointClass base(Targetname) editormodel("models/creatures/headcrab_black/headcrab_black.vmdl") = npc_headcrab_black : "Placeholder"
+@PointClass base(BaseNPC) editormodel("models/creatures/headcrab_black/headcrab_black.vmdl") = npc_headcrab_black : "Placeholder"
 [
 ]
-@PointClass base(Targetname) editormodel("models/creatures/headcrab/headcrab.vmdl") = npc_headcrab_poison : "Placeholder"
+@PointClass base(BaseNPC) editormodel("models/creatures/headcrab/headcrab.vmdl") = npc_headcrab_poison : "Placeholder"
 [
 ]
-@PointClass base(Targetname) editormodel("models/creatures/headcrab/headcrab.vmdl") = npc_headcrab_fast : "Placeholder. DOES NOT MAKE SOUNDS"
+@PointClass base(BaseNPC) editormodel("models/creatures/headcrab/headcrab.vmdl") = npc_headcrab_fast : "Placeholder. DOES NOT MAKE SOUNDS"
 [
 ]
-@PointClass base(Targetname) editormodel("models/creatures/headcrab_armored/headcrab_armored.vmdl") = npc_headcrab_armored : "Placeholder"
+@PointClass base(BaseNPC) editormodel("models/creatures/headcrab_armored/headcrab_armored.vmdl") = npc_headcrab_armored : "Placeholder"
 [
 ]
-@PointClass base(Targetname) editormodel("models/creatures/headcrab_reviver/headcrab_reviver.vmdl") = npc_headcrab_runner : "Placeholder"
-[
-]
-
-@PointClass base(Targetname) editormodel("models/creatures/zombie_classic/zombie_classic.vmdl") = npc_zombie : "Placeholder"
-[
-]
-@PointClass base(Targetname) editormodel("models/creatures/zombie_blind/zombie_blind.vmdl") = npc_zombie_blind : "Jeff"
+@PointClass base(BaseNPC) editormodel("models/creatures/headcrab_reviver/headcrab_reviver.vmdl") = npc_headcrab_runner : "Placeholder"
 [
 ]
 
+@PointClass base(BaseNPC) editormodel("models/creatures/zombie_classic/zombie_classic.vmdl") = npc_zombie : "Placeholder"
+[
+]
+@PointClass base(BaseNPC) editormodel("models/creatures/zombie_blind/zombie_blind.vmdl") = npc_zombie_blind : "Jeff"
+[
+]
 
-@PointClass base(Targetname) editormodel("models/creatures/manhack/manhack.vmdl") = npc_manhack : "Placeholder"
+
+@PointClass base(BaseNPC) editormodel("models/creatures/manhack/manhack.vmdl") = npc_manhack : "Placeholder"
 [
 ]
-@PointClass base(Targetname) editormodel("models/creatures/barnacle/barnacle.vmdl") = npc_barnacle : "Placeholder"
+@PointClass base(BaseNPC) editormodel("models/creatures/barnacle/barnacle.vmdl") = npc_barnacle : "Placeholder"
 [
 ]
-@PointClass base(Targetname, BasePhysicsSimulated) editormodel("models/combine_turrets/floor_turret.vmdl") = npc_turret_floor : "Placeholder"
+@PointClass base(BaseNPC, BasePhysicsSimulated) editormodel("models/combine_turrets/floor_turret.vmdl") = npc_turret_floor : "Placeholder"
 [
 ]
 
