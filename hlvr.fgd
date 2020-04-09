@@ -243,6 +243,8 @@
 
 @PointClass base(Targetname) editormodel("models/props_combine/combine_doors/combine_hacking_interact_point.vmdl") = info_hlvr_holo_hacking_plug : "Placeholder"
 [
+	HackDifficultyName(string) : "Difficulty Name" : "Medium"
+
 	// Inputs
 	input Enable(void) : ""
 	input Disable(void): ""
