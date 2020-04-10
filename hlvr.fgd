@@ -128,12 +128,70 @@
 
 @NPCClass base(BaseHumanNPC, RappelNPC) studio("models/characters/combine_grunt/combine_grunt.vmdl") = npc_combine_s : "PLACEHOLDER Combine Soldier"
 [
-	model(choices) : "Model" : "models/characters/combine_grunt/combine_grunt.vmdl" : "Combine Grunt" = 
+	model(choices) : "Model" : "models/characters/combine_grunt/combine_grunt.vmdl" : "" = 
 	[
-		"models/characters/combine_grunt/combine_grunt.vmdl" : "Combine Grunt"
-		"models/characters/combine_suppressor/combine_suppressor.vmdl" : "Combine Suppressor"
-		"models/characters/combine_soldier_heavy/combine_soldier_heavy.vmdl" : "Combine Heavy"
-		"models/characters/combine_soldier_captain/combine_captain.vmdl" : "Combine Captain"
+		"models/characters/combine_grunt/combine_grunt.vmdl" : "Grunt"
+		"models/characters/combine_suppressor/combine_suppressor.vmdl" : "Suppressor"
+		"models/characters/combine_soldier_heavy/combine_soldier_heavy.vmdl" : "Heavy"
+		"models/characters/combine_soldier_captain/combine_captain.vmdl" : "Captain"
+	]
+
+	additionalequipment(choices) : "Weapons" : "" =
+	[
+		"" : "Default"
+		"0" : "Nothing"
+		"weapon_ar2" : "AR2" // Captain
+		"weapon_heavymg" : "Heavy" // Suppressor
+		"weapon_shotgun" : "Shotgun" // Heavy
+		"weapon_smg1" : "SMG1" // Grunt
+	]
+
+	NumGrenades(choices) : "Number of Grenades" : "0" =
+	[
+		"0" : "None"
+		"1" : "1"
+		"2" : "2"
+		"3" : "3"
+		"4" : "4"
+		"5" : "5"
+		"999999" : "Unlimited"
+	]
+
+	SmokeGrenades(choices) : "Number of Smoke Grenades" : "0" =
+	[
+		"0" : "None"
+		"1" : "1"
+		"2" : "2"
+		"3" : "3"
+		"4" : "4"
+		"5" : "5"
+		"999999" : "Unlimited"
+	]
+
+	manhacks(Choices) : "Number of Manhacks" : 0 =
+	[
+		0 : "None"
+		1 : "1"
+		2 : "2"
+	]
+
+	initial_manhack_delay(float) : "" : "0"
+
+	min_advance_range_override(float) : "Override Advance Range" : "0"
+
+	sentry_position_name(string) : "" : ""
+
+	tacticalvariant(choices) : "Tactical Variant" : "0" =
+	[
+		"0" : "Normal Tactics"
+		"1" : "Pressure the enemy (Keep advancing)"
+		"2" : "Pressure until within 30ft, then normal"
+	]
+	
+	usemarch(choices) : "Walk Easy" : "0" : "When true, will use a variety of more casual walking animations instead of the standard walk. For use in crowds. WARNING: this animation only has a north component. For use under very special circumstances only." =
+	[
+		"0" : "No"
+		"2" : "Yes"
 	]
 
 	// Inputs
@@ -398,8 +456,20 @@
 [
 ]
 
-@PointClass base(Targetname) editormodel("models/weapons/vr_tripmine/tripmine.vmdl") = item_hlvr_weapon_tripmine : "Placeholder"
+@PointClass base(Targetname) editormodel("models/weapons/vr_tripmine/tripmine.vmdl") = item_hlvr_weapon_tripmine : "A tripmine. It can be activated and hacked when placed on a wall otherwise it could be used by the player."
 [
+	PreventTripping(boolean) : "Prevent Tripping" : 0 : "Prevent the tripmine from exploding when touching the laser."
+	StartActivated(boolean) : "Start Activated" : 1 : "Turn on the red lights and add the hack port. - Wall: Activates the laser and remains attached to the wall. - Loose: Field Ignored."
+	
+	StartAttached(boolean) : "Start Attached (Obsolete)" : 0 : "Attach to the wall but deactivates the laser. Maybe an obsolete field? (Please use Start Activated instead) - Loose: Field Ignored."
+
+	// Ouputs
+	output OnExplode(void) : ""
+
+	// Inputs
+	input AllowTripping(void) : ""
+	input ActivateMine(void) : ""
+	input DeactivateMine(void) : ""
 ]
 
 @PointClass base(Targetname) editormodel("models/props_combine/combine_battery/combine_battery_large.vmdl") = item_hlvr_prop_battery : "Placeholder"
