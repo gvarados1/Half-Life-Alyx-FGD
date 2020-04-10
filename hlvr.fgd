@@ -267,8 +267,10 @@
 	[
 		0 : "Sphere Trace"
 		1 : "Point Search"
-		2 : "Point Match"
+		2 : "BROKEN"
 		3 : "Point Drag (UNUSED)"
+		4 : "Point Match"
+		5 : "No Puzzle"
 	]
 	PuzzleSpawnTarget(target_destination) : "Puzzle Spawn Target"
 	PuzzleSpawnTargetAttachment(string) : "Puzzle Spawn Target Attachment"
