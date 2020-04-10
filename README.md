@@ -5,7 +5,8 @@ I have not tested all of these! Not everything is guaranteed to work!!
 
 ## HOW TO INSTALL
 
-Drop all FGD files into game\hlvr
+Drop all FGD files and gameinfo.gi into game\hlvr
+Note: This now includes the gameinfo.
 
 ## ADVERTISEMENT
 
