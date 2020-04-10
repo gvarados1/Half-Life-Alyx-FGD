@@ -1,7 +1,7 @@
 ## DISCLAIMER
 
 This is a barebones placeholder FGD. You can place the entities, but I have not setup all of the options and settings for them. Obviously, It's missing a lot.
-I have not tested all of these. Specifically `info_hlvr_equip_player` and `prop_hlvr_crafting_station`. I don't know how/if they work.
+I have not tested all of these! Not everything is guaranteed to work!!
 
 ## HOW TO INSTALL
 
