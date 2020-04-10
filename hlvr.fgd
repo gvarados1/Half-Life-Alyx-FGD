@@ -222,9 +222,9 @@
 ]
 
 // ----------------------------------------- ITEMS -----------------------------------------
-@PointClass base(Targetname) editormodel("models/props_combine/health_charger/combine_health_charger_vr.vmdl") = item_healthcharger : "SPAWNS WITH GRUB. TODO: ADD OPTION TO NOT HAVE GRUB"
+@PointClass base(Targetname) editormodel("models/props_combine/health_charger/combine_health_charger_vr.vmdl") = item_healthcharger : ""
 [
-	start_with_vial(boolean) : ""
+	start_with_vial(boolean) : "Start With Vial" : 0
 ]
 
 @PointClass base(Targetname, Studiomodel) editormodel("models/props_combine/combine_printer/combine_crafting_station.vmdl") = prop_hlvr_crafting_station : "Placeholder"
@@ -240,10 +240,32 @@
 
 @PointClass base(Targetname, Parentname) editormodel("models/props_combine/combine_doors/combine_hacking_interact_point.vmdl") = info_hlvr_holo_hacking_plug : "Placeholder"
 [
-	HackDifficultyName(string) : "Difficulty Name" : "Medium"
-	PuzzleType(string) : ""
-	PuzzleSpawnTarget(target_destination) : ""
-	PuzzleSpawnTargetAttachment(string) : ""
+	HackDifficultyName(choices) : "Difficulty Name" : "Medium" : "scripts/holo_hacking_difficulty.txt" = 
+	[
+		"First" : "First"
+		"Easy" : "Easy"
+		"Medium" : "Medium"
+		"Hard" : "Hard"
+		"VeryHard" : "VeryHard"
+		"a2_quarantine_entrance_locker_1" : "a2_quarantine_entrance_locker_1"
+		"a2_pistol_crafting_station_1" : "a2_pistol_crafting_station_1"
+		"a2_headcrabs_tunnel_crafting_station_1" : "a2_headcrabs_tunnel_crafting_station_1"
+		"a2_drainage_combine_door_1" : "a2_drainage_combine_door_1"
+		"a2_train_yard_crafting_station_1" : "a2_train_yard_crafting_station_1"
+		"a2_train_yard_combine_console_1" : "a2_train_yard_combine_console_1"
+		"a2_train_yard_combine_door_1" : "a2_train_yard_combine_door_1"
+		"a3_station_street_locker_1" : "a3_station_street_locker_1"
+		"a3_station_street_locker_2" : "a3_station_street_locker_2"
+		"a3_station_street_crafting_station_1" : "a3_station_street_crafting_station_1"
+		"a3_station_street_locker_4" : "a3_station_street_locker_4"
+		"a3_hotel_lobby_basement_locker_1" : "a3_hotel_lobby_basement_locker_1"
+		"a3_hotel_underground_pit_door_1" : "a3_hotel_underground_pit_door_1"
+		"a3_hotel_underground_pit_locker_1" : "a3_hotel_underground_pit_locker_1"
+		"a3_hotel_underground_pit_crafting_station_1" : "a3_hotel_underground_pit_crafting_station_1"
+	]
+	PuzzleType(string) : "Puzzle Type"
+	PuzzleSpawnTarget(target_destination) : "Puzzle Spawn Target"
+	PuzzleSpawnTargetAttachment(string) : "Puzzle Spawn Target Attachment"
 
 	// Inputs
 	input Enable(void) : ""
