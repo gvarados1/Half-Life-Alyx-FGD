@@ -126,10 +126,6 @@
 [
 ]
 
-@NPCClass base(BaseHumanNPC) editormodel("models/characters/gman/gman.vmdl") = npc_gman : "Placeholder"
-[
-]
-
 @NPCClass base(BaseHumanNPC, RappelNPC) studio("models/characters/combine_grunt/combine_grunt.vmdl") = npc_combine_s : "PLACEHOLDER Combine Soldier"
 [
 	model(choices) : "Model" : "models/characters/combine_grunt/combine_grunt.vmdl" : "Combine Grunt" = 
@@ -228,9 +224,10 @@
 // ----------------------------------------- ITEMS -----------------------------------------
 @PointClass base(Targetname) editormodel("models/props_combine/health_charger/combine_health_charger_vr.vmdl") = item_healthcharger : "SPAWNS WITH GRUB. TODO: ADD OPTION TO NOT HAVE GRUB"
 [
+	start_with_vial(boolean) : ""
 ]
 
-@PointClass base(Targetname) editormodel("models/props_combine/combine_printer/combine_crafting_station.vmdl") = prop_hlvr_crafting_station : "Placeholder"
+@PointClass base(Targetname, Studiomodel) editormodel("models/props_combine/combine_printer/combine_crafting_station.vmdl") = prop_hlvr_crafting_station : "Placeholder"
 [
 	// Inputs
 	input HackingPlugSuccess(void) : "Activates console, allowing weapons to be upgraded."
@@ -241,9 +238,12 @@
 	output OnPlayerNear(void) : ""
 ]
 
-@PointClass base(Targetname) editormodel("models/props_combine/combine_doors/combine_hacking_interact_point.vmdl") = info_hlvr_holo_hacking_plug : "Placeholder"
+@PointClass base(Targetname, Parentname) editormodel("models/props_combine/combine_doors/combine_hacking_interact_point.vmdl") = info_hlvr_holo_hacking_plug : "Placeholder"
 [
 	HackDifficultyName(string) : "Difficulty Name" : "Medium"
+	PuzzleType(string) : ""
+	PuzzleSpawnTarget(target_destination) : ""
+	PuzzleSpawnTargetAttachment(string) : ""
 
 	// Inputs
 	input Enable(void) : ""
@@ -260,6 +260,11 @@
 	output OnPuzzleCompleted(void) : ""
 	output OnPuzzleSuccess(void) : ""
 	output OnPuzzleFailed(void) : ""
+]
+
+@PointClass base(Targetname) iconsprite("editor/info_target.vmat") = info_hlvr_holo_hacking_spawn_target : ""
+[
+
 ]
 
 @PointClass base(BasePropDoorRotating) model() = prop_door_rotating_physics : "Placeholder door."
