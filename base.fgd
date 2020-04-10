@@ -7289,39 +7289,6 @@
 ]
 
 
-@PointClass base(Targetname, DamageFilter) tags( Logic ) size(-8 -8 -8, 8 8 8) = logic_playerproxy :
-	"An entity that is used to relay inputs/ouputs to the player and back to the world."
-[
-	output OnStartSlowingTime(void)			: "Fired when a Portal player initiates slow time."
-	output OnStopSlowingTime(void)			: "Fired when a Portal player stops slowing time."
-
-	// Outputs
-	output OnFlashlightOn(float) 			: "Fired when the player turns on his flashlight. This output has the value of how much energy the player had when this happened [0..1]."
-	output OnFlashlightOff(float) 			: "Fired when the player turns off his flashlight. This output has the value of how much energy the player had when this happened [0..1]."
-	input RequestPlayerHealth(void) 		: "Requests the current player's health from the proxy. This will fire the PlayerHealth output with the value."
-	output PlayerHealth(integer)			: "The player's current health value."
-	output PlayerMissedAR2AltFire(void)		: "Player fired an AR2 combine ball that didn't kill any enemies."
-
-	input SetFlashlightSlowDrain(void)		: "Puts the player's flashlight in slow-power-drain mode (for Episodic darkness)"
-	input SetFlashlightNormalDrain(void)		: "Puts the player's flashlight to default power drain"
-
-	input SetPlayerHealth(integer)			: "Sets the player's health to this value."
-	
-	input RequestAmmoState(void)			: "Request the ammo state of the player. It will fire PlayerHasAmmo or PlayerHasNoAmmo outputs."
-	output PlayerHasAmmo(void) 				: "Fired by request if the player has any ammo."
-	output PlayerHasNoAmmo(void) 			: "Fired by request if the player doesn't have any ammo."
-	
-	output PlayerDied(void) 				: "Fires when the player dies."
-
-	input LowerWeapon(void)					: "Lowers the players weapon."
-	
-	input EnableCappedPhysicsDamage(void) :	 "Cause player to take less damage from physics objects, and never more than 30 points from any individual strike."
-	input DisableCappedPhysicsDamage(void) : "Undo effects of EnableCappedPhysicsDamage"
-	input SetLocatorTargetEntity(string) : "Set the entity that the HUD locator should track. (Usually a vehicle)"
-	
-]
-
-
 @PointClass base(Targetname, Parentname) editormodel("models/editor/spot.vmdl") frustum(lightfov, nearz, farz, lightcolor, -1) = env_projectedtexture :
 	"Projected texture entity, used for things like flashlights."
 [
