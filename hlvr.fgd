@@ -1,4 +1,4 @@
-//Placeholder FGD created by Gvarados, thenayr, and Marnamai
+//Placeholder FGD created by Gvarados, thenayr, Marnamai, and kolessios
 
 //DOWNLOAD UPDATES AT:
 //https://github.com/gvarados1/Half-Life-Alyx-FGD
@@ -489,7 +489,7 @@
 ]
 
 // ----------------------------------------- LOGIC -----------------------------------------
-@PointClass base(Targetname, EnableDisable) tags( Logic ) iconsprite("editor/logic_relay.vmat") = info_hlvr_equip_player : "Placeholder. I assume this is for equiping the gravity gloves (see inputs)"
+@PointClass base(Targetname, EnableDisable) tags( Logic ) size(-8 -8 -8, 8 8 8) = info_hlvr_equip_player : "Placeholder. I assume this is for equiping the gravity gloves (see inputs)"
 [
 	// Properties
 	equip_on_mapstart(boolean) : "Equip on Map Start": 0
@@ -533,6 +533,95 @@
 	input enablebackpack(void) : "Probably lets you collect ammo and resen"
 	input enableinventory(void) : "Probably enables wrist pockets"
 	input use(void) : "Probably doesn't do anything"
+]
+@PointClass base(Targetname, DamageFilter) tags( Logic ) size(-8 -8 -8, 8 8 8) = logic_playerproxy :
+	"An entity that is used to relay inputs/ouputs to the player and back to the world."
+[
+	// Inputs
+	input SetFlashlightSlowDrain(void) : ""
+	input SetFlashlightNormalDrain(void) : ""
+	input LowerWeapon(void) : ""
+	input SetLocatorTargetEntity(void) : ""
+	input RequestPlayerHealth(void) : ""
+	input SetPlayerHealth(integer) : ""
+	input RequestAmmoState(void) : ""
+	input EnableCappedPhysicsDamage(void) : ""
+	input DisableCappedPhysicsDamage(void) : ""
+	input SetFlashlightEnable(void) : ""
+	input SetFlashlightDisable(void) : ""
+	input SetFlashlightFlicker(float) : ""
+	input SetFlashlightBrightness(float) : ""
+	input HapticPulseLeftHand(void) : ""
+	input HapticPulseHands(void) : ""
+	input SetGlovesGordon(void) : ""
+	input SetGlovesAlyx(void) : ""
+	input SetMuzzleFlashEmitLightEnable(void) : ""
+	input TestWeaponActive(void) : ""
+	input SetFullPlayerHealthOverTime(void) : ""
+	input SetTeleportFlipped(void) : ""
+	input SetCanAttackEnable(void) : ""
+	input SetCanAttackDisable(void) : ""
+	input CheckWearingHat(void) : ""
+	input SetReceivedDamageScale(void) : ""
+	input SetPreventSaving(void) : ""
+	input SetEnableSaving(void) : ""
+	input SetHUDEnable(void) : ""
+	input SetHUDDisable(void) : ""
+	input CheckPlayerHasVodkaBottleInWristPocket(void) : ""
+	input SetKinematic(void) : ""
+	input SetScale(float) : ""
+	input TeamNum(integer) : ""
+	input SetTeam(string) : ""
+	input Use(void) : ""
+	input AlternativeSorting(void) : ""
+	input SetParent(string) : ""
+	input SetParentAttachment(string) : ""
+	input SetParentAttachmentMaintainOffset(string) : ""
+	input ClearParent(void) : ""
+	input EnableDamageForces(void) : ""
+	input DisableDamageForces(void) : ""
+	input DispatchResponse(void) : ""
+	input AddContext(string) : ""
+	input RemoveContext(string) : ""
+	input ClearContext(void) : ""
+	input AddAttribute(void) : ""
+	input RemoveAttribute(void) : ""
+	input DisableShadow(void) : ""
+	input EnableShadow(void) : ""
+	input RunScriptCode(void) : ""
+	input RunScriptFile(void) : ""
+	input CallScriptFunction(void) : ""
+	input CallPrivateScriptFunction(void) : ""
+	input CallGlobalScriptFunction(void) : ""
+
+	// Outputs
+	output PlayerHealth(integer) : ""
+	output PlayerHasAmmo(void) : ""
+	output PlayerHasNoAmmo(void) : ""
+	output PlayerDied(void) : ""
+	output OnFlashlightOn(void) : ""
+	output OnFlashlightOff(void) : ""
+	output PlayerMissedAR2AltFire(void) : ""
+	output OnWeaponActive(void) : ""
+	output OnWeaponNotActive(void) : ""
+	output OnPlayerCoughed(void) : ""
+	output OnPlayerCoverMouth(void) : ""
+	output OnPlayerUncoverMouth(void) : ""
+	output OnPlayerHitBySpit(void) : ""
+	output OnVortEnergyAcquiredLeft(void) : ""
+	output OnVortEnergyReleasedLeft(void) : ""
+	output OnVortEnergyAcquiredRight(void) : ""
+	output OnVortEnergyReleasedRight(void) : ""
+	output OnVortEnergyAcquiredPrimaryHand(void) : ""
+	output OnVortEnergyReleasedPrimaryHand(void) : ""
+	output OnVortEnergyAcquiredOffHand(void) : ""
+	output OnVortEnergyReleasedOffHand(void) : ""
+	output OnPlayerTeleported(void) : ""
+	output OutPlayerIsWearingHat(void) : ""
+	output OutPlayerIsWearingHatTemp(void) : ""
+	output OutPlayerIsNotWearingHat(void) : ""
+	output OnPlayerHasOneVodkaBottleInWristPocket(void) : ""
+	output OnPlayerHasTwoVodkaBottlesInWristPockets(void) : ""
 ]
 
 // steamvr imported
