@@ -9,45 +9,111 @@
 @include "ai_basenpc.fgd"
 @include "markup_volumes.fgd"
 
+@BaseClass base(BaseNPC, Studiomodel, Parentname, DamageFilter) = BaseModelNPC
+[
+]
+
+@BaseClass base(TalkNPC, BaseModelNPC) = BaseHumanNPC
+[
+]
+
+@BaseClass base(BaseModelNPC) = BaseHeadcrab
+[
+	// Inputs
+	input Burrow(void): ""
+	input BurrowImmediate(void): ""
+	input Unburrow(void): ""
+	input StartHangingFromCeiling(void): ""
+	input DropFromCeiling(void): ""
+]
+
 // ----------------------------------------- MONSTERS -----------------------------------------
-@PointClass base(BaseNPC) editormodel("models/creatures/headcrab_classic/headcrab_classic.vmdl") = npc_headcrab : "Placeholder"
-[
-]
-@PointClass base(BaseNPC) editormodel("models/creatures/headcrab_black/headcrab_black.vmdl") = npc_headcrab_black : "Placeholder"
-[
-]
-@PointClass base(BaseNPC) editormodel("models/creatures/headcrab/headcrab.vmdl") = npc_headcrab_poison : "Placeholder"
-[
-]
-@PointClass base(BaseNPC) editormodel("models/creatures/headcrab/headcrab.vmdl") = npc_headcrab_fast : "Placeholder. DOES NOT MAKE SOUNDS"
-[
-]
-@PointClass base(BaseNPC) editormodel("models/creatures/headcrab_armored/headcrab_armored.vmdl") = npc_headcrab_armored : "Placeholder"
-[
-]
-@PointClass base(BaseNPC) editormodel("models/creatures/headcrab_reviver/headcrab_reviver.vmdl") = npc_headcrab_runner : "Placeholder"
+@NPCClass base(BaseHeadcrab) editormodel("models/creatures/headcrab_classic/headcrab_classic.vmdl") = npc_headcrab : "Placeholder"
 [
 ]
 
-@PointClass base(BaseNPC) editormodel("models/creatures/zombie_classic/zombie_classic.vmdl") = npc_zombie : "Placeholder"
-[
-]
-@PointClass base(BaseNPC) editormodel("models/creatures/zombie_blind/zombie_blind.vmdl") = npc_zombie_blind : "Jeff"
+@NPCClass base(BaseHeadcrab) editormodel("models/creatures/headcrab_black/headcrab_black.vmdl") = npc_headcrab_black : "Placeholder"
 [
 ]
 
-
-@PointClass base(BaseNPC) editormodel("models/creatures/manhack/manhack.vmdl") = npc_manhack : "Placeholder"
-[
-]
-@PointClass base(BaseNPC) editormodel("models/creatures/barnacle/barnacle.vmdl") = npc_barnacle : "Placeholder"
-[
-]
-@PointClass base(BaseNPC, BasePhysicsSimulated) editormodel("models/combine_turrets/floor_turret.vmdl") = npc_turret_floor : "Placeholder"
+@NPCClass base(BaseHeadcrab) editormodel("models/creatures/headcrab/headcrab.vmdl") = npc_headcrab_poison : "Placeholder"
 [
 ]
 
-@PointClass base(Targetname) editormodel("models/creatures/antlion/antlion.vmdl") = npc_antlion : "Placeholder"
+@NPCClass base(BaseHeadcrab) editormodel("models/creatures/headcrab/headcrab.vmdl") = npc_headcrab_fast : "Placeholder. DOES NOT MAKE SOUNDS"
+[
+]
+
+@NPCClass base(BaseHeadcrab) editormodel("models/creatures/headcrab_armored/headcrab_armored.vmdl") = npc_headcrab_armored : "Placeholder"
+[
+]
+
+@NPCClass base(BaseHeadcrab) editormodel("models/creatures/headcrab_reviver/headcrab_reviver.vmdl") = npc_headcrab_runner : "Placeholder"
+[
+	// Inputs
+	input ForceRevive(void): ""
+	input AbandonHost(void): ""
+
+	// Outputs
+	output OnReviverInhabit(void) : ""
+	output OnReviverEscape(void) : ""
+]
+
+@NPCClass base(BaseModelNPC) editormodel("models/creatures/zombie_classic/zombie_classic.vmdl") = npc_zombie : "Placeholder"
+[
+]
+
+@NPCClass base(BaseModelNPC) editormodel("models/creatures/zombie_blind/zombie_blind.vmdl") = npc_zombie_blind : "Jeff"
+[
+	// Inputs
+	input SetDeafState(void): ""
+	input ClearSounds(void): ""
+	input SetFling(void): ""
+	input SetInLockIn(void): ""
+	input SetInElevator(void): ""
+	input SetOutsideElevator(void): ""
+	input SetNearConsole(void): ""
+	input SetHeadedToConsole(void): ""
+	input SetHeadedToElevator(void): ""
+	input SetHeadedToFreezerDoor(void): ""
+	input SetSuppressMovement(void): ""
+	input HitMark(void): ""
+	input SetReviverIntro(void): ""
+	input MoveReviverTo(void): ""
+	input SetStormYaw(void): ""
+	input StartSprint(void): ""
+	input ToggleHead(void): ""
+
+	// Outputs
+	output OnHeardNoise(void) : ""
+	output OnFling(void) : ""
+	output OnHitMark(void) : ""
+	output OnBreakDoor(void) : ""
+	output OnElevatorBeat(void) : ""
+	output OnDeathCanRevive(void) : ""
+]
+
+@NPCClass base(BaseModelNPC) editormodel("models/creatures/manhack/manhack.vmdl") = npc_manhack : "Placeholder"
+[
+	// Inputs
+	input InteractivePowerDown(void): ""
+	input DisableSwarm(void): ""
+	input Unpack(void): ""
+
+	// Outputs
+	output OnAlyxStartedInteraction(void) : ""
+	output OnAlyxFinishedInteraction(void) : ""
+]
+
+@NPCClass base(BaseModelNPC) editormodel("models/creatures/barnacle/barnacle.vmdl") = npc_barnacle : "Placeholder"
+[
+]
+
+@NPCClass base(BaseModelNPC, BasePhysicsSimulated) editormodel("models/combine_turrets/floor_turret.vmdl") = npc_turret_floor : "Placeholder"
+[
+]
+
+@NPCClass base(BaseModelNPC) editormodel("models/creatures/antlion/antlion.vmdl") = npc_antlion : "Placeholder"
 [
 	model(choices) : "Model" : "models/creatures/antlion/antlion.vmdl" : "Antlion" = 
 	[
@@ -56,10 +122,11 @@
 	]
 ]
 
-@PointClass base(Targetname) editormodel("models/characters/eli/eli.vmdl") = npc_eli : "Placeholder"
+@NPCClass base(BaseHumanNPC) editormodel("models/characters/eli/eli.vmdl") = npc_eli : "Placeholder"
 [
 ]
-@NPCClass base(BaseNPC) studio("models/characters/combine_grunt/combine_grunt.vmdl") = npc_combine_s : "PLACEHOLDER Combine Soldier"
+
+@NPCClass base(BaseHumanNPC, RappelNPC) studio("models/characters/combine_grunt/combine_grunt.vmdl") = npc_combine_s : "PLACEHOLDER Combine Soldier"
 [
 	model(choices) : "Model" : "models/characters/combine_grunt/combine_grunt.vmdl" : "Combine Grunt" = 
 	[
@@ -68,10 +135,79 @@
 		"models/characters/combine_soldier_heavy/combine_soldier_heavy.vmdl" : "Combine Heavy"
 		"models/characters/combine_soldier_captain/combine_captain.vmdl" : "Combine Captain"
 	]
+
+	// Inputs
+	input StartPatrolling(void) : ""
+	input StopPatrolling(void) : ""
+	input LookOff(void) : ""
+	input LookOn(void) : ""
+	input Assault(void) : ""
+	input HitByBugbait(void) : ""
+	input ThrowGrenadeAtTarget(string) : ""
+	input ThrowSmokeGrenadeAtTarget(string) : ""
+	input ThrowSmokeGrenadeBetweenTarget(string) : ""
+	input SetMinAdvanceRange(integer) : ""
+	input SetMaxWeaponRange(integer) : ""
+	input SetForceWalkRun(void) : ""
+	input SetForceAim(void) : ""
+	input SetForceShield(void) : ""
+	input SetPatrolBlind(void) : ""
+	input CarriedGrenadeIgnited(void) : ""
+	input SetTacticalVariant(void) : ""
+	input SetSentryPositionName(string) : ""
+	input SetAllowedToDeployManhacks(void) : ""
+	input SetAllowedToThrowGrenades(void) : ""
+	
+	input SetExpressionOverride(string): ""
+	input IgnorePlayer(void) : ""
+	input DisableRandomLookAts(void) : ""
+	input EnableRandomLookAts(void) : ""
+	input EnableBlinking(void) : ""
+	input DisableBlinking(void) : ""
+	input EnableLookAt(void) : ""
+	input DisableLookAt(void) : ""
+	input EnableFacing(void) : ""
+	input DisableFacing(void) : ""
+	input LockRightHand(void) : ""
+	input UnlockRightHand(void) : ""
+	input LockLeftHand(void) : ""
+	input UnlockLeftHand(void) : ""
+	input EnableChoreoLookAts(void): ""
+	input DisableChoreoLookAts(void): ""
+	input LookAtIgnoreHands(void): ""
+	input LookAtUseHands(void): ""
+	input IgnoreDangerSounds(void): ""
+	input InsideTransition(void): ""
+	input OutsideTransition(void): ""
+	input ActivateSpeedModifier(void): ""
+	input DisableSpeedModifier(void): ""
+	input SetSpeedModRadius(float): ""
+	input SetSpeedModSpeed(float): ""
+	input AttachedItemDetached(void): ""
+	input ForceLookAtTarget(string): ""
+	input ClearForcedLookAtTarget(void): ""
+	input EnableChoreoPhysProxy(void): ""
+	input DisableChoreoPhysProxy(void): ""
+	input KilledNPC(void): ""
+	input BecomeServerRagdoll(void): ""
+	input ActivateModelConfig(void): ""
+	input ActivateOrResetModelConfig(void): ""
+	input DeactivateModelConfig(void): ""
+	input SetKinematic(void): ""
+	input SetScale(float): ""
+	input TeamNum(integer): ""
+	input SetTeam(integer): ""
+
+	// Outputs
+	output OnPatrolBlindBroken(void) : ""
+	output OnDeployedManhack(void) : ""
+	output OnDeployedManhack(void) : ""
 ]
+
 @PointClass base(Targetname, BasePhysicsSimulated) editormodel("models/props/xen_infestation/xen_grenade_plant.vmdl") = xen_foliage_grenade_spawner : "Placeholder"
 [
 ]
+
 @PointClass base(Targetname, BasePhysicsSimulated) editormodel("models/props/xen_infestation/boomerplant_01.vmdl") = xen_foliage_bloater : "Placeholder"
 [
 ]
@@ -80,24 +216,89 @@
 @SolidClass base(Targetname) = func_dry_erase_board : "Placeholder"
 [
 ]
+
 @SolidClass base(Targetname) = func_combine_barrier : "Combine fence"
 [
 ]
+
 // ----------------------------------------- ITEMS -----------------------------------------
-@PointClass base(Targetname) editormodel("models/props_combine/health_charger/combine_health_charger_vr.vmdl") = item_healthcharger : "SPAWNS WITH GRUB. TODO: ADD OPTION TO NOT HAVE GRUB"
+@PointClass base(Targetname) editormodel("models/props_combine/health_charger/combine_health_charger_vr.vmdl") = item_healthcharger : ""
 [
+	start_with_vial(boolean) : "Start With Vial" : 0
 ]
-@PointClass base(Targetname) editormodel("models/props_combine/combine_printer/combine_crafting_station.vmdl") = prop_hlvr_crafting_station : "Placeholder"
+
+@PointClass base(Targetname, Studiomodel) editormodel("models/props_combine/combine_printer/combine_crafting_station.vmdl") = prop_hlvr_crafting_station : "Placeholder"
 [
 	// Inputs
 	input HackingPlugSuccess(void) : "Activates console, allowing weapons to be upgraded."
+	input OpenStation(void): ""
+	input ReturnWeapon(void): ""
+
+	// Outputs
+	output OnPlayerNear(void) : ""
 ]
-@PointClass base(Targetname) editormodel("models/props_combine/combine_doors/combine_hacking_interact_point.vmdl") = info_hlvr_holo_hacking_plug : "Placeholder"
+
+@PointClass base(Targetname, Parentname) editormodel("models/props_combine/combine_doors/combine_hacking_interact_point.vmdl") = info_hlvr_holo_hacking_plug : "Placeholder"
 [
+	HackDifficultyName(choices) : "Difficulty Name" : "Medium" : "scripts/holo_hacking_difficulty.txt" = 
+	[
+		"First" : "First"
+		"Easy" : "Easy"
+		"Medium" : "Medium"
+		"Hard" : "Hard"
+		"VeryHard" : "VeryHard"
+		"a2_quarantine_entrance_locker_1" : "a2_quarantine_entrance_locker_1"
+		"a2_pistol_crafting_station_1" : "a2_pistol_crafting_station_1"
+		"a2_headcrabs_tunnel_crafting_station_1" : "a2_headcrabs_tunnel_crafting_station_1"
+		"a2_drainage_combine_door_1" : "a2_drainage_combine_door_1"
+		"a2_train_yard_crafting_station_1" : "a2_train_yard_crafting_station_1"
+		"a2_train_yard_combine_console_1" : "a2_train_yard_combine_console_1"
+		"a2_train_yard_combine_door_1" : "a2_train_yard_combine_door_1"
+		"a3_station_street_locker_1" : "a3_station_street_locker_1"
+		"a3_station_street_locker_2" : "a3_station_street_locker_2"
+		"a3_station_street_crafting_station_1" : "a3_station_street_crafting_station_1"
+		"a3_station_street_locker_4" : "a3_station_street_locker_4"
+		"a3_hotel_lobby_basement_locker_1" : "a3_hotel_lobby_basement_locker_1"
+		"a3_hotel_underground_pit_door_1" : "a3_hotel_underground_pit_door_1"
+		"a3_hotel_underground_pit_locker_1" : "a3_hotel_underground_pit_locker_1"
+		"a3_hotel_underground_pit_crafting_station_1" : "a3_hotel_underground_pit_crafting_station_1"
+	]
+	PuzzleType(choices) : "Puzzle Type" : 0 : "" =
+	[
+		0 : "Sphere Trace"
+		1 : "Point Search"
+		2 : "Point Match"
+		3 : "Point Drag (UNUSED)"
+	]
+	PuzzleSpawnTarget(target_destination) : "Puzzle Spawn Target"
+	PuzzleSpawnTargetAttachment(string) : "Puzzle Spawn Target Attachment"
+
+	// Inputs
+	input Enable(void) : ""
+	input Disable(void): ""
+	input BeginHack(void): ""
+	input EndHack(void): ""
+
+	// Outputs
+	output OnHackStarted(void) : ""
+	output OnHackStopped(void) : ""
+	output OnHackSuccess(void) : ""
+	output OnHackFailed(void) : ""
+	output OnHackSuccessAnimationComplete(void) : ""
+	output OnPuzzleCompleted(void) : ""
+	output OnPuzzleSuccess(void) : ""
+	output OnPuzzleFailed(void) : ""
 ]
+
+@PointClass base(Targetname) iconsprite("editor/info_target.vmat") = info_hlvr_holo_hacking_spawn_target : ""
+[
+
+]
+
 @PointClass base(BasePropDoorRotating) model() = prop_door_rotating_physics : "Placeholder door."
 [
 ]
+
 @PointClass base(func_brush) = prop_animinteractable : "Placeholder"
 [
 ]
@@ -106,63 +307,83 @@
 @PointClass base(Targetname, BasePhysicsSimulated) editormodel("models/weapons/vr_alyxhealth/vr_health_pen.vmdl") = item_healthvial : "Placeholder"
 [
 ]
+
 @PointClass base(Targetname, BasePhysicsSimulated) editormodel("models/props_combine/health_charger/health_vial.vmdl") = item_hlvr_health_station_vial : "Placeholder"
 [
 ]
+
 @PointClass base(Targetname, BasePhysicsSimulated) editormodel("models/weapons/vr_grenade/grenade_unarmed.vmdl") = item_hlvr_grenade_frag : "Placeholder"
 [
 ]
+
 @PointClass base(Targetname, BasePhysicsSimulated) editormodel("models/weapons/vr_xen_grenade/vr_xen_grenade.vmdl") = item_hlvr_grenade_xen : "Placeholder"
 [
 ]
+
 @PointClass base(Targetname, BasePhysicsSimulated) editormodel("models/weapons/vr_alyxgun/vr_alyxgun_clip.vmdl") = item_hlvr_clip_energygun : "Placeholder"
 [
 ]
+
 @PointClass base(Targetname, BasePhysicsSimulated) editormodel("models/weapons/vr_alyxgun/pistol_clip_holder.vmdl") = item_hlvr_clip_energygun_multiple : "Placeholder"
 [
 ]
+
 @PointClass base(Targetname, BasePhysicsSimulated) editormodel("models/weapons/vr_alyxgun/vr_alyxgun_assembled_skin01.vmdl") = item_hlvr_weapon_energygun : "Placeholder"
 [
 ]
+
 @PointClass base(Targetname) editormodel("models/items/crafting_metal/resin_puck01.vmdl") = item_hlvr_crafting_currency_small : "Placeholder"
 [
 ]
+
 @PointClass base(Targetname) editormodel("models/items/crafting_metal/resin_puck_stack.vmdl") = item_hlvr_crafting_currency_large : "Placeholder"
 [
 ]
+
 @PointClass base(Targetname) editormodel("models/weapons/vr_alyxtool/alyx_tool.vmdl") = Item_hlvr_multitool : "Placeholder"
 [
 ]
+
 @PointClass base(Targetname) editormodel("models/weapons/vr_shotgun/shell_hand.vmdl") = Item_hlvr_clip_shotgun_single : "SINGLE SHELL"
 [
 ]
+
 @PointClass base(Targetname) editormodel("models/weapons/vr_shotgun/shell_hand.vmdl") = item_hlvr_clip_shotgun_shells_pair : "TWO SHELLS"
 [
 ]
+
 @PointClass base(Targetname) editormodel("models/weapons/vr_ammo/shotgun_shell_ammo_box.vmdl") = item_hlvr_clip_shotgun_multiple : "FOUR SHELLS"
 [
 ]
+
 @PointClass base(Targetname) editormodel("models/weapons/vr_shotgun/vr_flip_shotgun_body.vmdl") = item_hlvr_weapon_shotgun : "Placeholder"
 [
 ]
+
 @PointClass base(Targetname) editormodel("models/weapons/vr_ipistol/vr_ipistol.vmdl") = item_hlvr_weapon_rapidfire : "Placeholder"
 [
 ]
+
 @PointClass base(Targetname) editormodel("models/weapons/vr_ipistol/capsule_power_cell.vmdl") = Item_hlvr_clip_rapidfire : "Placeholder"
 [
 ]
+
 @PointClass base(Targetname) editormodel("models/weapons/vr_tripmine/tripmine.vmdl") = item_hlvr_weapon_tripmine : "Placeholder"
 [
 ]
+
 @PointClass base(Targetname) editormodel("models/props_combine/combine_battery/combine_battery_large.vmdl") = item_hlvr_prop_battery : "Placeholder"
 [
 ]
+
 @PointClass base(Targetname) editormodel("models/creatures/headcrab_reviver/reviver_heart.vmdl") = prop_reviver_heart : "Placeholder"
 [
 ]
+
 @PointClass base(Targetname) editormodel("models/props/headcrab_guts/headcrab_gland.vmdl") = item_hlvr_headcrab_gland : "Placeholder"
 [
 ]
+
 @PointClass base(prop_physics) model() = prop_dry_erase_marker : "Placeholder"
 [
 ]
