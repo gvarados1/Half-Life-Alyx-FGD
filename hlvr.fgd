@@ -121,7 +121,7 @@
 @PointClass base(Targetname, BasePhysicsSimulated) editormodel("models/weapons/vr_alyxgun/pistol_clip_holder.vmdl") = item_hlvr_clip_energygun_multiple : "Placeholder"
 [
 ]
-@PointClass base(Targetname, BasePhysicsSimulated) editormodel("models/weapons/vr_alyxgun/vr_alyxgun_assembled_skin01.vmdl") = hlvr_weapon_energygun : "Placeholder"
+@PointClass base(Targetname, BasePhysicsSimulated) editormodel("models/weapons/vr_alyxgun/vr_alyxgun_assembled_skin01.vmdl") = item_hlvr_weapon_energygun : "Placeholder"
 [
 ]
 @PointClass base(Targetname) editormodel("models/items/crafting_metal/resin_puck01.vmdl") = item_hlvr_crafting_currency_small : "Placeholder"
@@ -212,4 +212,56 @@
 	input enablebackpack(void) : "Probably lets you collect ammo and resen"
 	input enableinventory(void) : "Probably enables wrist pockets"
 	input use(void) : "Probably doesn't do anything"
+]
+
+// steamvr imported
+@SolidClass base(worldbase) = worldspawn : 
+	"This is the world entity. Each map can only contain one, and it's automatically created for you."
+[
+	pvstype(choices) : "Precomputed Visibility" : 0 : "" = 
+	[
+		0 : "Disabled"
+		1 : "Test map (open space, no skybox)"
+		10 : "Full visibility solve"
+	]
+	steamaudio_export(boolean) : "Export Steam Audio Geometry" : "No"
+]
+
+@PointClass base( Targetname ) global( 3dskybox )= skybox_reference
+[
+	targetMapName(instance_file) : "Map Name"
+	fixupNames(boolean) : "Fixup Entity Names" : 0
+	worldGroupID(string) : "WorldGroupID" : "skyboxWorldGroup0"
+]
+
+@PointClass
+	iconsprite( "materials/editor/env_fog_controller.vmat" ) tags( Lighting )
+	base( Targetname )
+	gradientfog { textureRequired = true }
+	global( gradient_fog )
+= env_gradient_fog
+[
+	fogstart(float) : "Fog Start Distance" : "0.0"
+	fogend(float) : "Fog End Distance" : "4000.0"
+	fogstartheight(float) : "Fog Start Height" : "0.0"
+	fogendheight(float) : "Fog End Height" : "200.0"
+	farz(string) : "Far Z Clip Plane" : "-1"
+	gradientfogtexture(resource:texture) : "Fog Gradient Texture" : "materials/effects/example_gradient_fog.vtex"
+	input Enable(void) : "Enable the fog."
+	input Disable(void) : "Disable the fog."
+]
+
+@PointClass base(Targetname, EnableDisable) tags( Lighting )
+	iconsprite( "materials/editor/env_cubemap_fog.vmat" ) 
+	cubemap_fog()
+= env_cubemap_fog  
+[
+	cubemapfogtexture(resource:texture) : "Cubemap Texture" : "materials/skybox/tests/src/light_test_sky_sunset.vtex"
+	cubemapfoglodbiase(float) : "Cubemap LOD (mip) Bias" : "0.5" : "Adjust how quickly the cubemap blurs out into the distance"
+	cubemapfogstartdistance(float) : "Fog Start Distance" : "0.0"
+	cubemapfogenddistance(float) : "Fog End Distance" : "6000.0"
+	cubemapfogfalloffexponent(float) : "Distance Falloff Exponent" : "2.0" : "Exponent for distance falloff. For example, 2.0 = proportional to square of distance"
+	cubemapfogheightwidth(float) : "Height Fog Width" : "0.0"
+	cubemapfogheightstart(float) : "Height Fog Start" : "2000.0"
+	cubemapfogheightexponent(float) : "Height Fog Exponent" : "2.0"
 ]
