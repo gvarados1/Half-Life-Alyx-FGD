@@ -7,7 +7,7 @@ I have not tested all of these! Not everything is guaranteed to work!!
 
 Drop all FGD files into game\hlvr
 
-## ADVERTISING
+## ADVERTISEMENT
 
 https://twitter.com/gvarados
 
