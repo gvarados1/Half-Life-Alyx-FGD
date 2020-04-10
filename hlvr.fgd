@@ -263,7 +263,13 @@
 		"a3_hotel_underground_pit_locker_1" : "a3_hotel_underground_pit_locker_1"
 		"a3_hotel_underground_pit_crafting_station_1" : "a3_hotel_underground_pit_crafting_station_1"
 	]
-	PuzzleType(string) : "Puzzle Type"
+	PuzzleType(choices) : "Puzzle Type" : 0 : "" =
+	[
+		0 : "Sphere Trace"
+		1 : "Point Search"
+		2 : "Point Match"
+		3 : "Point Drag (UNUSED)"
+	]
 	PuzzleSpawnTarget(target_destination) : "Puzzle Spawn Target"
 	PuzzleSpawnTargetAttachment(string) : "Puzzle Spawn Target Attachment"
 
