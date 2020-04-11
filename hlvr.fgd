@@ -1,4 +1,4 @@
-//Placeholder FGD created by Gvarados, thenayr, Marnamai, and kolessios
+//Placeholder FGD created by Gvarados, thenayr, Marnamai, kolessios, and Block57
 
 //DOWNLOAD UPDATES AT:
 //https://github.com/gvarados1/Half-Life-Alyx-FGD
@@ -262,8 +262,9 @@
 	output OnDeployedManhack(void) : ""
 ]
 
-@PointClass base(Targetname, BasePhysicsSimulated) editormodel("models/props/xen_infestation/xen_grenade_plant.vmdl") = xen_foliage_grenade_spawner : "Placeholder"
+@PointClass base(Targetname, BasePhysicsSimulated, Studiomodel) model() = xen_foliage_grenade_spawner : "Placeholder"
 [
+	model(studio) : "Model" : "models/props/xen_infestation/xen_grenade_plant.vmdl"
 ]
 
 @PointClass base(Targetname, BasePhysicsSimulated) editormodel("models/props/xen_infestation/boomerplant_01.vmdl") = xen_foliage_bloater : "Placeholder"
@@ -280,23 +281,27 @@
 ]
 
 // ----------------------------------------- ITEMS -----------------------------------------
-@PointClass base(Targetname) editormodel("models/props_combine/health_charger/combine_health_charger_vr.vmdl") = item_healthcharger : ""
+@PointClass base(Targetname) editormodel("models/props_combine/health_charger/combine_health_charger_vr.vmdl") = item_healthcharger : "Grub-powered Health Chargers."
 [
-	start_with_vial(boolean) : "Start With Vial" : 0
+	start_with_vial(boolean) : "Start With Vial" : 0 : "Create the health charger with a grub in place."
+	vial_level(float) : "Vial Level" : 1 : "Set the level of health the grub is at on creation, if start_with_vial is set to 1."
 ]
 
-@PointClass base(Targetname, Studiomodel) editormodel("models/props_combine/combine_printer/combine_crafting_station.vmdl") = prop_hlvr_crafting_station : "Placeholder"
+@PointClass base(Targetname, Studiomodel) editormodel("models/props_combine/combine_printer/combine_crafting_station.vmdl") = prop_hlvr_crafting_station : ""
 [
+	hacking_plug(target_destination) : "Hacking Plug Entity Name"
+	is_powered(boolean) : "Is Powered" : 1
+	
 	// Inputs
 	input HackingPlugSuccess(void) : "Activates console, allowing weapons to be upgraded."
-	input OpenStation(void): ""
-	input ReturnWeapon(void): ""
-
+	input OpenStation(void) : "Activates console, allowing weapons to be upgraded."
+	input ReturnWeapon(void) : "Returns the weapon to the player's hand."
+	
 	// Outputs
-	output OnPlayerNear(void) : ""
+	output OnPlayerNear(void) : "When the player is near the console."
 ]
 
-@PointClass base(Targetname, Parentname) editormodel("models/props_combine/combine_doors/combine_hacking_interact_point.vmdl") = info_hlvr_holo_hacking_plug : "Placeholder"
+@PointClass base(Targetname, Parentname, EnableDisable) editormodel("models/props_combine/combine_doors/combine_hacking_interact_point.vmdl") = info_hlvr_holo_hacking_plug : "Hacking plug, uses Alyx's multitool to complete a puzzle."
 [
 	HackDifficultyName(choices) : "Difficulty Name" : "Medium" : "scripts/holo_hacking_difficulty.txt" = 
 	[
@@ -364,32 +369,42 @@
 	// Inputs
 	input Enable(void) : ""
 	input Disable(void): ""
-	input BeginHack(void): ""
-	input EndHack(void): ""
+	input BeginHack(void): "Begins the hack as if the multitool started it."
+	input EndHack(void): "Ends the hack."
 
 	// Outputs
-	output OnHackStarted(void) : ""
-	output OnHackStopped(void) : ""
-	output OnHackSuccess(void) : ""
-	output OnHackFailed(void) : ""
-	output OnHackSuccessAnimationComplete(void) : ""
-	output OnPuzzleCompleted(void) : ""
-	output OnPuzzleSuccess(void) : ""
-	output OnPuzzleFailed(void) : ""
+	output OnHackStarted(void) : "When the hack starts."
+	output OnHackStopped(void) : "When the hack is stopped."
+	output OnHackSuccess(void) : "When the hack is completed successfully."
+	output OnHackFailed(void) : "When the hack is failed."
+	output OnHackSuccessAnimationComplete(void) : "When the hack success animation is over."
+	output OnPuzzleCompleted(void) : "When the puzzle is done."
+	output OnPuzzleSuccess(void) : "When the puzzle is completed successfully."
+	output OnPuzzleFailed(void) : "When the puzzle is failed."
 ]
 
-@PointClass base(Targetname) iconsprite("editor/info_target.vmat") = info_hlvr_holo_hacking_spawn_target : ""
+@PointClass base(Targetname) iconsprite("editor/info_target.vmat") leansphere( radius, 255, 64, 64 ) = info_hlvr_holo_hacking_spawn_target : "Spawn targets for the hacking plug puzzles."
 [
-
+	radius(float) : "Radius" : 32 : "The radius the puzzle spawns in around the entity"
+	hidden(boolean) : "Hidden" : 0
+	//given a model in all maps, maybe to designate what type the puzzle is?
+	model(studio) : "World Model" : "models/hacking/holo_hacking_sphere_prop_editor_point_search.vmdl"
 ]
 
-@PointClass base(BasePropDoorRotating) model() = prop_door_rotating_physics : "Placeholder door."
+@PointClass base(BasePropDoorRotating, ConstraintSoundInfo) model() = prop_door_rotating_physics : "Placeholder door."
 [
 ]
 
 @PointClass base(func_brush) = prop_animinteractable : "Placeholder"
 [
 ]
+
+@PointClass model("models/props/hotel/piano_001.vmdl") = hlvr_piano : "Piano found at the Northern Star."
+[
+	output OnPlayerStartPlayingPiano(void) : "When the player starts to play the piano."
+	output OnPlayerStopPlayingPiano(void) : "When the player stops playing the piano."
+	output OnPlayerPlayingPiano(void) : "While the player is playing the piano."
+] 
 
 // ----------------------------------------- PICKUPS -----------------------------------------
 @PointClass base(Targetname, BasePhysicsSimulated) editormodel("models/weapons/vr_alyxhealth/vr_health_pen.vmdl") = item_healthvial : "Placeholder"
@@ -428,11 +443,11 @@
 [
 ]
 
-@PointClass base(Targetname) editormodel("models/weapons/vr_alyxtool/alyx_tool.vmdl") = Item_hlvr_multitool : "Placeholder"
+@PointClass base(Targetname) editormodel("models/weapons/vr_alyxtool/alyx_tool.vmdl") = item_hlvr_multitool : "Placeholder"
 [
 ]
 
-@PointClass base(Targetname) editormodel("models/weapons/vr_shotgun/shell_hand.vmdl") = Item_hlvr_clip_shotgun_single : "SINGLE SHELL"
+@PointClass base(Targetname) editormodel("models/weapons/vr_shotgun/shell_hand.vmdl") = item_hlvr_clip_shotgun_single : "SINGLE SHELL"
 [
 ]
 
@@ -452,7 +467,7 @@
 [
 ]
 
-@PointClass base(Targetname) editormodel("models/weapons/vr_ipistol/capsule_power_cell.vmdl") = Item_hlvr_clip_rapidfire : "Placeholder"
+@PointClass base(Targetname) editormodel("models/weapons/vr_ipistol/capsule_power_cell.vmdl") = item_hlvr_clip_rapidfire : "Placeholder"
 [
 ]
 
@@ -534,6 +549,7 @@
 	input enableinventory(void) : "Probably enables wrist pockets"
 	input use(void) : "Probably doesn't do anything"
 ]
+
 @PointClass base(Targetname, DamageFilter) tags( Logic ) size(-8 -8 -8, 8 8 8) = logic_playerproxy :
 	"An entity that is used to relay inputs/ouputs to the player and back to the world."
 [
@@ -622,6 +638,91 @@
 	output OutPlayerIsNotWearingHat(void) : ""
 	output OnPlayerHasOneVodkaBottleInWristPocket(void) : ""
 	output OnPlayerHasTwoVodkaBottlesInWristPockets(void) : ""
+]
+
+@PointClass base(Targetname, EnableDisable) tags( Logic ) editormodel("models/props_combine/combine_power/power_stake_a.vmdl") = info_hlvr_toner_port : "Port for the electric wire puzzles."
+[
+	initial_orientation(choices): "Initial Orientation" : 0 : "West" =
+	[
+		0 : "West"
+		1 : "North"
+		2 : "East"
+		3 : "South"
+	]
+	
+	desired_orientation(choices): "Desired Orientation" : "2" : "East" =
+	[
+		0 : "West"
+		1 : "North"
+		2 : "East"
+		3 : "South"
+	]
+	
+	StartPortVisible(boolean) : "Start Port Visible" : 1
+	StartVisible(boolean) : "Start Visible" : 1
+	
+	// Inputs
+	input SetVisible(boolean) : "Sets the visibility of the toner's particle effects."
+	input SetPortVisible(boolean) : "Opens and closes the aperture for the plug."
+	input SetComplete(boolean) : "Sets if the puzzle is complete."
+	input OnPlugRotated(void) : "" //Listed as an input in-engine, shouldn't this be an output?
+]
+
+@PointClass base(Targetname, EnableDisable) tags( Logic ) iconsprite("editor/light.vmat")
+	line( 255 255 255, targetname, start_entity )
+	line( 255 255 255, targetname, end_entity )
+	selected_line( 255 0 0, targetname, first_path_node )
+ = info_hlvr_toner_path : "A path for the toner puzzles."
+[
+	start_entity(target_destination) : "Start Entity" : "" : "The toner port or previous junction in the toner."
+	end_entity(target_destination) : "End Entity" : "" : "The next junction in the toner."
+	first_path_node(target_destination) : "First Path Node" : "" : "Put the first info_hlvr_toner_path_node of the path here."
+	
+	// Inputs
+	input PlayFanfare(void) : "Plays a sound?"
+]
+
+@PointClass base(Targetname, EnableDisable) tags( Logic ) iconsprite("editor/logic_relay.vmat") selected_line( 255 0 0, targetname, target ) = info_hlvr_toner_path_node : "The different points the toner path is visualized as in-game."
+[
+	target(target_destination) : "Target" : "" : "Next path node to continue the current path."
+	inset_distance(float) : "Inset Distance" : 0
+	is_spline_node(boolean) : "Is Spline" : 1 : "Treats the line to the target as a spline."
+]
+
+@PointClass base(Targetname, EnableDisable) tags( Logic ) iconsprite("materials/editor/logic_branch.vmat")
+	selected_line( 255 255 255, targetname, connection_0 )
+	selected_line( 255 255 255, targetname, connection_1 )
+	selected_line( 255 255 255, targetname, connection_2 )
+	selected_line( 255 255 255, targetname, connection_3 )
+ = info_hlvr_toner_junction : "The interactable junctions for toner puzzles."
+[	
+	connection_0(target_destination) : "Path 0"
+	connection_1(target_destination) : "Path 1"
+	connection_2(target_destination) : "Path 2"
+	connection_3(target_destination) : "Path 3"
+	
+	inset_distance(float) : "Inset Distance" : 0
+	
+	toner_path(target_destination) : "Junction Type" : 0 : "Something to select the path?"
+	toner_path_node(target_destination) : "Junction Type Node" : 0 : "Something to select the path node?"
+
+	junction_topology(choices) : "Junction Topology" : 0 : "Determines the type of the junction. Not working?" = 
+	[
+		0 : "I (line)"
+		1 : "L (90 degree)"
+		2 : "T (3 way)"
+		3 : "L Dual (dual line)"
+		4 : "Static T"
+		5 : "Static 4-way"
+	]
+	
+	junction_orientation(choices): "Junction Orientation" : 0 : "Starting orientation?" =
+	[
+		0 : "West"
+		1 : "North"
+		2 : "East"
+		3 : "South"
+	]
 ]
 
 // steamvr imported
