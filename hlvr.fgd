@@ -776,3 +776,12 @@
 	cubemapfogheightstart(float) : "Height Fog Start" : "2000.0"
 	cubemapfogheightexponent(float) : "Height Fog Exponent" : "2.0"
 ]
+
+@PointClass base(Targetname) editormodel("models/editor/cone_helper.vmdl") = point_vort_energy : "Spawn a vortigaunt energy ring for the grabbity gloves."
+[
+	start_enabled(boolean) : "Start Enabled" : 1 : "Should it start enabled on new game?"
+	input Enable(void) : "Enable the energy ring."
+	input Disable(void) : "Disable the energy ring."
+	input Toggle(void) : "Toggle the energy ring."
+	output OnEnergyPulled(void) : ""
+]
