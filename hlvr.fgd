@@ -696,10 +696,10 @@
 	selected_line( 255 255 255, targetname, connection_3 )
  = info_hlvr_toner_junction : "The interactable junctions for toner puzzles."
 [	
-	connection_0(target_destination) : "Path 0"
-	connection_1(target_destination) : "Path 1"
-	connection_2(target_destination) : "Path 2"
-	connection_3(target_destination) : "Path 3"
+	connection_0(target_destination) : "East Path"
+	connection_1(target_destination) : "North Path"
+	connection_2(target_destination) : "West Path"
+	connection_3(target_destination) : "South Path"
 	
 	inset_distance(float) : "Inset Distance" : 0
 	
