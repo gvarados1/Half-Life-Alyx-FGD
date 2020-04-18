@@ -785,3 +785,38 @@
 	input Toggle(void) : "Toggle the energy ring."
 	output OnEnergyPulled(void) : ""
 ]
+
+@SolidClass base(Trigger) = trigger_blind_zombie_player_teleport : "?"
+[
+	
+]
+
+@SolidClass base(Trigger) = trigger_blind_zombie_player_touch : "?"
+[
+	
+]
+
+@PointClass base(Targetname) editormodel("models/editor/cone_helper.vmdl") = point_zombie_noise_generator : "?"
+[
+	accumulate(boolean) : "Accumulate" : 1 : "?"
+	accumulatelevel(integer) : "Accumulate Level" : 0 : "?"
+	
+	input GenerateNoise(void) : "?"
+	input WanderTo(void) : "?"
+	input EnableAccumulation(void) : "?"
+	output OnEnergyPulled(void) : ""
+]
+
+@SolidClass base(Trigger) = trigger_blind_zombie_wander_area : "?"
+[
+	companion_trigger(string) : "Companion Trigger" : "" : "?"
+]
+
+@SolidClass base(Trigger) = trigger_blind_zombie_sound_area : "?"
+[
+	scripted_sequence_name(string) : "Scripted Sequence Name" : "" : "?"
+	fire_output_immediately(boolean) : "Fire Output Immediately" : 1 : "?"
+	target_sound_entity(string) : "Target Sound Entity"
+	
+	output OnSoundGeneratedInside(void) : ""
+]
