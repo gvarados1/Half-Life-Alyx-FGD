@@ -689,7 +689,7 @@
 	is_spline_node(boolean) : "Is Spline" : 1 : "Treats the line to the target as a spline."
 ]
 
-@PointClass base(Targetname, EnableDisable) tags( Logic ) iconsprite("materials/editor/logic_branch.vmat")
+@PointClass base(Targetname, EnableDisable) tags( Logic ) size(-4 -4 -4, 4 4 4)
 	selected_line( 255 255 255, targetname, connection_0 )
 	selected_line( 255 255 255, targetname, connection_1 )
 	selected_line( 255 255 255, targetname, connection_2 )
