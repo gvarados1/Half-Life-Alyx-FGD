@@ -689,17 +689,17 @@
 	is_spline_node(boolean) : "Is Spline" : 1 : "Treats the line to the target as a spline."
 ]
 
-@PointClass base(Targetname, EnableDisable) tags( Logic ) iconsprite("materials/editor/logic_branch.vmat")
+@PointClass base(Targetname, EnableDisable) tags( Logic ) size(-4 -4 -4, 4 4 4)
 	selected_line( 255 255 255, targetname, connection_0 )
 	selected_line( 255 255 255, targetname, connection_1 )
 	selected_line( 255 255 255, targetname, connection_2 )
 	selected_line( 255 255 255, targetname, connection_3 )
  = info_hlvr_toner_junction : "The interactable junctions for toner puzzles."
 [	
-	connection_0(target_destination) : "Path 0"
-	connection_1(target_destination) : "Path 1"
-	connection_2(target_destination) : "Path 2"
-	connection_3(target_destination) : "Path 3"
+	connection_0(target_destination) : "East Path"
+	connection_1(target_destination) : "North Path"
+	connection_2(target_destination) : "West Path"
+	connection_3(target_destination) : "South Path"
 	
 	inset_distance(float) : "Inset Distance" : 0
 	
@@ -784,4 +784,39 @@
 	input Disable(void) : "Disable the energy ring."
 	input Toggle(void) : "Toggle the energy ring."
 	output OnEnergyPulled(void) : ""
+]
+
+@SolidClass base(Trigger) = trigger_blind_zombie_player_teleport : "?"
+[
+	
+]
+
+@SolidClass base(Trigger) = trigger_blind_zombie_player_touch : "?"
+[
+	
+]
+
+@PointClass base(Targetname) editormodel("models/editor/cone_helper.vmdl") = point_zombie_noise_generator : "?"
+[
+	accumulate(boolean) : "Accumulate" : 1 : "?"
+	accumulatelevel(integer) : "Accumulate Level" : 0 : "?"
+	
+	input GenerateNoise(void) : "?"
+	input WanderTo(void) : "?"
+	input EnableAccumulation(void) : "?"
+	output OnEnergyPulled(void) : ""
+]
+
+@SolidClass base(Trigger) = trigger_blind_zombie_wander_area : "?"
+[
+	companion_trigger(string) : "Companion Trigger" : "" : "?"
+]
+
+@SolidClass base(Trigger) = trigger_blind_zombie_sound_area : "?"
+[
+	scripted_sequence_name(string) : "Scripted Sequence Name" : "" : "?"
+	fire_output_immediately(boolean) : "Fire Output Immediately" : 1 : "?"
+	target_sound_entity(string) : "Target Sound Entity"
+	
+	output OnSoundGeneratedInside(void) : ""
 ]
