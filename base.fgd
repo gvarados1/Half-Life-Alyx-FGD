@@ -6360,6 +6360,7 @@
 	]
 
 	SilentToZombies(boolean) : "Silent To Zombies" : 0 : "Should this prop generate sounds that blind zombies can hear."
+	CanDepositInItemHolder(boolean) : "Wrist pocketable" : 0 : "If set, prop can be stored in wrist pocket."
 
 	// Inputs
 	input Ignite(void) : "Ignite, burst into flames."
