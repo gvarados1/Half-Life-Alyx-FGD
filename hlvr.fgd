@@ -820,3 +820,9 @@
 	
 	output OnSoundGeneratedInside(void) : ""
 ]
+
+@SolidClass base(Trigger) = trigger_detect_explosion : ""
+[	
+	output OnDetectedExplosion(void) : ""
+]
+
