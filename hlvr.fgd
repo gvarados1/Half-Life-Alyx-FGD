@@ -777,6 +777,25 @@
 	cubemapfogheightexponent(float) : "Height Fog Exponent" : "2.0"
 ]
 
+@PointClass base(Targetname) = logic_handsup_listener : ""
+[
+
+	// Properties
+	one_handed(boolean) [ group="Handsup Listener" ] : "One Handed" : 0 : ""
+	start_enabled(boolean) [ group="Handsup Listener" ] : "Start Enabled" : 0 : ""
+
+	// Outputs
+	output OnHandsUp(void) : "Fires whenever both hands are up."
+	output OnHandsDown(void) : "Fires whenever at least one hand is down."
+
+	// Inputs
+	input Enable(void) : "Enable this entity."
+	input Disable(void) : "Disable this entity."
+	input Toggle(void) : "Toggle this entity between Enabled/Disabled state."
+]
+
+// ----------------------------------------- POINTS -----------------------------------------
+
 @PointClass base(Targetname) editormodel("models/editor/cone_helper.vmdl") = point_vort_energy : "Spawn a vortigaunt energy ring for the grabbity gloves."
 [
 	start_enabled(boolean) : "Start Enabled" : 1 : "Should it start enabled on new game?"
@@ -784,16 +803,6 @@
 	input Disable(void) : "Disable the energy ring."
 	input Toggle(void) : "Toggle the energy ring."
 	output OnEnergyPulled(void) : ""
-]
-
-@SolidClass base(Trigger) = trigger_blind_zombie_player_teleport : "?"
-[
-	
-]
-
-@SolidClass base(Trigger) = trigger_blind_zombie_player_touch : "?"
-[
-	
 ]
 
 @PointClass base(Targetname) editormodel("models/editor/cone_helper.vmdl") = point_zombie_noise_generator : "?"
@@ -807,16 +816,67 @@
 	output OnEnergyPulled(void) : ""
 ]
 
-@SolidClass base(Trigger) = trigger_blind_zombie_wander_area : "?"
+// ----------------------------------------- TRIGGERS -----------------------------------------
+@SolidClass base(Trigger) = trigger_detect_bullet_fire : "A trigger volume that can be triggered when bullets pass inside it."
+[
+
+	// Properties
+	player_fire_only(boolean) [ group="Detect Bullet Fire" ] : "Player Fire Only" : 0 : "It will only detect player bullets."
+
+	// Outputs
+	output OnDetectedBulletFire(void) : "Fired whenever a bullet is detected."
+
+	// Inputs
+]
+
+@SolidClass base(Trigger) = trigger_detect_explosion : "A trigger volume that can be triggered when explosions inside it."
+[
+
+	// Properties
+
+	// Outputs
+	output OnDetectedExplosion(void) : "Fired whenever an explosion is detected."
+
+	// Inputs
+]
+
+@SolidClass base(Trigger) = trigger_player_out_of_ammo : "Fired whenever the player is inside the volume without ammo."
+[
+
+	// Properties
+	ammotype(choices) [ group="Player Out Of Ammo" ] : "Ammotype" : 0 : "The ammo type that will activate the trigger." = 
+	[
+		0 : "All"
+		1 : "Energy gun"
+		2 : "Shotgun"
+		3 : "Rapidfire"
+	]
+
+	// Outputs
+	output OnPlayerOutOfAmmo(void) : "Fired whenever it detects the player is out of ammo."
+
+	// Inputs
+]
+
+@SolidClass base(Trigger) = trigger_blind_zombie_wander_area : "If a Blind Zombie is inside this volume, it will wander inside it or in adjacent volumes of the same entity."
 [
 	companion_trigger(string) : "Companion Trigger" : "" : "?"
 ]
 
-@SolidClass base(Trigger) = trigger_blind_zombie_sound_area : "?"
+// ----------------------------------------- FILTERS -----------------------------------------
+
+@FilterClass base(BaseFilter) iconsprite("editor/filter_name.vmat") = filter_vr_grenade : "A filter that filters grenades and their state."
 [
-	scripted_sequence_name(string) : "Scripted Sequence Name" : "" : "?"
-	fire_output_immediately(boolean) : "Fire Output Immediately" : 1 : "?"
-	target_sound_entity(string) : "Target Sound Entity"
-	
-	output OnSoundGeneratedInside(void) : ""
+
+	// Properties
+	IsArmed(boolean) [ group="Vr Grenade" ] : "Is Armed" : 0 : "The grenade state to filter by. If the filter mode is Allow, grenades whose "+
+		"state are armed string will pass the filter. If the filter mode is Disallow, "+
+		"all entities EXCEPT armed grenades will pass the filter."
+	IsNotArmed(boolean) [ group="Vr Grenade" ] : "Is Not Armed" : 0 : "The grenade state to filter by. If the filter mode is Allow, grenades whose "+
+		"state are not armed string will pass the filter. If the filter mode is Disallow, "+
+		"all entities EXCEPT unarmed grenades will pass the filter."
+
+	// Outputs
+
+	// Inputs
 ]
