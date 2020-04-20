@@ -6360,13 +6360,34 @@
 	]
 
 	SilentToZombies(boolean) : "Silent To Zombies" : 0 : "Should this prop generate sounds that blind zombies can hear."
-	CanDepositInItemHolder(boolean) : "Wrist pocketable" : 0 : "If set, prop can be stored in wrist pocket."
+	CanDepositInItemHolder(boolean) : "Wrist Pocketable" : 0 : "If set, prop can be stored in wrist pocket."
+	AddToSpatialPartition(boolean) : "Add To Spatial Partition" : 0 : "Makes this prop interact in its own partition, prevents collision errors when colliding with other props."
+	forcenpcexclude(boolean) : "Force NPC Exclude" : 0
+	mute_impact_effects(boolean) : "Mute Impact Effects" : 0 : "Mutes collision sounds."
+	forceteleportacknowledge(boolean) : "Force Teleport Acknowledge" : 0
+	
+	carrytype_override(choices) : "Carry Type Override" : "CARRY_TYPE_INVALID" =
+	[
+		"CARRY_TYPE_INVALID" : "No Override"
+		"CARRY_TYPE_1H_SOFT" : "1H Soft - Normal, can be two handed"
+		"CARRY_TYPE_1H_CONSTRAINED" : "1H Constrained - Makes the wrist go completely limp"
+		"CARRY_TYPE_1H_RIGID" : "1H Rigid - Exactly follows the hand"
+		"CARRY_TYPE_1H_2H_DETACHABLE" : "1H 2H Detachable - No 1H, detaches when hitting a wall"
+		"CARRY_TYPE_1H_2H_RIGID" : "1H 2H Rigid - Exactly follows the first hand, second hand follows the prop at the grab point"
+		"CARRY_TYPE_2H_DRAG" : "2H Drag - No 1H, can only drag around"
+		"CARRY_TYPE_2H_DRAG_PLANAR" : "2H Drag - No 1H, acts weirdly"
+		"CARRY_TYPE_2H_PICKUP" : "2H Pickup - No 1H, can be lifted and dragged"
+		"CARRY_TYPE_TOO_HEAVY" : "Too Heavy - No pickup allowed"
+	]
 
 	// Inputs
 	input Ignite(void) : "Ignite, burst into flames."
 	input IgniteLifetime(float) : "Ignite, with a parameter lifetime."
 	input IgniteNumHitboxFires(integer) : "Ignite, with a parameternumber of hitbox fires."
 	input IgniteHitboxFireScale(float) : "Ignite, with a parameter hitbox fire scale."
+	
+	// Outputs
+	output OnGlovePulled(void) : "Called when the prop is pulled by the gloves."
 ]
 
 @PointClass base(prop_physics) model() sphere(fademindist) sphere(fademaxdist) = prop_physics_multiplayer :
