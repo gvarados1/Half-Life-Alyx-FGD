@@ -424,7 +424,7 @@
 	ammobalancing_removable(boolean) : "Removable For Ammo Balancing" : 0
 	
 	// Inputs
-	input LateInsertIntoBackpack(void) : "Called after ammo is inserted into the backpack."
+	input LateInsertIntoBackpack(target_destination) : "Puts the item into the backpack?"
 ]
 
 @PointClass base(ItemHLVRWeapon_Clip) editormodel("models/weapons/vr_alyxgun/vr_alyxgun_clip.vmdl") = item_hlvr_clip_energygun : "Placeholder" []
@@ -483,7 +483,7 @@
 	remove_over_amount(integer) : "Remove Over Amount" : -1 : "Removes this resin when the player has more than N resin."
 	
 	// Inputs
-	input LateInsertIntoBackpack(void) : "Puts the resin is put into the backpack?"
+	input LateInsertIntoBackpack(target_destination) : "Puts the item into the backpack?"
 	
 	// Outputs
 	output OnPutInInventory(void) : "After the resin is put into the inventory."
@@ -910,7 +910,7 @@
 	
 	inset_distance(float) : "Inset Distance" : 0
 
-	junction_topology(choices) : "Junction Topology" : 0 : "Determines the type of the junction. Not working?" = 
+	junction_toplogy(choices) : "Junction Topology" : 0 : "Determines the type of the junction. Not working?" = 
 	[
 		0 : "I (line)"
 		1 : "L (90 degree)"
