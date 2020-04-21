@@ -528,7 +528,7 @@
 	MarkerTipSize(float) : "Tip Size" : 15 : "The tip size of the marker."
 ]
 
-@PointClass base(Targetname) editormodel("models/props/max/handposes/handpose_grabpole.vmdl") = prop_handpose : "An area where player hands can be placed to grab item"
+@PointClass base(Targetname, Parentname, Global, Studiomodel, Glow) editormodel("models/props/max/handposes/handpose_grabpole.vmdl") = prop_handpose : "An area where player hands can be placed to grab item"
 [
 	DistanceMin(float): "Minimum Distance": 4: "Minimum grabbable distance"
 	DistanceMax(float): "Maximum Distance": 6: "Maximum grabbable distance"
