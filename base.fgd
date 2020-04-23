@@ -5457,6 +5457,41 @@
 	output OnConstraintBroken(void) : "Fired when a player breaks through the constraint."
 ]
 
+@PointClass base(Targetname, Parentname, EnableDisable) editormodel("models/editor/axis_helper.vmdl") sphere(grab_radius) = point_grabbable :
+	"Specifies a point in space that can be grabbed by the player and moved around."
+[
+
+	grab_radius(float) : "Radius" : 4 : "Radius of the sphere or circle shape."
+	limit_mins(vector) : "Limit mins" : "-8 -8 -8" : "Min X, Y, Z values for cube shape."
+	limit_maxs(vector) : "Limit maxs" : "8 8 8" : "Max X, Y, Z values for cube shape."
+	
+	shape(choices) : "Shape" : 1 : "The shape on which the grabbable point will be constrained to." = [
+		0: "Cube"
+		1: "Sphere"
+		2: "Circle"
+	]
+	
+	sphere_center(vector) : "Sphere center" : "0 0 0"
+	constrain_angle(float) : "Constrain angle" : 20 : "Biggest angle allowed to move."
+	detach_angle(float) : "Detach angle" : 35 : "Angle at which the player stops grabbing."
+	thickness(float) : "Thickness" : 16
+	handpose_entity_name(target_destination) : "Handpose entity" : : "Handpose associated with the grab."
+
+	// Outputs
+	output OnGrabbed(void) : "Fired when the player starts grabbing."
+	output OnDropped(void) : "Fired when the player stops grabbing."
+]
+
+@PointClass base(Targetname) editormodel("models/editor/arrow.vmdl") = point_aimat : 
+	"Helper entity that orientates itself so that it faces towards a specific target. " +
+	"Useful for orientating entities. Simply parent the desired entity to this entity."
+[
+	aim_target(target_destination) : "Aim target" : : "The entity to orient towards."
+	aim_offset(vector) : "Aim offset" : "12 0 0" :  
+	max_angular_velocity(float) : "Max angular velocity" : -1 : "-1 means no limit."
+	yaw_only(boolean) : "Yaw only" : 0 : "Only allow rotation along the yaw axis."
+]
+
 //-------------------------------------------------------------------------
 //
 //	Physics entities
@@ -7197,6 +7232,28 @@
 	input SetOnAndTurnOthersOff(void) : "Turn the camera on, and turn all other cameras off."
 	input SetOn(void) : "Turn the camera on."
 	input SetOff(void) : "Turn the camera off."
+]
+
+@PointClass base(Targetname, Parentname, EnableDisable) = func_monitor : 
+	"Treats the brush as a monitor as displays the targeted camera."
+[
+	target(target_destination) : "Camera" : : "The point_camera entity to display from."
+	
+	resolution(choices) : "Resolution" : 0 = [
+		0 : "Default"
+		1 : "Increase up by 2"
+		2 : "Increase up by 4"
+		3 : "Increase up by 8"
+		4 : "Increase up by 16"
+	]
+	
+	render_shadows(boolean) : "Render shadows" : 0
+	unique_target(boolean) : "Use unique color" : 1
+	draw_3dskybox(boolean) : "Draw 3D skybox" : 1
+
+	// Input
+	input SetCamera(target_destination) : "Set the new camera to display from."
+
 ]
 
 //-------------------------------------------------------------------------

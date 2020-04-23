@@ -535,7 +535,7 @@
 	DistanceBias(float): "Distance Bias": "0.3"
 	DisengageDistance(float): "Disengage Distance": "16"
 	UseProximityBone(boolean): "UseProximityBone": 0
-	Extent(vector): "Extend size": "0, 2, 18": "Relative size of the grabbable rungs of the ladder"
+	Extent(vector): "Extend size": "0 0 0": "Relative size of the grabbable rungs of the ladder"
 	DeleteAfterSpawn(boolean): "DeleteAfterSpawn": 0
 	StartDisabled(boolean): "Start Disabled": 0
 	AutoGrip(boolean): "Auto grip": 0
