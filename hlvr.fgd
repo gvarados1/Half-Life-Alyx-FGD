@@ -511,21 +511,24 @@
 ]
 
 // ----------------------------------------- PROPS -----------------------------------------
-@PointClass base(prop_physics) model() = prop_dry_erase_marker : "Placeholder"
+@PointClass base(prop_physics) model() = prop_dry_erase_marker : "A prop that draws lines on a func_dry_erase_board with a specific colour, size and flow type"
 [
 	model(studio) : "World Model" : "models/props/alyx_hideout/dry_erase_marker_nocap.vmdl"
-	MarkerType(choices) : "Marker Type" : 0 : "Determines the type of marker this prop is." =
+	MarkerType(choices) : "Marker Type" : 0 : "Type of flow the pen draws" =
 	[
 		0 : "Round Tip"
-		1 : "Chisel"
-		2 : "Dried Out"
-		3 : "Dirty"
-		4 : "Dried Out"
-		5 : "Erase"
-		6 : "Erase"
-	] 
-	MarkerColor(color255) : "Marker Color"
-	MarkerTipSize(float) : "Tip Size" : 15 : "The tip size of the marker."
+		2 : "Drying out"
+		3 : "Dirty - Rough edges"
+		4 : "Dried Out - No Color"
+		5: "Erase"
+		6: "Chisel"
+	]
+	MarkerTipSize(float): "Marker Size": "2.0": "Size of the pen line drawn"	
+	MarkerColor(color255): "Marker Line Color" : "255 0 0": "The color the pen draws when used on a func_dry_erase_board"
+	model(studio) : "Model" : "models/props/alyx_hideout/dry_erase_marker_nocap.vmdl"
+	skin(materialgroup) [ group="Render Properties" ] : "Skin" : "tintable" : "Some models have multiple versions of their textures, called skins.\nTo change the tip color it requires it to be set to Tintable"
+	renderamt(integer) [ group="Render Properties" ] : "FX Amount (0 - 255)" : 255 : "The FX amount is used by the selected Render Mode."
+	rendercolor(color255) : "Marker Tip Color" : "255 0 0" : "The color used to render the tip of the pen. This is purely a visual change to the model and should match MarkerColor.\nFor a block eraser, set this to white (255,255,255) "
 ]
 
 @PointClass base(Targetname, Parentname, Global, Studiomodel, Glow) editormodel("models/props/max/handposes/handpose_grabpole.vmdl") = prop_handpose : "An area where player hands can be placed to grab item"
