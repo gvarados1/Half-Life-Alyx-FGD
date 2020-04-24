@@ -7,6 +7,15 @@
 @BaseClass base(Targetname, Parentname) tags( Lighting ) = light_base
 [
 	enabled(boolean) : "Enabled" : 1
+	
+	fogcontributionstrength(float) : "Fog Contribution Strength" : "1.0"
+	fog_lighting(choices) : "Fog Lighting Mode" : "1" : =
+	[
+		"0" : "None"
+		"1" : "Direct + Indirect"
+		"2" : "Unknown"
+		"3" : "Unknown"
+	]
 
 	color(color255) : "Color" : "255 255 255"
 	brightness(float) : "Brightness" : "1.0"
