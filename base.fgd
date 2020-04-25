@@ -990,6 +990,19 @@
 		1 : "Teleport"
 		2 : "Teleport (w/non-up floor)"
 	]
+	
+	max_lightmap_resolution(choices) : "Maximum Lightmap Resolution" : 0 : "Clamps the maximum lightmap resolution in this map to this value. Set this to prevent Lightmap Resolution Bias from going over this resolution." = 
+	[
+		0 : "No Limit"
+		512 : "512"
+		1024 : "1024"
+		2048 : "2048"
+		4096 : "4096"
+		8192 : "8192"
+		16384 : "16384"
+	]
+
+	startcolor(color255) : "Starting color" : "0, 0, 0" : "If the map is set to fade in, this determines the color it starts off as."
 ]
 
 
