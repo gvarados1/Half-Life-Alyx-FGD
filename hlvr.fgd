@@ -8,6 +8,7 @@
 @include "lights.fgd"
 @include "ai_basenpc.fgd"
 @include "markup_volumes.fgd"
+@include "postprocessing.fgd"
 
 @BaseClass base(BaseNPC, Studiomodel, Parentname, DamageFilter) = BaseModelNPC
 [
