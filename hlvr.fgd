@@ -408,6 +408,26 @@
 	output OnPlayerPlayingPiano(void) : "While the player is playing the piano."
 ] 
 
+@PointClass base(Targetname, Parentname, prop_detail) model() model("models/editor/arrow.vmdl") = prop_laser_puzzle_emitter : "Emits a laser."
+[
+]
+
+@PointClass base(prop_physics) model() = prop_laser_puzzle_splitter : "Splits a laser."
+[
+]
+
+@PointClass base(prop_physics) model() = prop_laser_puzzle_mirror : "Reflects a laser."
+[
+]
+
+@PointClass base(Targetname, Parentname, prop_detail) model() = prop_laser_puzzle_receiver : "Recives a laser."
+[
+	// Output
+	output OnStartHitByLaser(void) : "Triggered when hit by a laser from prop_laser_puzzle_emitter."
+	output OnStopHitByLaser(void) : "Triggered when stops being hit by a laser."
+]
+
+
 // ----------------------------------------- WEAPONS -----------------------------------------
 
 @BaseClass base(Targetname, Parentname) = ItemHLVRWeapon
@@ -450,6 +470,7 @@
 
 @PointClass base(VRGrenadeFrag) editormodel("models/weapons/vr_grenade/grenade_unarmed.vmdl") = item_hlvr_grenade_frag : "Placeholder" []
 @PointClass base(VRGrenadeFrag) editormodel("models/weapons/vr_xen_grenade/vr_xen_grenade.vmdl") = item_hlvr_grenade_xen : "Placeholder" []
+@PointClass base(VRGrenadeFrag) editormodel("models/props/combine/combine_truck_gun_projectile.vmdl") = item_hlvr_grenade_bomb : "The grenade fired from the cannon during the last chapter of the game." []
 
 @PointClass base(Targetname) editormodel("models/weapons/vr_tripmine/tripmine.vmdl") = item_hlvr_weapon_tripmine : "A tripmine. It can be activated and hacked when placed on a wall otherwise it could be used by the player."
 [
@@ -709,6 +730,11 @@
     input SetPositiveResistance(float) : ""
 ]
 
+@PointClass base(Targetname, Parentname, EnableDisable) = combine_attached_armor_prop :
+[
+	SubtleEffects(boolean) : "Subtle Effects" : 1
+]
+
 // ----------------------------------------- LOGIC -----------------------------------------
 @PointClass base(Targetname, EnableDisable) tags( Logic ) size(-8 -8 -8, 8 8 8) = info_hlvr_equip_player : "Placeholder. I assume this is for equiping the gravity gloves (see inputs)"
 [
@@ -945,6 +971,18 @@
 	// Outputs
 	output OnHandsUp(void) : "Fires whenever both hands are up."
 	output OnHandsDown(void) : "Fires whenever at least one hand is down."
+]
+
+@PointClass base(Targetname) iconsprite("editor/logic_case.vmat") tags( Logic ) = hl_vr_accessibility :
+[
+	// Inputs
+	input QuerySingleControllerMode(void) : "Query the game wether or not the single controller accesability feature is set or not."
+	
+	// Outputs
+	output OnQuerySingleControllerModeEnabled(void)
+	output OnQuerySingleControllerModeDisabled(void)
+	output OnSingleControllerModeEnabled(void)
+	output OnSingleControllerModeDisabled(void)
 ]
 
 // ----------------------------------------- POINTS -----------------------------------------

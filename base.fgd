@@ -4931,7 +4931,7 @@
 	output OnEntitiesSpawned(void) : "Fired when the entities associated with the layer have been spawned."
 ]
 
-@PointClass base( Targetname ) tags( Logic ) 
+@PointClass base( Targetname, Parentname ) tags( Logic ) 
 	selected_line( 255 255 255, targetname, Template01 )
 	selected_line( 255 255 255, targetname, Template02 )
 	selected_line( 255 255 255, targetname, Template03 )
