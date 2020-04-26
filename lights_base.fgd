@@ -17,7 +17,7 @@
 		"3" : "Unknown"
 	]
 	
-	baked_light_indexing(boolean) : "Add To Baked Light Index" : 1 : "If this light is baked and this option is enabled, then this light will be added to the baked light index."
+	baked_light_indexing(boolean) : "Add To Baked Light Index" : 0 : "If this light is baked and this option is enabled, then this light will be added to the baked light index."
 
 	color(color255) : "Color" : "255 255 255"
 	brightness(float) : "Brightness" : "1.0"
