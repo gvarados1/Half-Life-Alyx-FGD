@@ -1158,3 +1158,8 @@
 	cubemapfogheightstart(float) : "Height Fog Start" : "2000.0"
 	cubemapfogheightexponent(float) : "Height Fog Exponent" : "2.0"
 ]
+
+@OverrideClass = env_combined_light_probe_volume
+[
+	hmd_brightness_level(string) : "HMD Brightness Level" : "0" : "On supported headsets, setting this value will change the brightness of the HMD while within this volume."
+]
