@@ -1161,5 +1161,13 @@
 
 @OverrideClass = env_combined_light_probe_volume
 [
+	voxel_size(choices) : "Voxel Size" : "12.0" : "" = 
+	[
+		"12.0" : "Very High Resolution"
+		"24.0" : "High Resolution"
+		"48.0" : "Medium Resolution"
+		"108.0" : "Low Resolution"
+	]
+	
 	hmd_brightness_level(string) : "HMD Brightness Level" : "0" : "On supported headsets, setting this value will change the brightness of the HMD while within this volume."
 ]
