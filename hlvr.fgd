@@ -272,6 +272,52 @@
 [
 ]
 
+@PointClass base(BaseModelNPC) model("models/creatures/strider/combine_strider.vmdl") = npc_strider : "The strider NPC"
+[
+	disablephysics(boolean) : "Disable physics" : 0
+	strider_feet_not_dangerous(boolean) : "Feet not dangerous" : 0
+
+	// Inputs
+	input SetMinigunTime(float)
+	input SetMinigunTarget(string)
+	input SetCannonTarget(string)
+	input FlickRagdoll(string)
+	input Crouch(void)
+	input CrouchInstantly(void)
+	input Stand(void)
+	input SetHeight(float)
+	input SetTargetPath(string)
+	input ClearTargetPath(string)
+	input DisableCrouchWalk(void)
+	input EnableCrouchWalk(void)
+	input EnableAggressiveBehavior(void)
+	input DisableAggressiveBehavior(void)
+	input DisableMinigun(void)
+	input EnableMinigun(void)
+	input EnableMinigunSuppression(void)
+	input ForceEnableMinigun(void)
+	input ForceMinigunSuppression(void)
+	input ForceDisableMinigun(void)
+	input CancelForceMinigun(void)
+	input StopShootingMinigunForSeconds(float)
+	input DisableCrouch(void)
+	input DisableMoveToLOS(void)
+	input DisableCollisionWith(string)
+	input EnableCollisionWith(string)
+	input Explode(void)
+	input ScaleGroundSpeed(float)
+	input ForcePlayerAsEnemy(void)
+	
+	// Outputs
+	output OnQuarterHealth(void)
+	output OnHalfHealth(void)
+	output OnThreeQuarterHealth(void)
+	output OnMinigunDisabled(void)
+	output OnMinigunEnabledLOS(void)
+	output OnMinigunEnabledSuppression(void)
+	output OnAttackedByPlayerNoDamage(void)
+]
+
 // ----------------------------------------- TILE ENTITIES -----------------------------------------
 @SolidClass base(RenderFields, Targetname) = func_dry_erase_board : "A dry erase board."
 [
