@@ -1138,6 +1138,7 @@
 	fogstartheight(float) : "Fog Start Height" : "0.0"
 	fogendheight(float) : "Fog End Height" : "200.0"
 	farz(string) : "Far Z Clip Plane" : "-1"
+	fogverticalexponent(float) : "Fog Vertical Exponet" : "2.0" : ""
 	gradientfogtexture(resource:texture) : "Fog Gradient Texture" : "materials/effects/example_gradient_fog.vtex"
 	input Enable(void) : "Enable the fog."
 	input Disable(void) : "Disable the fog."
