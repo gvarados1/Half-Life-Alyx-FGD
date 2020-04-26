@@ -19,7 +19,7 @@
 	
 	baked_light_indexing(boolean) : "Add To Baked Light Index" : 0 : "If this light is baked and this option is enabled, then this light will be added to the baked light index."
 	
-	pvs_modify_entity(boolean) : "PVS Modify Entity" : 0 : ""
+	pvs_modify_entity(boolean) [ group = "Render Properties" ] : "PVS Modify Entity" : 0 : ""
 
 	color(color255) : "Color" : "255 255 255"
 	brightness(float) : "Brightness" : "1.0"
