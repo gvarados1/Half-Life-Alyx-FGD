@@ -1004,7 +1004,7 @@
 
 	startcolor(color255) : "Starting color" : "0, 0, 0" : "If the map is set to fade in, this determines the color it starts off as."
 	
-	lightmap_queries(boolean) : "Lightmap Queries" : 1 : "If set, lightmap_query_data.kv3 will be generated and included in the VPK for this map. (TODO: Include more details)"
+	lightmap_queries(boolean) : "Lightmap Queries" : 0 : "If set, lightmap_query_data.kv3 will be generated and included in the VPK for this map. (TODO: Include more details)"
 ]
 
 
