@@ -1138,6 +1138,7 @@
 	fogstartheight(float) : "Fog Start Height" : "0.0"
 	fogendheight(float) : "Fog End Height" : "200.0"
 	farz(string) : "Far Z Clip Plane" : "-1"
+	fogverticalexponent(float) : "Fog Vertical Exponet" : "2.0" : ""
 	gradientfogtexture(resource:texture) : "Fog Gradient Texture" : "materials/effects/example_gradient_fog.vtex"
 	input Enable(void) : "Enable the fog."
 	input Disable(void) : "Disable the fog."
@@ -1156,4 +1157,17 @@
 	cubemapfogheightwidth(float) : "Height Fog Width" : "0.0"
 	cubemapfogheightstart(float) : "Height Fog Start" : "2000.0"
 	cubemapfogheightexponent(float) : "Height Fog Exponent" : "2.0"
+]
+
+@OverrideClass = env_combined_light_probe_volume
+[
+	voxel_size(choices) : "Voxel Size" : "12.0" : "" = 
+	[
+		"12.0" : "Very High Resolution"
+		"24.0" : "High Resolution"
+		"48.0" : "Medium Resolution"
+		"108.0" : "Low Resolution"
+	]
+	
+	hmd_brightness_level(string) : "HMD Brightness Level" : "0" : "On supported headsets, setting this value will change the brightness of the HMD while within this volume."
 ]
