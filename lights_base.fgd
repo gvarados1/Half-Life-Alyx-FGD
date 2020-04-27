@@ -142,6 +142,7 @@
 	"4. Adjust angle and brightness of the sunlight as you see fit"
 [
 	angulardiameter(float) : "SunSpreadAngle" : "1.0" : "The angular extent of the sun for casting soft shadows. Higher numbers are more diffuse. 1 is a good starting value."
+	range(float) : "Range" : "0" : "Distance range for light. 0=infinite"
 
 	numcascades(integer) [ group = "Shadows" ] : "Cascade Count" : 3 : "Number of shadow cascades to use."
 	shadowcascadedistance0(float) [ group = "Shadows" ] : "Cascade Distance 0" : "0.0"
