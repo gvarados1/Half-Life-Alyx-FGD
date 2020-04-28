@@ -1225,6 +1225,7 @@
 	hmd_brightness_level(string) : "HMD Brightness Level" : "0" : "On supported headsets, setting this value will change the brightness of the HMD while within this volume."
 ]
 
+// Other
 @PointClass base(Targetname, EnableDisable) = env_spherical_vignette : "Placeholder."
 [
 	startdisabled(boolean) : "Start Disabled" : 0
@@ -1244,4 +1245,22 @@
 	input SetVignetteFalloffExponent(float) : ""
 	input SetVignetteColor(color255) : ""
 	input SetVignetteStrength(float) : ""
+]
+
+@SolidClass base(func_nav_markup) tags( NavMarkup )
+	metadata
+	{
+		auto_apply_material = "materials/tools/toolsnavattribute.vmat"
+	}
+= func_l4d_nav_markup : "Tagged NAV markup volume entity, used during export and can be queried in-game by tag/name/type/location. For Left 4 Dead."
+[
+]
+
+@SolidClass base(func_nav_markup) tags( NavMarkup )
+	metadata
+	{
+		auto_apply_material = "materials/tools/toolsnavattribute.vmat"
+	}
+= func_hlvr_nav_markup : "Tagged NAV markup volume entity, used during export and can be queried in-game by tag/name/type/location. For HLVR."
+[
 ]
