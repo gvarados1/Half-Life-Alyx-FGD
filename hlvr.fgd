@@ -599,8 +599,22 @@
 	rendercolor(color255) : "Marker Tip Color" : "255 0 0" : "The color used to render the tip of the pen. This is purely a visual change to the model and should match MarkerColor.\nFor a block eraser, set this to white (255,255,255) "
 ]
 
-@PointClass base(Targetname, Parentname, Global, Studiomodel, Glow) editormodel("models/props/max/handposes/handpose_grabpole.vmdl") = prop_handpose : "An area where player hands can be placed to grab item"
+@PointClass base(Targetname, Parentname, Global, Studiomodel, Glow, EnableDisable) model() = prop_handpose :
+	"Overrides the default hand pose to this one whenever the player hands " +
+	"gets within proximity. Also used by trigger_traversal_modifier to specify " +
+	"where the player can grab onto, e.g. with ladders, and climb inside the trigger. " +
+	"For debugging, use command 'vr_hand_pose_debug 1' in game."
 [
+	model(choices) : "Model" : "models/props/max/handposes/handpose_grabpole.vmdl" : "Hand Model" = 
+	[
+		"models/props/max/handposes/handpose_grabbox.vmdl" : "Grab Box"
+		"models/props/max/handposes/handpose_grabpole.vmdl" : "Grab Pole"
+		"models/props/max/handposes/handpose_pointing.vmdl" : "Pointing"
+		"models/props/max/handposes/handpose_flatpalm.vmdl" : "Flat Palm"
+		"models/props/handposes/handpose_knob.vmdl" : "Knob"
+		"models/props/handposes/handpose_cough.vmdl" : "Cough"
+	]
+
 	DistanceMin(float): "Minimum Distance": 4: "Minimum grabbable distance"
 	DistanceMax(float): "Maximum Distance": 6: "Maximum grabbable distance"
 	DistanceBias(float): "Distance Bias": "0.3"
@@ -608,23 +622,16 @@
 	UseProximityBone(boolean): "UseProximityBone": 0
 	Extent(vector): "Extend size": "0 0 0": "Relative size of the grabbable rungs of the ladder"
 	DeleteAfterSpawn(boolean): "DeleteAfterSpawn": 0
-	StartDisabled(boolean): "Start Disabled": 0
+
 	AutoGrip(boolean): "Auto grip": 0
 	IgnoreHand(string): "Ignore hand": "-1": "Index of hand to ignore grab inputs form: 0=LeftHand, 1=RightHand"
-	input Enable(void): ""
-	input Disable(void): ""	
+
+	// Inputs
 	input SetAutoGrip(boolean): ""
+
+	// Outputs
 	output OnHandPosed(void) : ""
 	output OnHandUnPosed(void) : ""
-	model(choices) : "Model" : "models/props/max/handposes/handpose_grabpole.vmdl" : "Hand Model" = 
-	[
-		"models/props/max/handposes/handpose_grabbox.vmdl" : "Grab Box"
-		"models/props/max/handposes/handpose_grabpole.vmdl" : "Grab Pole"
-		"models/props/max/handposes/handpose_pointing.vmdl" : "Pointing"
-		"models/props/max/handposes/handpose_flatpalm.vmdl" : "Flat Palm"
-		"models/props/max/handposes/handpose_knob.vmdl" : "Knob"
-		"models/props/max/handposes/handpose_cough.vmdl" : "Cough"
-	]
 ]
 
 @PointClass base(BasePropDoorRotating, ConstraintSoundInfo) model() = prop_door_rotating_physics : "Placeholder door."
