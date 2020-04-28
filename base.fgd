@@ -5472,25 +5472,24 @@
 	output OnConstraintBroken(void) : "Fired when a player breaks through the constraint."
 ]
 
-@PointClass base(Targetname, Parentname, EnableDisable) editormodel("models/editor/axis_helper.vmdl") sphere(grab_radius) = point_grabbable :
-	"Specifies a point in space that can be grabbed by the player and moved around."
+@PointClass base(Targetname, Parentname, EnableDisable) editormodel("models/editor/axis_helper.vmdl") = point_grabbable :
+	"Specifies a point in space that can be grabbed by the player and moved around. To debug, use command 'point_grabbable_debug 1' in game."
 [
 
-	grab_radius(float) : "Radius" : 4 : "Radius of the sphere or circle shape."
+	grab_radius(float) : "Radius" : 4 : "Radius of the sphere shape."
 	limit_mins(vector) : "Limit mins" : "-8 -8 -8" : "Min X, Y, Z values for cube shape."
 	limit_maxs(vector) : "Limit maxs" : "8 8 8" : "Max X, Y, Z values for cube shape."
 	
-	shape(choices) : "Shape" : 1 : "The shape on which the grabbable point will be constrained to." = [
+	shape(choices) : "Shape" : 1 : "The shape on which the grabbable point will be constrained to. Cube: Constrained to the surface of a cube. Sphere: Constrained to inside the volume of a sphere/cone." = [
 		0: "Cube"
 		1: "Sphere"
-		2: "Circle"
 	]
 	
-	sphere_center(vector) : "Sphere center" : "0 0 0"
-	constrain_angle(float) : "Constrain angle" : 20 : "Biggest angle allowed to move."
-	detach_angle(float) : "Detach angle" : 35 : "Angle at which the player stops grabbing."
+	sphere_center(vector) : "Sphere center" : "0 0 0" : "The centre of the sphere shape relative to the entity origin."
+	constrain_angle(float) : "Constrain angle" : 20 : "Biggest angle away from the sphere centre the point is allowed to move. Used with sphere shape. Does nothing if the sphere centre is (0, 0, 0). 90 is half the sphere, 180 is the entire sphere."
+	detach_angle(float) : "Detach angle" : 35 : "Angle away from the sphere centre at which the player stops grabbing.  Used with sphere shape. Does nothing if the sphere centre is (0, 0, 0). 90 is half the sphere, 180 is the entire sphere."
 	thickness(float) : "Thickness" : 16
-	handpose_entity_name(target_destination) : "Handpose entity" : : "Handpose associated with the grab."
+	handpose_entity_name(target_destination) : "Handpose entity" : : "prop_handpose entity associated with the grab."
 
 	// Outputs
 	output OnGrabbed(void) : "Fired when the player starts grabbing."
