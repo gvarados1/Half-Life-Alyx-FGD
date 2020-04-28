@@ -963,11 +963,18 @@
 	input OnPlugRotated(void) : "" //Listed as an input in-engine, shouldn't this be an output?
 ]
 
-@PointClass base(Targetname, EnableDisable) tags( Logic ) iconsprite("editor/light.vmat")
+@PathNodeClass base(Targetname, EnableDisable) tags( Logic ) iconsprite("editor/logic_relay.vmat") selected_line( 255 0 0, targetname, target ) = info_hlvr_toner_path_node : "The different points the toner path is visualized as in-game."
+[
+	target(target_destination) : "Target" : "" : "Next path node to continue the current path."
+	inset_distance(float) : "Inset Distance" : 0
+	is_spline_node(boolean) : "Is Spline" : 1 : "Treats the line to the target as a spline."
+]
+
+@PathClass base(Targetname, EnableDisable) nodelink() tags( Logic ) iconsprite("editor/light.vmat")
 	line( 255 255 255, targetname, start_entity )
 	line( 255 255 255, targetname, end_entity )
 	selected_line( 255 0 0, targetname, first_path_node )
- = info_hlvr_toner_path : "A path for the toner puzzles."
+ = toner_path : "A path for the toner puzzles."
 [
 	start_entity(target_destination) : "Start Entity" : "" : "The toner port or previous junction in the toner."
 	end_entity(target_destination) : "End Entity" : "" : "The next junction in the toner."
@@ -981,12 +988,7 @@
 	output OnPowerOff(void) : "Outputted when the path gets power."
 ]
 
-@PointClass base(Targetname, EnableDisable) tags( Logic ) iconsprite("editor/logic_relay.vmat") selected_line( 255 0 0, targetname, target ) = info_hlvr_toner_path_node : "The different points the toner path is visualized as in-game."
-[
-	target(target_destination) : "Target" : "" : "Next path node to continue the current path."
-	inset_distance(float) : "Inset Distance" : 0
-	is_spline_node(boolean) : "Is Spline" : 1 : "Treats the line to the target as a spline."
-]
+
 
 @PointClass base(Targetname, EnableDisable) tags( Logic ) size(-4 -4 -4, 4 4 4)
 	selected_line( 255 255 255, targetname, connection_0 )
