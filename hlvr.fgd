@@ -1238,8 +1238,6 @@
 	fadetime(float) : "Fade Time" : 1
 
 	// Inputs
-	input Enable(boolean) : ""
-	input Disable(boolean) : ""
 	input SetVignetteStartDistance(float) : ""
 	input SetVignetteEndDistance(float) : ""
 	input SetVignetteMaxOpacity(float) : ""
