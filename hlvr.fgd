@@ -1264,3 +1264,12 @@
 = func_hlvr_nav_markup : "Tagged NAV markup volume entity, used during export and can be queried in-game by tag/name/type/location. For HLVR."
 [
 ]
+
+@SolidClass base(markup_volume_with_ref) tags( NavMarkup )
+	metadata
+	{
+		auto_apply_material = "materials/tools/toolsnavattribute.vmat"
+	}
+= func_nav_markup_citadel : "Tagged NAV markup volume entity, used during export and can be queried in-game by tag/name/type/location. For Citadel."
+[
+]
