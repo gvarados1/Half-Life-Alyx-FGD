@@ -1273,3 +1273,30 @@
 = func_nav_markup_citadel : "Tagged NAV markup volume entity, used during export and can be queried in-game by tag/name/type/location. For Citadel."
 [
 ]
+
+@PointClass base(Targetname, EnableDisable) tags( Info ) iconsprite("editor/info_target.vmat") = info_offscreen_panorama_texture : "Placeholder"
+[
+	layout_file(string) : "Layout File" :  : "Path to a layout file. (XML)"
+
+	targets(node_id_List) : "Target" : "" : ""
+
+	render_attr_name(string) [ group="Render Properties" ] : "Render Attribute Name" : "colorAttrMovie" : "Placeholder."
+	resolution_x(integer) [ group="Render Properties" ] : "Resolution (X)" : 720 : ""
+	resolution_y(integer) [ group="Render Properties" ] : "Resolution (Y)" : 480 : ""
+
+	// Inputs
+	input AddCSSClass(string) : "Adds specified CSS Class"
+	input RemoveCSSClass(string) : "Remove CSS Class"
+]
+
+@PointClass base(info_offscreen_panorama_texture) tags( Info ) iconsprite("editor/info_target.vmat") = info_offscreen_movie_texture : "Placeholder"
+[
+	visible_range_check(float) : "Visible Range" : 300 : "Visible range of movie."
+	src_movie(string) : "Source Movie" :  : "Path to a movie to playback. (.webm)"
+	repeat(boolean) : "Repeats" : 0 : "Determines whether or not this video will repeat upon completion."
+
+	// Inputs
+	input Play(void) : "Play the video"
+	input Pause(void) : "Pause playback of video"
+	input TogglePlayPause(void) : "Toggle video playback"
+]
