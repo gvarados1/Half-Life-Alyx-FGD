@@ -1224,3 +1224,79 @@
 	
 	hmd_brightness_level(string) : "HMD Brightness Level" : "0" : "On supported headsets, setting this value will change the brightness of the HMD while within this volume."
 ]
+
+// Other
+@PointClass base(Targetname, EnableDisable) = env_spherical_vignette : "Placeholder."
+[
+	startdisabled(boolean) : "Start Disabled" : 0
+	vignettestart(float) : "Vignette Start" : 64
+	vignetteend(float) : "Vignette End" : 256
+	farz(float) : "FarZ" : 0
+	vignettemaxopacity(float) : "Vignette Max Opacity" : 1
+	vignettefalloffexponent(float) : "Vignette Falloff Exponet" : 1
+	vignettecolor(color255) : "Vignette Color" : "0, 0, 0"
+	vignettestrength(float) : "Vignette Strength" : 1
+	fadetime(float) : "Fade Time" : 1
+
+	// Inputs
+	input SetVignetteStartDistance(float) : ""
+	input SetVignetteEndDistance(float) : ""
+	input SetVignetteMaxOpacity(float) : ""
+	input SetVignetteFalloffExponent(float) : ""
+	input SetVignetteColor(color255) : ""
+	input SetVignetteStrength(float) : ""
+]
+
+@SolidClass base(func_nav_markup) tags( NavMarkup )
+	metadata
+	{
+		auto_apply_material = "materials/tools/toolsnavattribute.vmat"
+	}
+= func_l4d_nav_markup : "Tagged NAV markup volume entity, used during export and can be queried in-game by tag/name/type/location. For Left 4 Dead."
+[
+]
+
+@SolidClass base(func_nav_markup) tags( NavMarkup )
+	metadata
+	{
+		auto_apply_material = "materials/tools/toolsnavattribute.vmat"
+	}
+= func_hlvr_nav_markup : "Tagged NAV markup volume entity, used during export and can be queried in-game by tag/name/type/location. For HLVR."
+[
+]
+
+@SolidClass base(markup_volume_with_ref) tags( NavMarkup )
+	metadata
+	{
+		auto_apply_material = "materials/tools/toolsnavattribute.vmat"
+	}
+= func_nav_markup_citadel : "Tagged NAV markup volume entity, used during export and can be queried in-game by tag/name/type/location. For Citadel."
+[
+]
+
+@PointClass base(Targetname, EnableDisable) tags( Info ) iconsprite("editor/info_target.vmat") = info_offscreen_panorama_texture : "Placeholder"
+[
+	layout_file(string) : "Layout File" :  : "Path to a layout file. (XML)"
+
+	targets(node_id_List) : "Target" : "" : ""
+
+	render_attr_name(string) [ group="Render Properties" ] : "Render Attribute Name" : "colorAttrMovie" : "Placeholder."
+	resolution_x(integer) [ group="Render Properties" ] : "Resolution (X)" : 720 : ""
+	resolution_y(integer) [ group="Render Properties" ] : "Resolution (Y)" : 480 : ""
+
+	// Inputs
+	input AddCSSClass(string) : "Adds specified CSS Class"
+	input RemoveCSSClass(string) : "Remove CSS Class"
+]
+
+@PointClass base(info_offscreen_panorama_texture) tags( Info ) iconsprite("editor/info_target.vmat") = info_offscreen_movie_texture : "Placeholder"
+[
+	visible_range_check(float) : "Visible Range" : 300 : "Visible range of movie."
+	src_movie(string) : "Source Movie" :  : "Path to a movie to playback. (.webm)"
+	repeat(boolean) : "Repeats" : 0 : "Determines whether or not this video will repeat upon completion."
+
+	// Inputs
+	input Play(void) : "Play the video"
+	input Pause(void) : "Pause playback of video"
+	input TogglePlayPause(void) : "Toggle video playback"
+]
