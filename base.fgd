@@ -7926,13 +7926,13 @@
 	max_ride_speed(float) : "Max Ride Speed" : "50"
 ]
 
-@PointClass base(Targetname) tags( Logic ) iconsprite("editor/logic_timer.vmat") = env_clock
+@PointClass base(Targetname) tags( Logic ) iconsprite("editor/logic_timer.vmat") = env_clock : "Logic for a clock that shows the time from real life."
 [
 	hourhand(target_destination) : "Hour Hand" : : ""
 	minutehand(target_destination) : "Minute Hand" : : ""
-	secondhand(target_destination) : " Hand" : : ""
-	uselocaltime(boolean) : "Use Local Time" : 1 : ""
-	timezone(integer) : "Time Zone" : -8 : ""
+	secondhand(target_destination) : "Second Hand" : : ""
+	uselocaltime(boolean) : "Use Local Time" : 1 : "If set, the clock's time zone will be the same as the device the game is running on."
+	timezone(integer) : "Time Zone" : -8 : "Uses a UTC offset to determine which time zone this clock uses."
 ]
 
 @BaseClass base(Targetname) = base_clientui_ent 
