@@ -1151,6 +1151,13 @@
 	window_shatter(boolean) : "Should shatter window" : 0 : "Unknown"
 ]
 
+@SolidClass base(Trigger) tags(Trigger) metadata { auto_apply_material = "materials/tools/toolstrigger.vmat" } = trigger_traversal_invalid_spot :
+	"Trigger defining a volume inside of which the player is unable to teleport to. " +
+	"It's still possible to teleport through the trigger to the other side or simply " +
+	"walk through using the continuous movement option."
+[
+]
+
 // ----------------------------------------- FILTERS -----------------------------------------
 @FilterClass base(BaseFilter) iconsprite("editor/filter_name.vmat") = filter_vr_grenade : "A filter that filters grenades and their state."
 [
