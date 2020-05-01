@@ -1296,7 +1296,7 @@
 
 	targets(target_destination) : "Target" : "" : ""
 
-	render_attr_name(string) [ group="Render Properties" ] : "Render Attribute Name" : "colorAttrMovie" : "Placeholder."
+	render_attr_name(string) [ group="Render Properties" ] : "Render Attribute Name" : "colorAttr" : "Placeholder."
 	resolution_x(integer) [ group="Render Properties" ] : "Resolution (X)" : 720 : ""
 	resolution_y(integer) [ group="Render Properties" ] : "Resolution (Y)" : 480 : ""
 
