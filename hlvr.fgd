@@ -935,7 +935,7 @@
 	output OnPlayerHasTwoVodkaBottlesInWristPockets(void) : ""
 ]
 
-@PointClass base(Targetname, EnableDisable) tags( Logic ) editormodel("models/props_combine/combine_power/power_stake_a.vmdl") = info_hlvr_toner_port : "Port for the electric wire puzzles."
+@PointClass base(Targetname, EnableDisable) tags( Logic ) model("models/props_combine/combine_power/power_stake_a.vmdl") = info_hlvr_toner_port : "Port for the electric wire puzzles."
 [
 	initial_orientation(choices) : "Initial Orientation" : 0 : "The initial orientation of the " =
 	[
@@ -956,25 +956,29 @@
 	StartPortVisible(boolean) : "Start Port Visible" : 1
 	StartVisible(boolean) : "Start Visible" : 1
 	
+	// Outputs
+	output OnPlugRotated(void) : "" //Listed as an input in-engine, shouldn't this be an output?
+
 	// Inputs
 	input SetVisible(boolean) : "Sets the visibility of the toner's particle effects."
 	input SetPortVisible(boolean) : "Opens and closes the aperture for the plug."
 	input SetComplete(boolean) : "Sets if the puzzle is complete."
-	input OnPlugRotated(void) : "" //Listed as an input in-engine, shouldn't this be an output?
 ]
 
-@PathNodeClass base(Targetname, EnableDisable) tags( Logic ) iconsprite("editor/logic_relay.vmat") selected_line( 255 0 0, targetname, target ) = info_hlvr_toner_path_node : "The different points the toner path is visualized as in-game."
+@PointClass base(Targetname, EnableDisable) tags( Logic ) toner_path_node() = info_hlvr_toner_path_node : "The different points the toner path is visualized as in-game."
 [
 	target(target_destination) : "Target" : "" : "Next path node to continue the current path."
 	inset_distance(float) : "Inset Distance" : 0
 	is_spline_node(boolean) : "Is Spline" : 1 : "Treats the line to the target as a spline."
 ]
 
-@PathClass base(Targetname, EnableDisable) nodelink() tags( Logic ) iconsprite("editor/light.vmat")
-	line( 255 255 255, targetname, start_entity )
-	line( 255 255 255, targetname, end_entity )
-	selected_line( 255 0 0, targetname, first_path_node )
- = toner_path : "A path for the toner puzzles."
+@PointClass base(Targetname, EnableDisable) tags( Logic ) toner_path()
+	iconsprite("materials/editor/info_hlvr_toner_path.vmat")
+	metadata {
+		node_entity_class = "info_hlvr_toner_path_node"
+		toner_path = "True"
+	}
+ = info_hlvr_toner_path : "A path for the toner puzzles."
 [
 	start_entity(target_destination) : "Start Entity" : "" : "The toner port or previous junction in the toner."
 	end_entity(target_destination) : "End Entity" : "" : "The next junction in the toner."
@@ -990,17 +994,13 @@
 
 
 
-@PointClass base(Targetname, EnableDisable) tags( Logic ) size(-4 -4 -4, 4 4 4)
-	selected_line( 255 255 255, targetname, connection_0 )
-	selected_line( 255 255 255, targetname, connection_1 )
-	selected_line( 255 255 255, targetname, connection_2 )
-	selected_line( 255 255 255, targetname, connection_3 )
+@PointClass base(Targetname, EnableDisable) tags( Logic ) toner_junction()
  = info_hlvr_toner_junction : "The interactable junctions for toner puzzles."
 [	
-	connection_0(target_destination) : "East Path"
-	connection_1(target_destination) : "North Path"
-	connection_2(target_destination) : "West Path"
-	connection_3(target_destination) : "South Path"
+	connection_0(target_destination) : "Connection 0"
+	connection_1(target_destination) : "Connection 1"
+	connection_2(target_destination) : "Connection 2"
+	connection_3(target_destination) : "Connection 3"
 	
 	inset_distance(float) : "Inset Distance" : 0
 
