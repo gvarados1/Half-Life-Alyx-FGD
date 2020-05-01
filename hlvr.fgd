@@ -935,97 +935,6 @@
 	output OnPlayerHasTwoVodkaBottlesInWristPockets(void) : ""
 ]
 
-@PointClass base(Targetname, EnableDisable) tags( Logic ) model("models/props_combine/combine_power/power_stake_a.vmdl") = info_hlvr_toner_port : "Port for the electric wire puzzles."
-[
-	initial_orientation(choices) : "Initial Orientation" : 0 : "The initial orientation of the " =
-	[
-		0 : "0 degrees"
-		1 : "90 degrees"
-		2 : "180 degrees"
-		3 : "270 degrees"
-	]
-	
-	desired_orientation(choices) : "Desired Orientation" : "2" : "East" =
-	[
-		0 : "0 degrees"
-		1 : "90 degrees"
-		2 : "180 degrees"
-		3 : "270 degrees"
-	]
-	
-	StartPortVisible(boolean) : "Start Port Visible" : 1
-	StartVisible(boolean) : "Start Visible" : 1
-	
-	// Outputs
-	output OnPlugRotated(void) : "" //Listed as an input in-engine, shouldn't this be an output?
-
-	// Inputs
-	input SetVisible(boolean) : "Sets the visibility of the toner's particle effects."
-	input SetPortVisible(boolean) : "Opens and closes the aperture for the plug."
-	input SetComplete(boolean) : "Sets if the puzzle is complete."
-]
-
-@PointClass base(Targetname, EnableDisable) tags( Logic ) toner_path_node() = info_hlvr_toner_path_node : "The different points the toner path is visualized as in-game."
-[
-	target(target_destination) : "Target" : "" : "Next path node to continue the current path."
-	inset_distance(float) : "Inset Distance" : 0
-	is_spline_node(boolean) : "Is Spline" : 1 : "Treats the line to the target as a spline."
-]
-
-@PointClass base(Targetname, EnableDisable) tags( Logic ) toner_path()
-	iconsprite("materials/editor/info_hlvr_toner_path.vmat")
-	metadata {
-		node_entity_class = "info_hlvr_toner_path_node"
-		toner_path = "True"
-	}
- = info_hlvr_toner_path : "A path for the toner puzzles."
-[
-	start_entity(target_destination) : "Start Entity" : "" : "The toner port or previous junction in the toner."
-	end_entity(target_destination) : "End Entity" : "" : "The next junction in the toner."
-	first_path_node(target_destination) : "First Path Node" : "" : "Put the first info_hlvr_toner_path_node of the path here."
-	
-	// Inputs
-	input PlayFanfare(void) : "Plays a sound?"
-	
-	// Outputs
-	output OnPowerOn(void) : "Outputted when the path gets power."
-	output OnPowerOff(void) : "Outputted when the path gets power."
-]
-
-
-
-@PointClass base(Targetname, EnableDisable) tags( Logic ) toner_junction()
- = info_hlvr_toner_junction : "The interactable junctions for toner puzzles."
-[	
-	connection_0(target_destination) : "Connection 0"
-	connection_1(target_destination) : "Connection 1"
-	connection_2(target_destination) : "Connection 2"
-	connection_3(target_destination) : "Connection 3"
-	
-	inset_distance(float) : "Inset Distance" : 0
-
-	junction_toplogy(choices) : "Junction Topology" : 0 : "Determines the type of the junction. Not working?" = 
-	[
-		0 : "I (line)"
-		1 : "L (90 degree)"
-		2 : "T (3 way)"
-		3 : "L Dual (dual line)"
-		4 : "Static T"
-		5 : "Static 4-way"
-	]
-	
-	junction_orientation(choices) : "Junction Orientation" : 0 : "Starting rotation of the junction." =
-	[
-		0 : "0 degrees"
-		1 : "90 degrees"
-		2 : "180 degrees"
-		3 : "270 degrees"
-	]
-	
-	// Outputs
-	output OnPass(void) : "When the junction is completed."
-]
-
 @PointClass base(Targetname, EnableDisable) tags( Logic ) = logic_handsup_listener : ""
 [
 
@@ -1048,6 +957,93 @@
 	output OnQuerySingleControllerModeDisabled(void)
 	output OnSingleControllerModeEnabled(void)
 	output OnSingleControllerModeDisabled(void)
+]
+
+// ----------------------------------------- TONER PUZZLE -----------------------------------------
+
+@PointClass base(Targetname, EnableDisable) tags( Logic ) model("models/props_combine/combine_power/power_stake_a.vmdl") = info_hlvr_toner_port : "Port for the toner puzzles."
+[
+	initial_orientation(choices) : "Initial Orientation" : "2" : "The initial orientation of the wire within the port. Always does a 90 degree counter-clockwise rotation when activated by the multitool. Numbers are increasing in the counter-clockwise direction. The axis direction the wire is pointing in is given in parentheses. The axes are in the entities local coordinate system." =
+	[
+		"0" : "0 (+Y)"
+		"1" : "1 (-X)"
+		"2" : "2 (-Y)"
+		"3" : "3 (+X)"
+	]
+	
+	desired_orientation(choices) : "Desired Orientation" : "3" : "The orientation the port will output power to. Also the side on which the path will connect to. This should always be a 90 degree counter-clockwise rotation or +1 of whatever the Initial Orientation is set to. If set to anything else it will either fail to provide power to the wires or be closed and already powering the other wires (if the same)." =
+	[
+		"0" : "0 (+Y)"
+		"1" : "1 (-X)"
+		"2" : "2 (-Y)"
+		"3" : "3 (+X)"
+	]
+	
+	StartPortVisible(boolean) : "Start Port Visible" : 1 : "Starts with the port wire visible to the multitool. Use Start Disabled instead to have the port start closed."
+	StartVisible(boolean) : "Start Puzzle Visible" : 0 : "Starts with all puzzle wires visible to the multitool."
+
+	// Inputs
+	input SetVisible(boolean) : "Sets the visibility of the all the puzzle wires."
+	input SetPortVisible(boolean) : "Sets the visibility of the port wire. Use Enable/Disable instead to open and close the port."
+	input SetComplete(boolean) : "Marks the puzzle as complete, playing the finished puzzle animation and sound, then disables the puzzle."
+	// Outputs
+	input OnPlugRotated(void) : "Makes the port wire rotate 90 degrees counter-clockwise, even when disabled. Does nothing after the wire hits the desired orientation."
+]
+
+@PointClass base(Targetname, EnableDisable) tags( Logic ) toner_path_node() = info_hlvr_toner_path_node : "Additional points used to extend and curve the toner path."
+[
+	target(target_destination) : "Target" : "" : "Next path node to continue the current path."
+	inset_distance(float) : "Inset Distance" : 0 : "How far into the wall, etc., the node should appear."
+	is_spline_node(boolean) : "Is Spline" : 0 : "Makes a spline path between this node and its two neighbouring nodes instead of a straight line. Use it to create curved paths."
+]
+
+@PointClass base(Targetname, EnableDisable) tags( Logic ) toner_path()
+	iconsprite("materials/editor/info_hlvr_toner_path.vmat") = info_hlvr_toner_path : "A single path for the toner puzzles connecting two entities."
+[
+	start_entity(target_destination) : "Start Entity" : "" : "The entity to start the path from. Usually a toner junction or toner port."
+	end_entity(target_destination) : "End Entity" : "" : "The entity that should be the end point of the path. Usually a toner junction or the final entity like a lamp or force field."
+	first_path_node(target_destination) : "First Path Node" : "" : "The name of the first toner path node in your path or the same as Start Entity if you don't have any additional toner path nodes; if you don't, the start and end enities will be connected by a straight line."
+	
+	// Inputs
+	input PlayFanfare(void) : "Lights up this path. Can only be triggered once."
+	
+	// Outputs
+	output OnPowerOn(void) : "Triggered when this path receives power."
+	output OnPowerOff(void) : "Triggered when this path loses power."
+]
+
+
+
+@PointClass base(Targetname, EnableDisable) tags( Logic ) toner_junction()
+ = info_hlvr_toner_junction : "The interactable junctions for toner puzzles."
+[	
+	connection_0(target_destination) : "Connection 0" : : "Toner path entity connected to 0. Empty for unconnected."
+	connection_1(target_destination) : "Connection 1" : : "Toner path entity connected to 1. Empty for unconnected."
+	connection_2(target_destination) : "Connection 2" : : "Toner path entity connected to 2. Empty for unconnected."
+	connection_3(target_destination) : "Connection 3" : : "Toner path entity connected to 3. Empty for unconnected."
+	
+	inset_distance(float) : "Inset Distance" : 0 : "How far into the wall, etc., the junction should appear."
+
+	junction_toplogy(choices) : "Junction Topology" : 0 : "The shape of the junction. Static shapes can't be rotated by the player." = 
+	[
+		0 : "I"
+		1 : "L"
+		2 : "T"
+		3 : "L dual"
+		4 : "Static T"
+		5 : "Static 4-way"
+	]
+	
+	junction_orientation(choices) : "Junction Orientation" : 0 : "Starting counter-clockwise rotation of the junction." =
+	[
+		0 : "0 degrees"
+		1 : "90 degrees"
+		2 : "180 degrees"
+		3 : "270 degrees"
+	]
+	
+	// Outputs
+	output OnPass(void) : "When the junction is completed."
 ]
 
 // ----------------------------------------- POINTS -----------------------------------------
