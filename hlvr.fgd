@@ -1294,7 +1294,7 @@
 [
 	layout_file(string) : "Layout File" :  : "Path to a layout file. (XML)"
 
-	targets(node_id_List) : "Target" : "" : ""
+	targets(target_destination) : "Target" : "" : ""
 
 	render_attr_name(string) [ group="Render Properties" ] : "Render Attribute Name" : "colorAttrMovie" : "Placeholder."
 	resolution_x(integer) [ group="Render Properties" ] : "Resolution (X)" : 720 : ""
@@ -1310,6 +1310,7 @@
 	visible_range_check(float) : "Visible Range" : 300 : "Visible range of movie."
 	src_movie(string) : "Source Movie" :  : "Path to a movie to playback. (.webm)"
 	repeat(boolean) : "Repeats" : 0 : "Determines whether or not this video will repeat upon completion."
+	auto_play(boolean) : "Plays Automatically" : 0 : "Determines whether or not this video will play automatically."
 
 	// Inputs
 	input Play(void) : "Play the video"
