@@ -6287,7 +6287,7 @@
 	clothScale(float) : "Cloth Scale" : 1 : "Cloth scale (stretch) relative to model scale. Use to stretch (not scale) the model, e.g. to reuse a single rope model when different lengths of the rope needed."
 ]
 
-@PointClass base(prop_dynamic_base) model() = prop_dynamic_override :
+@PointClass base(prop_dynamic_base, EnableDisable) model() = prop_dynamic_override :
 	"A prop that can be placed in hierarchy and can play animations. It can also be configured to break when it takes enough damage.<br>"+
 	"prop_dynamic_override is a prototyping entity only. It will allow the use of models designed to be used as prop_physics."
 [
