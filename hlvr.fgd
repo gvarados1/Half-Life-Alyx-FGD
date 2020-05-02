@@ -1290,25 +1290,25 @@
 [
 ]
 
-@PointClass base(Targetname, EnableDisable) tags( Info ) iconsprite("editor/info_target.vmat") = info_offscreen_panorama_texture : "Placeholder"
+@PointClass base(Targetname, EnableDisable) tags( Info ) iconsprite("editor/info_target.vmat") = info_offscreen_panorama_texture : "An entity that lets you draw panorama elements on objects throughout the world."
 [
 	layout_file(string) : "Layout File" :  : "Path to a layout file. (XML)"
 
 	targets(target_destination) : "Target" : "" : ""
 
-	render_attr_name(string) [ group="Render Properties" ] : "Render Attribute Name" : "colorAttr" : "Placeholder."
-	resolution_x(integer) [ group="Render Properties" ] : "Resolution (X)" : 720 : ""
-	resolution_y(integer) [ group="Render Properties" ] : "Resolution (Y)" : 480 : ""
+	render_attr_name(string) [ group="Render Properties" ] : "Render Attribute Name" : "colorAttr" : "Name of the Dynamic Expression this should render to."
+	resolution_x(integer) [ group="Render Properties" ] : "Resolution (X)" : 720 : "Width"
+	resolution_y(integer) [ group="Render Properties" ] : "Resolution (Y)" : 480 : "Height"
 
 	// Inputs
 	input AddCSSClass(string) : "Adds specified CSS Class"
 	input RemoveCSSClass(string) : "Remove CSS Class"
 ]
 
-@PointClass base(info_offscreen_panorama_texture) tags( Info ) iconsprite("editor/info_target.vmat") = info_offscreen_movie_texture : "Placeholder"
+@PointClass base(info_offscreen_panorama_texture) tags( Info ) iconsprite("editor/info_target.vmat") = info_offscreen_movie_texture : "An entity that allows you to play videos on objects throughout the world."
 [
-	visible_range_check(float) : "Visible Range" : 300 : "Visible range of movie."
-	src_movie(string) : "Source Movie" :  : "Path to a movie to playback. (.webm)"
+	visible_range_check(float) : "Visible Range" : 300 : "Visible range of video."
+	src_movie(string) : "Source Movie" :  : "Path to a video to playback. (.webm)"
 	repeat(boolean) : "Repeats" : 0 : "Determines whether or not this video will repeat upon completion."
 	auto_play(boolean) : "Plays Automatically" : 0 : "Determines whether or not this video will play automatically."
 
