@@ -1,4 +1,4 @@
-//Placeholder FGD created by Gvarados, thenayr, Marnamai, kolessios, Block57, XBLAH and Limited
+//Placeholder FGD created by Gvarados, thenayr, Marnamai, kolessios, Block57, XBLAH, Limited and Dyna
 
 //DOWNLOAD UPDATES AT:
 //https://github.com/gvarados1/Half-Life-Alyx-FGD
@@ -26,6 +26,14 @@
 	input Unburrow(void): ""
 	input StartHangingFromCeiling(void): ""
 	input DropFromCeiling(void): ""
+]
+
+@BaseClass base(GameEntity) = BaseCurveOverTime
+[
+	curve(string) : "Curve" : "" : "The curve to use. (In KV3 format)"
+
+	// Inputs
+	input Start(void): ""
 ]
 
 // ----------------------------------------- MONSTERS -----------------------------------------
@@ -1316,4 +1324,15 @@
 	input Play(void) : "Play the video"
 	input Pause(void) : "Pause playback of video"
 	input TogglePlayPause(void) : "Toggle video playback"
+]
+
+@PointClass base(BaseCurveOverTime) = point_render_attr_curve : "Entity to drive a render attribute over time when triggered."
+[
+	attribute_name(string) : "Render Attribute Name" : "The attribute to affect."
+	active_combo_name(string) : "Active Combo Name" : ""
+]
+
+@PointClass base(BaseCurveOverTime) = point_entity_fader : "Entity to fade an object over time when triggered."
+[
+	target(target_destination) : "Target" : "" : ""
 ]
