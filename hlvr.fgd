@@ -793,7 +793,7 @@
     input SetPositiveResistance(float) : ""
 ]
 
-@PointClass base(Targetname, Parentname, EnableDisable) = combine_attached_armor_prop :
+@PointClass base(prop_dynamic) = combine_attached_armor_prop :
 [
 	SubtleEffects(boolean) : "Subtle Effects" : 1
 ]
