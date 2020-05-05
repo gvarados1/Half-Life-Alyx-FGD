@@ -18,6 +18,21 @@
 [
 ]
 
+@BaseClass base(BaseHumanNPC) = VRCitizenNPC
+[
+	background_character(boolean) : "Background character" : 0
+
+	Relationship(string) : "Relationship" : ""
+	
+	physdamagescale(float) : "Physdamagescale" : "0.1"
+
+
+	// Inputs
+	input KilledNPC(void)
+	input BecomeServerRagdoll(void)
+]
+
+
 @BaseClass base(BaseModelNPC) = BaseHeadcrab
 [
 	// Inputs
@@ -325,6 +340,15 @@
 	output OnMinigunEnabledSuppression(void)
 	output OnAttackedByPlayerNoDamage(void)
 ]
+
+@NPCClass base(VRCitizenNPC) model("models/characters/citizens/citizens_female.vmdl") = npc_vr_citizen_female
+[
+]
+
+@NPCClass base(VRCitizenNPC) model("models/characters/citizens/citizens_male.vmdl") = npc_vr_citizen_male
+[
+]
+
 
 // ----------------------------------------- TILE ENTITIES -----------------------------------------
 @SolidClass base(RenderFields, Targetname) = func_dry_erase_board : "A dry erase board."
