@@ -991,6 +991,15 @@
 	output OnSingleControllerModeDisabled(void)
 ]
 
+@PointClass base(Targetname) = player_weaponstrip : "Strips the player of their ammo."
+[
+	// Inputs
+	input Strip(void) : "Removes all the ammo in the player's backpack."
+	input StripWeaponsAndSuit(void) : "Removes all the ammo in the player's backpack."
+	input StripActiveWeapon(void)
+	input StripWeaponByClassname(string)
+]
+
 // ----------------------------------------- TONER PUZZLE -----------------------------------------
 
 @PointClass base(Targetname, EnableDisable) tags( Logic ) model("models/props_combine/combine_power/power_stake_a.vmdl") = info_hlvr_toner_port : "Port for the toner puzzles."
