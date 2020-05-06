@@ -1212,6 +1212,30 @@
 	// Inputs
 ]
 
+@SolidClass base(Trigger) tags(Trigger) metadata { auto_apply_material = "materials/tools/toolstrigger.vmat" } = trigger_physics : "Changes physics for entities that enter."
+[
+	spawnflags(flags) =
+	[
+		1: "Clients" : 0
+		8: "Physics Objects" : 1
+	]
+
+	SetGravityScale(float) : "Gravity scale" : 1 : "Gravity is multiplied by this value. 1 for normal, 0 for no gravity, -1 for inverted gravity."
+	SetVelocityLimit(float) : "Velocity limit" : -1 : "Upper limit on how fast entities can move within the trigger. -1 means no limit"
+	SetVelocityDamping(float) : "Velocity dampining" : 0
+	SetAngVelocityLimit(float) : "Angular velocity limit" : -1 : "Upper limit on how fast entities can rotate within the trigger. -1 means no limit"
+	SetAngVelocityDamping(float) : "Angular velocity damping" : 0
+	SetLinearForce(float) : "Linear force" : 0 : "Constant force applied to all entities within this trigger. Normal gravity is 386."
+	LinearForcePointAt(vector) : "Linear force point at" : "0 0 0" : "The direction the force is pointing in."
+	CollapseToForcePoint(boolean) : "Collapse to force point" : 0
+	SetFrequency(float) : "Frequency" : 1
+	SetDampingRatio(float) : "Damping ratio" : 1
+	ConvertToDebrisWhenPossible(boolean) : "Convert to debris when possible" : 1
+
+	// Inputs
+	input SetLinearForcePointAt(string)
+]
+
 @SolidClass base(Trigger) tags(Trigger) metadata { auto_apply_material = "materials/tools/toolstrigger.vmat" } = trigger_blind_zombie_wander_area : "If a Blind Zombie is inside this volume, it will wander inside it or in adjacent volumes of the same entity."
 [
 	companion_trigger(string) : "Companion Trigger" : "" : "?"
