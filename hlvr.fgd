@@ -1000,6 +1000,12 @@
 	input StripWeaponByClassname(string)
 ]
 
+@PointClass base(Targetname) = player_speedmod : "Increases the player's movement speed during continuous locomotion"
+[
+	// Inputs
+	input ModifySpeed(float) : "Multiplies the player's speed with this value. 1 is default speed."
+]
+
 // ----------------------------------------- TONER PUZZLE -----------------------------------------
 
 @PointClass base(Targetname, EnableDisable) tags( Logic ) model("models/props_combine/combine_power/power_stake_a.vmdl") = info_hlvr_toner_port : "Port for the toner puzzles."
