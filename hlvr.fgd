@@ -83,8 +83,9 @@
 	output OnReviverEscape(void) : ""
 ]
 
-@NPCClass base(BaseModelNPC) editormodel("models/creatures/zombie_classic/zombie_classic.vmdl") = npc_zombie : "Placeholder"
+@NPCClass base(BaseModelNPC) editormodel("models/creatures/zombie_classic/zombie_classic.vmdl") = npc_zombie : "Basic Half-Life zombie NPC."
 [
+	armored_headcrab(boolean) [group="Zombie properties"] : "Armored Headcrab" : 0 : "Should wear an Armored Headcrab instead of regular Headcrab."
 ]
 
 @NPCClass base(BaseModelNPC) editormodel("models/creatures/zombie_blind/zombie_blind.vmdl") = npc_zombie_blind : "Jeff"
