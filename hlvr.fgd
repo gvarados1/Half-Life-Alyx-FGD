@@ -86,8 +86,33 @@
 @NPCClass base(BaseModelNPC) editormodel("models/creatures/zombie_classic/zombie_classic.vmdl") = npc_zombie : "Basic Half-Life zombie NPC."
 [
 	armored_headcrab(boolean) [group="Zombie properties"] : "Armored Headcrab" : 0 : "Should wear an Armored Headcrab instead of regular Headcrab."
+	
 	revivable(boolean) [group="Zombie properties"] : "Revivable" : 0 : "Can be revived by npc_headcrab_runner after dying."
 	waitforrevival(boolean) [group="Zombie properties"] : "Wait for revival" : 0 : "Will spawn dead and wait to be revived by npc_headcrab_runner."
+	reviver_group(string) [group="Zombie properties"] : "Reviver group"
+
+	bloater_position(choices) [group="Zombie properties"] : "Xen Bloater position" : -1 : "Specifies a body location to attach a xen bloater that blows up when shot." =
+	[
+		-1: "None"
+		0: "Chest"
+		1: "Head"
+		2: "Left arm"
+		3: "Right arm"
+		4: "Left leg"
+		5: "Right leg"
+	]
+
+	turret_position(choices) [group="Zombie properties"] : "Turret position" : 0 : "Specifies a body location to attach a xen_foliage_grenade_spawner on the zombie." =
+	[
+		0: "None"
+		1: "Left arm"
+		2: "Right arm"
+	]
+
+	held_object(target_destination) [group="Zombie properties"] : "Held object" : "" : "prop_physics entity that should be held by the zombie. Zombie will throw the object at player."
+
+	sprint_proclivity(float) [group="Zombie properties"] : "Sprint proclivity" : 1 : "Zombie's tendency to move in faster burts. Make them move faster."
+	flinch_chance(float) [group="Zombie properties"] : "Flinch chance" : 1 : "Zombie flinch change is multiplied by this value. (untested)"
 
 	// Inputs
 	input StartSprint(void) : "Unknown"
