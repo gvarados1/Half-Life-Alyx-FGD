@@ -85,6 +85,9 @@
 
 @NPCClass base(BaseModelNPC) model("models/creatures/zombie_classic/zombie_classic.vmdl") = npc_zombie : "Basic Half-Life zombie NPC."
 [
+
+	model_state(modelstatechoices) : "Model state" : "" : "Sets the model state at spawn."
+
 	armored_headcrab(boolean) [group="Zombie properties"] : "Armored Headcrab" : 0 : "Should wear an Armored Headcrab instead of regular Headcrab."
 	
 	revivable(boolean) [group="Zombie properties"] : "Revivable" : 0 : "Can be revived by npc_headcrab_runner after dying."
