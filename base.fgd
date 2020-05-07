@@ -7221,7 +7221,7 @@
 //-------------------------------------------------------------------------
 // Camera entity
 //-------------------------------------------------------------------------
-@PointClass base(Parentname, Targetname, CanBeClientOnly) frustum( FOV, ZNear, ZFar, rendercolor ) editormodel("models/editor/camera.vmdl") = point_camera : "Camera"
+@PointClass base(Parentname, Targetname, CanBeClientOnly) editormodel("models/editor/camera.vmdl") = point_camera : "Camera"
 [
 	spawnflags(Flags) =
 	[
@@ -7248,7 +7248,7 @@
 	input SetOff(void) : "Turn the camera off."
 ]
 
-@PointClass base(Targetname, Parentname, EnableDisable) = func_monitor : 
+@SolidClass base(Targetname, Parentname, EnableDisable) = func_monitor : 
 	"Treats the brush as a monitor as displays the targeted camera."
 [
 	target(target_destination) : "Camera" : : "The point_camera entity to display from."
