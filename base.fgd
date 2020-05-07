@@ -7248,7 +7248,7 @@
 	input SetOff(void) : "Turn the camera off."
 ]
 
-@PointClass base(Targetname, Parentname, EnableDisable) = func_monitor : 
+@SolidClass base(Targetname, Parentname, EnableDisable) = func_monitor : 
 	"Treats the brush as a monitor as displays the targeted camera."
 [
 	target(target_destination) : "Camera" : : "The point_camera entity to display from."
