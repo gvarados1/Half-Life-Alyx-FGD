@@ -52,27 +52,27 @@
 ]
 
 // ----------------------------------------- MONSTERS -----------------------------------------
-@NPCClass base(BaseHeadcrab) editormodel("models/creatures/headcrab_classic/headcrab_classic.vmdl") = npc_headcrab : "Placeholder"
+@NPCClass base(BaseHeadcrab) model("models/creatures/headcrab_classic/headcrab_classic.vmdl") = npc_headcrab : "Placeholder"
 [
 ]
 
-@NPCClass base(BaseHeadcrab) editormodel("models/creatures/headcrab_black/headcrab_black.vmdl") = npc_headcrab_black : "Placeholder"
+@NPCClass base(BaseHeadcrab) model("models/creatures/headcrab_black/headcrab_black.vmdl") = npc_headcrab_black : "Placeholder"
 [
 ]
 
-@NPCClass base(BaseHeadcrab) editormodel("models/creatures/headcrab/headcrab.vmdl") = npc_headcrab_poison : "Placeholder"
+@NPCClass base(BaseHeadcrab) model("models/creatures/headcrab/headcrab.vmdl") = npc_headcrab_poison : "Placeholder"
 [
 ]
 
-@NPCClass base(BaseHeadcrab) editormodel("models/creatures/headcrab/headcrab.vmdl") = npc_headcrab_fast : "Placeholder. DOES NOT MAKE SOUNDS"
+@NPCClass base(BaseHeadcrab) model("models/creatures/headcrab/headcrab.vmdl") = npc_headcrab_fast : "Placeholder. DOES NOT MAKE SOUNDS"
 [
 ]
 
-@NPCClass base(BaseHeadcrab) editormodel("models/creatures/headcrab_armored/headcrab_armored.vmdl") = npc_headcrab_armored : "Placeholder"
+@NPCClass base(BaseHeadcrab) model("models/creatures/headcrab_armored/headcrab_armored.vmdl") = npc_headcrab_armored : "Placeholder"
 [
 ]
 
-@NPCClass base(BaseHeadcrab) editormodel("models/creatures/headcrab_reviver/headcrab_reviver.vmdl") = npc_headcrab_runner : "Placeholder"
+@NPCClass base(BaseHeadcrab) model("models/creatures/headcrab_reviver/headcrab_reviver.vmdl") = npc_headcrab_runner : "Placeholder"
 [
 	// Inputs
 	input ForceRevive(void): ""
@@ -83,7 +83,7 @@
 	output OnReviverEscape(void) : ""
 ]
 
-@NPCClass base(BaseModelNPC) editormodel("models/creatures/zombie_classic/zombie_classic.vmdl") = npc_zombie : "Basic Half-Life zombie NPC."
+@NPCClass base(BaseModelNPC) model("models/creatures/zombie_classic/zombie_classic.vmdl") = npc_zombie : "Basic Half-Life zombie NPC."
 [
 	armored_headcrab(boolean) [group="Zombie properties"] : "Armored Headcrab" : 0 : "Should wear an Armored Headcrab instead of regular Headcrab."
 	
@@ -122,7 +122,7 @@
 	output OnDeathCanRevive(void) : "Triggered if this zombie dies AND they are set to be revivable"
 ]
 
-@NPCClass base(BaseModelNPC) editormodel("models/creatures/zombie_blind/zombie_blind.vmdl") = npc_zombie_blind : "Jeff"
+@NPCClass base(BaseModelNPC) model("models/creatures/zombie_blind/zombie_blind.vmdl") = npc_zombie_blind : "Jeff"
 [
 	// Inputs
 	input SetDeafState(void): ""
@@ -152,7 +152,7 @@
 	output OnDeathCanRevive(void) : ""
 ]
 
-@NPCClass base(BaseModelNPC) editormodel("models/creatures/manhack/manhack.vmdl") = npc_manhack : "Placeholder"
+@NPCClass base(BaseModelNPC) model("models/creatures/manhack/manhack.vmdl") = npc_manhack : "Placeholder"
 [
 	// Inputs
 	input InteractivePowerDown(void): ""
@@ -164,15 +164,15 @@
 	output OnAlyxFinishedInteraction(void) : ""
 ]
 
-@NPCClass base(BaseModelNPC) editormodel("models/creatures/barnacle/barnacle.vmdl") = npc_barnacle : "Placeholder"
+@NPCClass base(BaseModelNPC) model("models/creatures/barnacle/barnacle.vmdl") = npc_barnacle : "Placeholder"
 [
 ]
 
-@NPCClass base(BaseModelNPC, BasePhysicsSimulated) editormodel("models/combine_turrets/floor_turret.vmdl") = npc_turret_floor : "Placeholder"
+@NPCClass base(BaseModelNPC, BasePhysicsSimulated) model("models/combine_turrets/floor_turret.vmdl") = npc_turret_floor : "Placeholder"
 [
 ]
 
-@NPCClass base(BaseModelNPC) editormodel("models/creatures/antlion/antlion.vmdl") = npc_antlion : "Placeholder"
+@NPCClass base(BaseModelNPC) model("models/creatures/antlion/antlion.vmdl") = npc_antlion : "Placeholder"
 [
 	model(choices) : "Model" : "models/creatures/antlion/antlion.vmdl" : "Antlion" = 
 	[
@@ -181,7 +181,7 @@
 	]
 ]
 
-@NPCClass base(BaseHumanNPC) editormodel("models/characters/eli/eli.vmdl") = npc_eli : "Placeholder"
+@NPCClass base(BaseHumanNPC) model("models/characters/eli/eli.vmdl") = npc_eli : "Placeholder"
 [
 ]
 
@@ -326,7 +326,7 @@
 	model(studio) : "World Model" : "models/props/xen_infestation/xen_grenade_plant.vmdl"
 ]
 
-@PointClass base(Targetname) editormodel("models/props/xen_infestation/boomerplant_01.vmdl") = xen_foliage_bloater : "Placeholder"
+@PointClass base(Targetname) model("models/props/xen_infestation/boomerplant_01.vmdl") = xen_foliage_bloater : "Placeholder"
 [
 ]
 
