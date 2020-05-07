@@ -188,7 +188,7 @@
 [
 ]
 
-@NPCClass base(BaseHumanNPC, RappelNPC) studio("models/characters/combine_grunt/combine_grunt.vmdl") = npc_combine_s : "PLACEHOLDER Combine Soldier"
+@NPCClass base(BaseHumanNPC, RappelNPC) studio() = npc_combine_s : "PLACEHOLDER Combine Soldier"
 [
 	model(choices) : "Model" : "models/characters/combine_grunt/combine_grunt.vmdl" : "" = 
 	[
@@ -197,6 +197,8 @@
 		"models/characters/combine_soldier_heavy/combine_soldier_heavy.vmdl" : "Heavy"
 		"models/characters/combine_soldier_captain/combine_captain.vmdl" : "Captain"
 	]
+
+	model_state(modelstatechoices) : "Model state" : "" : "Sets the model state at spawn."
 
 	additionalequipment(choices) : "Weapons" : "" =
 	[
@@ -381,10 +383,12 @@
 
 @NPCClass base(VRCitizenNPC) model("models/characters/citizens/citizens_female.vmdl") = npc_vr_citizen_female
 [
+	model_state(modelstatechoices) : "Model state" : "" : "Sets the model state at spawn."
 ]
 
 @NPCClass base(VRCitizenNPC) model("models/characters/citizens/citizens_male.vmdl") = npc_vr_citizen_male
 [
+	model_state(modelstatechoices) : "Model state" : "" : "Sets the model state at spawn."
 ]
 
 

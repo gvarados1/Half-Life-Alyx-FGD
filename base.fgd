@@ -6464,6 +6464,9 @@
 		65536 : "Start asleep" : 0
 		131072 : "Don't force sleep" : 0
 	]
+
+	model_state(modelstatechoices) : "Model state" : "" : "Sets the model state at spawn."
+
 	angleOverride(string) : "Override Animation" : "" : "Filled in by the engine via wc_update_entity, do not edit by hand except to clear."
 	lightingorigin(target_destination) : "Lighting Origin" : "" : "Select a path_corner entity to specify a location to sample lighting from, instead of using this entity's origin."
 
