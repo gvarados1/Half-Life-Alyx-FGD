@@ -1422,6 +1422,7 @@
 	}
 = func_hlvr_nav_markup : "Tagged NAV markup volume entity, used during export and can be queried in-game by tag/name/type/location. For HLVR."
 [
+	tagFieldNames(string) : "<internal>" : "navProperty_NavAttributes,navProperty_NavGen" : "<internal>"
 ]
 
 @SolidClass base(markup_volume_with_ref) tags( NavMarkup )
