@@ -45,7 +45,7 @@
 
 @BaseClass base(GameEntity) = BaseCurveOverTime
 [
-	curve(string) : "Curve" : "" : "The curve to use. (In KV3 format)"
+	curve(curve) : "Curve" : "" : "The curve to use."
 
 	// Inputs
 	input Start(void): ""
