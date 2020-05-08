@@ -108,7 +108,7 @@
 @BaseClass = Studiomodel
 [
 	model(studio) [report]: "World Model"
-	model_state(modelstatechoices) [ group="Render Properties" ] : "Model State" : "" : "Configure various states for the model."
+	model_state(modelstatechoices) : "Model State" : "" : "Configure various states for the model."
 	skin(materialgroup) [ group="Render Properties" ] : "Skin" : "default" : "Legacy property for backwards compatibility. Use Material Group under Model State instead."
 	bodygroups(bodygroupchoices) [ group="Render Properties" ] : "Body Groups" : "" : "Legacy property for backwards compatibility. Use Render State under Model State instead."
 	
