@@ -86,8 +86,6 @@
 @NPCClass base(BaseModelNPC) model("models/creatures/zombie_classic/zombie_classic.vmdl") = npc_zombie : "Basic Half-Life zombie NPC."
 [
 
-	model_state(modelstatechoices) : "Model state" : "" : "Sets the model state at spawn."
-
 	armored_headcrab(boolean) [group="Zombie properties"] : "Armored Headcrab" : 0 : "Should wear an Armored Headcrab instead of regular Headcrab."
 	
 	revivable(boolean) [group="Zombie properties"] : "Revivable" : 0 : "Can be revived by npc_headcrab_runner after dying."
@@ -197,8 +195,6 @@
 		"models/characters/combine_soldier_heavy/combine_soldier_heavy.vmdl" : "Heavy"
 		"models/characters/combine_soldier_captain/combine_captain.vmdl" : "Captain"
 	]
-
-	model_state(modelstatechoices) : "Model state" : "" : "Sets the model state at spawn."
 
 	additionalequipment(choices) : "Weapons" : "" =
 	[
@@ -383,12 +379,10 @@
 
 @NPCClass base(VRCitizenNPC) model("models/characters/citizens/citizens_female.vmdl") = npc_vr_citizen_female
 [
-	model_state(modelstatechoices) : "Model state" : "" : "Sets the model state at spawn."
 ]
 
 @NPCClass base(VRCitizenNPC) model("models/characters/citizens/citizens_male.vmdl") = npc_vr_citizen_male
 [
-	model_state(modelstatechoices) : "Model state" : "" : "Sets the model state at spawn."
 ]
 
 
@@ -610,6 +604,35 @@
 ]
 
 // ----------------------------------------- PICKUPS -----------------------------------------
+@PointClass base(BasePropPhysics, Targetname, DamageFilter, BaseFadeProp) model("models/props/supplycrate/supplycrate_01.vmdl") = item_item_crate : "A crate that contains a specified item."
+[
+	CrateAppearance(choices) : "Crate Appearance" : 2 =
+	[
+		0 : "HL2 Default Crate"
+		1 : "HL2 Beacon Crate"
+		2 : "Half-Life: Alyx Default Crate"
+	]
+
+	ItemClass(pointentityclass) : "Item Type" : "item_healthvial" : "Class name of the entity to spawn when the crate is broken"
+	ItemCount(integer) : "Item Count" : 1 : "Number of items to emit upon breakage"
+	SpecificResupply(target_destination) : "Specific resupply" : "" : "If item type is item_dynamic_resupply, specify a specific one to use instead of the master"
+
+	ammobalancing_removable(boolean) : "Removable For Ammo Balancing" : 0
+
+	// Inputs
+	input Kill(void) : "Remove the item crate"
+	input Break(void) : "Breaks the breakable."
+	input SetHealth(integer) : "Sets a new value for health. If the breakable's health reaches zero it will break."
+	input AddHealth(integer) : "Adds health to the breakable. If the breakable's health reaches zero it will break."
+	input RemoveHealth(integer) : "Removes health from the breakable. If the breakable's health reaches zero it will break."
+	
+	// Outputs
+	output OnBreak(void) : "Fires when broken."
+	output OnHealthChanged(float) : "Fires when the health of this breakable changes, passing the new value of health as a percentage of max health, from [0..1]."
+
+	output OnCacheInteraction(void) : "This output fires when the player proves they have 'found' this crate. Fires on: Picked up by +USE, Picked up by Physcannon, Punted by Physcannon, Broken."
+]
+
 @PointClass base(Targetname) editormodel("models/weapons/vr_alyxhealth/vr_health_pen.vmdl") = item_healthvial : "Placeholder"
 [
 	ammobalancing_removable(boolean) : "Removable For Ammo Balancing" : 0
@@ -1216,9 +1239,10 @@
 	active_combo_name(string) : "Active Combo Name" : ""
 ]
 
-@PointClass base(BaseCurveOverTime) = point_entity_fader : "Entity to fade an object over time when triggered."
+@PointClass base(Targetname, BaseCurveOverTime) = point_entity_fader : "Entity to fade an object over time when triggered."
 [
 	target(target_destination) : "Target" : "" : ""
+	curve(curve) : "Fade Curve" : "<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->\n{\n\tm_spline = \n\t[\n\t\t{\n\t\t\tx = 0.0\n\t\t\ty = 1.0\n\t\t\tm_flSlopeIncoming = -1.0\n\t\t\tm_flSlopeOutgoing = -1.0\n\t\t},\n\t\t{\n\t\t\tx = 1.0\n\t\t\ty = -0.0\n\t\t\tm_flSlopeIncoming = -1.0\n\t\t\tm_flSlopeOutgoing = -1.0\n\t\t},\n\t]\n\tm_tangents = \n\t[\n\t\t{\n\t\t\tm_nIncomingTangent = \"CURVE_TANGENT_SPLINE\"\n\t\t\tm_nOutgoingTangent = \"CURVE_TANGENT_SPLINE\"\n\t\t},\n\t\t{\n\t\t\tm_nIncomingTangent = \"CURVE_TANGENT_SPLINE\"\n\t\t\tm_nOutgoingTangent = \"CURVE_TANGENT_SPLINE\"\n\t\t},\n\t]\n\tm_vDomainMins = [ 0.0, 0.0 ]\n\tm_vDomainMaxs = [ 1.0, 1.0 ]\n}" : "The curve to use for the fade."
 ]
 
 @PointClass base(Targetname, EnableDisable) = env_spherical_vignette : "Placeholder."
