@@ -1003,6 +1003,8 @@
 	]
 
 	startcolor(color255) : "Starting color" : "0, 0, 0" : "If the map is set to fade in, this determines the color it starts off as."
+	
+	lightmap_queries(boolean) : "Lightmap Queries" : 0 : "If set, lightmap_query_data.kv3 will be generated and included in the VPK for this map. (TODO: Include more details)"
 ]
 
 
@@ -5470,25 +5472,24 @@
 	output OnConstraintBroken(void) : "Fired when a player breaks through the constraint."
 ]
 
-@PointClass base(Targetname, Parentname, EnableDisable) editormodel("models/editor/axis_helper.vmdl") sphere(grab_radius) = point_grabbable :
-	"Specifies a point in space that can be grabbed by the player and moved around."
+@PointClass base(Targetname, Parentname, EnableDisable) editormodel("models/editor/axis_helper.vmdl") = point_grabbable :
+	"Specifies a point in space that can be grabbed by the player and moved around. To debug, use command 'point_grabbable_debug 1' in game."
 [
 
-	grab_radius(float) : "Radius" : 4 : "Radius of the sphere or circle shape."
+	grab_radius(float) : "Radius" : 4 : "Radius of the sphere shape."
 	limit_mins(vector) : "Limit mins" : "-8 -8 -8" : "Min X, Y, Z values for cube shape."
 	limit_maxs(vector) : "Limit maxs" : "8 8 8" : "Max X, Y, Z values for cube shape."
 	
-	shape(choices) : "Shape" : 1 : "The shape on which the grabbable point will be constrained to." = [
+	shape(choices) : "Shape" : 1 : "The shape on which the grabbable point will be constrained to. Cube: Constrained to the surface of a cube. Sphere: Constrained to inside the volume of a sphere/cone." = [
 		0: "Cube"
 		1: "Sphere"
-		2: "Circle"
 	]
 	
-	sphere_center(vector) : "Sphere center" : "0 0 0"
-	constrain_angle(float) : "Constrain angle" : 20 : "Biggest angle allowed to move."
-	detach_angle(float) : "Detach angle" : 35 : "Angle at which the player stops grabbing."
+	sphere_center(vector) : "Sphere center" : "0 0 0" : "The centre of the sphere shape relative to the entity origin."
+	constrain_angle(float) : "Constrain angle" : 20 : "Biggest angle away from the sphere centre the point is allowed to move. Used with sphere shape. Does nothing if the sphere centre is (0, 0, 0). 90 is half the sphere, 180 is the entire sphere."
+	detach_angle(float) : "Detach angle" : 35 : "Angle away from the sphere centre at which the player stops grabbing.  Used with sphere shape. Does nothing if the sphere centre is (0, 0, 0). 90 is half the sphere, 180 is the entire sphere."
 	thickness(float) : "Thickness" : 16
-	handpose_entity_name(target_destination) : "Handpose entity" : : "Handpose associated with the grab."
+	handpose_entity_name(target_destination) : "Handpose entity" : : "prop_handpose entity associated with the grab."
 
 	// Outputs
 	output OnGrabbed(void) : "Fired when the player starts grabbing."
@@ -6286,7 +6287,7 @@
 	clothScale(float) : "Cloth Scale" : 1 : "Cloth scale (stretch) relative to model scale. Use to stretch (not scale) the model, e.g. to reuse a single rope model when different lengths of the rope needed."
 ]
 
-@PointClass base(prop_dynamic_base) model() = prop_dynamic_override :
+@PointClass base(prop_dynamic_base, EnableDisable) model() = prop_dynamic_override :
 	"A prop that can be placed in hierarchy and can play animations. It can also be configured to break when it takes enough damage.<br>"+
 	"prop_dynamic_override is a prototyping entity only. It will allow the use of models designed to be used as prop_physics."
 [
@@ -6463,6 +6464,9 @@
 		65536 : "Start asleep" : 0
 		131072 : "Don't force sleep" : 0
 	]
+
+	model_state(modelstatechoices) : "Model state" : "" : "Sets the model state at spawn."
+
 	angleOverride(string) : "Override Animation" : "" : "Filled in by the engine via wc_update_entity, do not edit by hand except to clear."
 	lightingorigin(target_destination) : "Lighting Origin" : "" : "Select a path_corner entity to specify a location to sample lighting from, instead of using this entity's origin."
 
@@ -7247,7 +7251,7 @@
 	input SetOff(void) : "Turn the camera off."
 ]
 
-@PointClass base(Targetname, Parentname, EnableDisable) = func_monitor : 
+@SolidClass base(Targetname, Parentname, EnableDisable) = func_monitor : 
 	"Treats the brush as a monitor as displays the targeted camera."
 [
 	target(target_destination) : "Camera" : : "The point_camera entity to display from."
@@ -7925,13 +7929,13 @@
 	max_ride_speed(float) : "Max Ride Speed" : "50"
 ]
 
-@PointClass base(Targetname) tags( Logic ) iconsprite("editor/logic_timer.vmat") = env_clock
+@PointClass base(Targetname) tags( Logic ) iconsprite("editor/logic_timer.vmat") = env_clock : "Logic for a clock that shows the time from real life."
 [
 	hourhand(target_destination) : "Hour Hand" : : ""
 	minutehand(target_destination) : "Minute Hand" : : ""
-	secondhand(target_destination) : " Hand" : : ""
-	uselocaltime(boolean) : "Use Local Time" : 1 : ""
-	timezone(integer) : "Time Zone" : -8 : ""
+	secondhand(target_destination) : "Second Hand" : : ""
+	uselocaltime(boolean) : "Use Local Time" : 1 : "If set, the clock's time zone will be the same as the device the game is running on."
+	timezone(integer) : "Time Zone" : -8 : "Uses a UTC offset to determine which time zone this clock uses."
 ]
 
 @BaseClass base(Targetname) = base_clientui_ent 

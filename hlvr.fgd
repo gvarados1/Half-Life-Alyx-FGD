@@ -1,4 +1,4 @@
-//Placeholder FGD created by Gvarados, thenayr, Marnamai, kolessios, Block57, XBLAH and Limited
+//Placeholder FGD created by Gvarados, thenayr, Marnamai, kolessios, Block57, XBLAH, Limited and Dyna
 
 //DOWNLOAD UPDATES AT:
 //https://github.com/gvarados1/Half-Life-Alyx-FGD
@@ -18,6 +18,21 @@
 [
 ]
 
+@BaseClass base(BaseHumanNPC) = VRCitizenNPC
+[
+	background_character(boolean) : "Background character" : 0
+
+	Relationship(string) : "Relationship" : ""
+	
+	physdamagescale(float) : "Physdamagescale" : "0.1"
+
+
+	// Inputs
+	input KilledNPC(void)
+	input BecomeServerRagdoll(void)
+]
+
+
 @BaseClass base(BaseModelNPC) = BaseHeadcrab
 [
 	// Inputs
@@ -28,28 +43,36 @@
 	input DropFromCeiling(void): ""
 ]
 
+@BaseClass base(GameEntity) = BaseCurveOverTime
+[
+	curve(string) : "Curve" : "" : "The curve to use. (In KV3 format)"
+
+	// Inputs
+	input Start(void): ""
+]
+
 // ----------------------------------------- MONSTERS -----------------------------------------
-@NPCClass base(BaseHeadcrab) editormodel("models/creatures/headcrab_classic/headcrab_classic.vmdl") = npc_headcrab : "Placeholder"
+@NPCClass base(BaseHeadcrab) model("models/creatures/headcrab_classic/headcrab_classic.vmdl") = npc_headcrab : "Placeholder"
 [
 ]
 
-@NPCClass base(BaseHeadcrab) editormodel("models/creatures/headcrab_black/headcrab_black.vmdl") = npc_headcrab_black : "Placeholder"
+@NPCClass base(BaseHeadcrab) model("models/creatures/headcrab_black/headcrab_black.vmdl") = npc_headcrab_black : "Placeholder"
 [
 ]
 
-@NPCClass base(BaseHeadcrab) editormodel("models/creatures/headcrab/headcrab.vmdl") = npc_headcrab_poison : "Placeholder"
+@NPCClass base(BaseHeadcrab) model("models/creatures/headcrab/headcrab.vmdl") = npc_headcrab_poison : "Placeholder"
 [
 ]
 
-@NPCClass base(BaseHeadcrab) editormodel("models/creatures/headcrab/headcrab.vmdl") = npc_headcrab_fast : "Placeholder. DOES NOT MAKE SOUNDS"
+@NPCClass base(BaseHeadcrab) model("models/creatures/headcrab/headcrab.vmdl") = npc_headcrab_fast : "Placeholder. DOES NOT MAKE SOUNDS"
 [
 ]
 
-@NPCClass base(BaseHeadcrab) editormodel("models/creatures/headcrab_armored/headcrab_armored.vmdl") = npc_headcrab_armored : "Placeholder"
+@NPCClass base(BaseHeadcrab) model("models/creatures/headcrab_armored/headcrab_armored.vmdl") = npc_headcrab_armored : "Placeholder"
 [
 ]
 
-@NPCClass base(BaseHeadcrab) editormodel("models/creatures/headcrab_reviver/headcrab_reviver.vmdl") = npc_headcrab_runner : "Placeholder"
+@NPCClass base(BaseHeadcrab) model("models/creatures/headcrab_reviver/headcrab_reviver.vmdl") = npc_headcrab_runner : "Placeholder"
 [
 	// Inputs
 	input ForceRevive(void): ""
@@ -60,11 +83,47 @@
 	output OnReviverEscape(void) : ""
 ]
 
-@NPCClass base(BaseModelNPC) editormodel("models/creatures/zombie_classic/zombie_classic.vmdl") = npc_zombie : "Placeholder"
+@NPCClass base(BaseModelNPC) model("models/creatures/zombie_classic/zombie_classic.vmdl") = npc_zombie : "Basic Half-Life zombie NPC."
 [
+
+	armored_headcrab(boolean) [group="Zombie properties"] : "Armored Headcrab" : 0 : "Should wear an Armored Headcrab instead of regular Headcrab."
+	
+	revivable(boolean) [group="Zombie properties"] : "Revivable" : 0 : "Can be revived by npc_headcrab_runner after dying."
+	waitforrevival(boolean) [group="Zombie properties"] : "Wait for revival" : 0 : "Will spawn dead and wait to be revived by npc_headcrab_runner."
+	reviver_group(string) [group="Zombie properties"] : "Reviver group"
+
+	bloater_position(choices) [group="Zombie properties"] : "Xen Bloater position" : -1 : "Specifies a body location to attach a xen bloater that blows up when shot." =
+	[
+		-1: "None"
+		0: "Chest"
+		1: "Head"
+		2: "Left arm"
+		3: "Right arm"
+		4: "Left leg"
+		5: "Right leg"
+	]
+
+	turret_position(choices) [group="Zombie properties"] : "Turret position" : 0 : "Specifies a body location to attach a xen_foliage_grenade_spawner on the zombie." =
+	[
+		0: "None"
+		1: "Left arm"
+		2: "Right arm"
+	]
+
+	held_object(target_destination) [group="Zombie properties"] : "Held object" : "" : "prop_physics entity that should be held by the zombie. Zombie will throw the object at player."
+
+	sprint_proclivity(float) [group="Zombie properties"] : "Sprint proclivity" : 1 : "Zombie's tendency to move in faster burts. Make them move faster."
+	flinch_chance(float) [group="Zombie properties"] : "Flinch chance" : 1 : "Zombie flinch change is multiplied by this value. (untested)"
+
+	// Inputs
+	input StartSprint(void) : "Unknown"
+	input ToggleHead(integer) : "Changes the visibility of the headcrab on the head. Works even when dead. Parameter 0 for off, 1 for on."
+
+	// Outputs
+	output OnDeathCanRevive(void) : "Triggered if this zombie dies AND they are set to be revivable"
 ]
 
-@NPCClass base(BaseModelNPC) editormodel("models/creatures/zombie_blind/zombie_blind.vmdl") = npc_zombie_blind : "Jeff"
+@NPCClass base(BaseModelNPC) model("models/creatures/zombie_blind/zombie_blind.vmdl") = npc_zombie_blind : "Jeff"
 [
 	// Inputs
 	input SetDeafState(void): ""
@@ -94,7 +153,7 @@
 	output OnDeathCanRevive(void) : ""
 ]
 
-@NPCClass base(BaseModelNPC) editormodel("models/creatures/manhack/manhack.vmdl") = npc_manhack : "Placeholder"
+@NPCClass base(BaseModelNPC) model("models/creatures/manhack/manhack.vmdl") = npc_manhack : "Placeholder"
 [
 	// Inputs
 	input InteractivePowerDown(void): ""
@@ -106,15 +165,15 @@
 	output OnAlyxFinishedInteraction(void) : ""
 ]
 
-@NPCClass base(BaseModelNPC) editormodel("models/creatures/barnacle/barnacle.vmdl") = npc_barnacle : "Placeholder"
+@NPCClass base(BaseModelNPC) model("models/creatures/barnacle/barnacle.vmdl") = npc_barnacle : "Placeholder"
 [
 ]
 
-@NPCClass base(BaseModelNPC, BasePhysicsSimulated) editormodel("models/combine_turrets/floor_turret.vmdl") = npc_turret_floor : "Placeholder"
+@NPCClass base(BaseModelNPC, BasePhysicsSimulated) model("models/combine_turrets/floor_turret.vmdl") = npc_turret_floor : "Placeholder"
 [
 ]
 
-@NPCClass base(BaseModelNPC) editormodel("models/creatures/antlion/antlion.vmdl") = npc_antlion : "Placeholder"
+@NPCClass base(BaseModelNPC) model("models/creatures/antlion/antlion.vmdl") = npc_antlion : "Placeholder"
 [
 	model(choices) : "Model" : "models/creatures/antlion/antlion.vmdl" : "Antlion" = 
 	[
@@ -123,11 +182,11 @@
 	]
 ]
 
-@NPCClass base(BaseHumanNPC) editormodel("models/characters/eli/eli.vmdl") = npc_eli : "Placeholder"
+@NPCClass base(BaseHumanNPC) model("models/characters/eli/eli.vmdl") = npc_eli : "Placeholder"
 [
 ]
 
-@NPCClass base(BaseHumanNPC, RappelNPC) studio("models/characters/combine_grunt/combine_grunt.vmdl") = npc_combine_s : "PLACEHOLDER Combine Soldier"
+@NPCClass base(BaseHumanNPC, RappelNPC) studio() = npc_combine_s : "PLACEHOLDER Combine Soldier"
 [
 	model(choices) : "Model" : "models/characters/combine_grunt/combine_grunt.vmdl" : "" = 
 	[
@@ -268,9 +327,64 @@
 	model(studio) : "World Model" : "models/props/xen_infestation/xen_grenade_plant.vmdl"
 ]
 
-@PointClass base(Targetname) editormodel("models/props/xen_infestation/boomerplant_01.vmdl") = xen_foliage_bloater : "Placeholder"
+@PointClass base(Targetname) model("models/props/xen_infestation/boomerplant_01.vmdl") = xen_foliage_bloater : "Placeholder"
 [
 ]
+
+@PointClass base(BaseModelNPC) model("models/creatures/strider/combine_strider.vmdl") = npc_strider : "The strider NPC"
+[
+	disablephysics(boolean) : "Disable physics" : 0
+	strider_feet_not_dangerous(boolean) : "Feet not dangerous" : 0
+
+	// Inputs
+	input SetMinigunTime(float)
+	input SetMinigunTarget(string)
+	input SetCannonTarget(string)
+	input FlickRagdoll(string)
+	input Crouch(void)
+	input CrouchInstantly(void)
+	input Stand(void)
+	input SetHeight(float)
+	input SetTargetPath(string)
+	input ClearTargetPath(string)
+	input DisableCrouchWalk(void)
+	input EnableCrouchWalk(void)
+	input EnableAggressiveBehavior(void)
+	input DisableAggressiveBehavior(void)
+	input DisableMinigun(void)
+	input EnableMinigun(void)
+	input EnableMinigunSuppression(void)
+	input ForceEnableMinigun(void)
+	input ForceMinigunSuppression(void)
+	input ForceDisableMinigun(void)
+	input CancelForceMinigun(void)
+	input StopShootingMinigunForSeconds(float)
+	input DisableCrouch(void)
+	input DisableMoveToLOS(void)
+	input DisableCollisionWith(string)
+	input EnableCollisionWith(string)
+	input Explode(void)
+	input ScaleGroundSpeed(float)
+	input ForcePlayerAsEnemy(void)
+	
+	// Outputs
+	output OnQuarterHealth(void)
+	output OnHalfHealth(void)
+	output OnThreeQuarterHealth(void)
+	output OnMinigunDisabled(void)
+	output OnMinigunEnabledLOS(void)
+	output OnMinigunEnabledSuppression(void)
+	output OnAttackedByPlayerNoDamage(void)
+]
+
+@NPCClass base(VRCitizenNPC) model("models/characters/citizens/citizens_female.vmdl") = npc_vr_citizen_female
+[
+]
+
+@NPCClass base(VRCitizenNPC) model("models/characters/citizens/citizens_male.vmdl") = npc_vr_citizen_male
+[
+]
+
 
 // ----------------------------------------- TILE ENTITIES -----------------------------------------
 @SolidClass base(RenderFields, Targetname) = func_dry_erase_board : "A dry erase board."
@@ -490,6 +604,35 @@
 ]
 
 // ----------------------------------------- PICKUPS -----------------------------------------
+@PointClass base(BasePropPhysics, Targetname, DamageFilter, BaseFadeProp) model("models/props/supplycrate/supplycrate_01.vmdl") = item_item_crate : "A crate that contains a specified item."
+[
+	CrateAppearance(choices) : "Crate Appearance" : 2 =
+	[
+		0 : "HL2 Default Crate"
+		1 : "HL2 Beacon Crate"
+		2 : "Half-Life: Alyx Default Crate"
+	]
+
+	ItemClass(pointentityclass) : "Item Type" : "item_healthvial" : "Class name of the entity to spawn when the crate is broken"
+	ItemCount(integer) : "Item Count" : 1 : "Number of items to emit upon breakage"
+	SpecificResupply(target_destination) : "Specific resupply" : "" : "If item type is item_dynamic_resupply, specify a specific one to use instead of the master"
+
+	ammobalancing_removable(boolean) : "Removable For Ammo Balancing" : 0
+
+	// Inputs
+	input Kill(void) : "Remove the item crate"
+	input Break(void) : "Breaks the breakable."
+	input SetHealth(integer) : "Sets a new value for health. If the breakable's health reaches zero it will break."
+	input AddHealth(integer) : "Adds health to the breakable. If the breakable's health reaches zero it will break."
+	input RemoveHealth(integer) : "Removes health from the breakable. If the breakable's health reaches zero it will break."
+	
+	// Outputs
+	output OnBreak(void) : "Fires when broken."
+	output OnHealthChanged(float) : "Fires when the health of this breakable changes, passing the new value of health as a percentage of max health, from [0..1]."
+
+	output OnCacheInteraction(void) : "This output fires when the player proves they have 'found' this crate. Fires on: Picked up by +USE, Picked up by Physcannon, Punted by Physcannon, Broken."
+]
+
 @PointClass base(Targetname) editormodel("models/weapons/vr_alyxhealth/vr_health_pen.vmdl") = item_healthvial : "Placeholder"
 [
 	ammobalancing_removable(boolean) : "Removable For Ammo Balancing" : 0
@@ -553,8 +696,22 @@
 	rendercolor(color255) : "Marker Tip Color" : "255 0 0" : "The color used to render the tip of the pen. This is purely a visual change to the model and should match MarkerColor.\nFor a block eraser, set this to white (255,255,255) "
 ]
 
-@PointClass base(Targetname, Parentname, Global, Studiomodel, Glow) editormodel("models/props/max/handposes/handpose_grabpole.vmdl") = prop_handpose : "An area where player hands can be placed to grab item"
+@PointClass base(Targetname, Parentname, Global, Studiomodel, Glow, EnableDisable) model() = prop_handpose :
+	"Overrides the default hand pose to this one whenever the player hands " +
+	"gets within proximity. Also used by trigger_traversal_modifier to specify " +
+	"where the player can grab onto, e.g. with ladders, and climb inside the trigger. " +
+	"For debugging, use command 'vr_hand_pose_debug 1' in game."
 [
+	model(choices) : "Model" : "models/props/max/handposes/handpose_grabpole.vmdl" : "Hand Model" = 
+	[
+		"models/props/max/handposes/handpose_grabbox.vmdl" : "Grab Box"
+		"models/props/max/handposes/handpose_grabpole.vmdl" : "Grab Pole"
+		"models/props/max/handposes/handpose_pointing.vmdl" : "Pointing"
+		"models/props/max/handposes/handpose_flatpalm.vmdl" : "Flat Palm"
+		"models/props/handposes/handpose_knob.vmdl" : "Knob"
+		"models/props/handposes/handpose_cough.vmdl" : "Cough"
+	]
+
 	DistanceMin(float): "Minimum Distance": 4: "Minimum grabbable distance"
 	DistanceMax(float): "Maximum Distance": 6: "Maximum grabbable distance"
 	DistanceBias(float): "Distance Bias": "0.3"
@@ -562,23 +719,16 @@
 	UseProximityBone(boolean): "UseProximityBone": 0
 	Extent(vector): "Extend size": "0 0 0": "Relative size of the grabbable rungs of the ladder"
 	DeleteAfterSpawn(boolean): "DeleteAfterSpawn": 0
-	StartDisabled(boolean): "Start Disabled": 0
+
 	AutoGrip(boolean): "Auto grip": 0
 	IgnoreHand(string): "Ignore hand": "-1": "Index of hand to ignore grab inputs form: 0=LeftHand, 1=RightHand"
-	input Enable(void): ""
-	input Disable(void): ""	
+
+	// Inputs
 	input SetAutoGrip(boolean): ""
+
+	// Outputs
 	output OnHandPosed(void) : ""
 	output OnHandUnPosed(void) : ""
-	model(choices) : "Model" : "models/props/max/handposes/handpose_grabpole.vmdl" : "Hand Model" = 
-	[
-		"models/props/max/handposes/handpose_grabbox.vmdl" : "Grab Box"
-		"models/props/max/handposes/handpose_grabpole.vmdl" : "Grab Pole"
-		"models/props/max/handposes/handpose_pointing.vmdl" : "Pointing"
-		"models/props/max/handposes/handpose_flatpalm.vmdl" : "Flat Palm"
-		"models/props/max/handposes/handpose_knob.vmdl" : "Knob"
-		"models/props/max/handposes/handpose_cough.vmdl" : "Cough"
-	]
 ]
 
 @PointClass base(BasePropDoorRotating, ConstraintSoundInfo) model() = prop_door_rotating_physics : "Placeholder door."
@@ -608,82 +758,93 @@
 	output OnHingeBreak(void): ""
 ]
 
-@PointClass base(Studiomodel, Targetname, Parentname) model() = prop_animinteractable : "A dynamic prop that can move by user input."
+@PointClass base(Studiomodel, Targetname, Parentname, EnableDisable) model() = prop_animinteractable : "A dynamic prop that can move by user input."
 [
     // Properties
     ObjectRequirement(string) [ group="Animinteractable" ] : "Object Requirement" : "" : ""
-    InitialCompletionAmount(float) [ group="Animinteractable" ] : "Initial Completion Amount" : 0 : "The completion of the prop on spawn."
-    TargetCompletionValueA(float) [ group="Animinteractable" ] : "Target Completion Value A" : 0 : "The value of completion to fire OnCompletionA and its related events."
-    TargetCompletionValueB(float) [ group="Animinteractable" ] : "Target Completion Value B" : 0 : "The value of completion to fire OnCompletionB and its related events."
-    TargetCompletionValueC(float) [ group="Animinteractable" ] : "Target Completion Value C" : 0 : "The value of completion to fire OnCompletionC and its related events."
-    TargetCompletionValueD(float) [ group="Animinteractable" ] : "Target Completion Value D" : 0 : "The value of completion to fire OnCompletionD and its related events."
-    TargetCompletionValueE(float) [ group="Animinteractable" ] : "Target Completion Value E" : 0 : "The value of completion to fire OnCompletionE and its related events."
-    TargetCompletionValueF(float) [ group="Animinteractable" ] : "Target Completion Value F" : 0 : "The value of completion to fire OnCompletionF and its related events."
+
+    InitialCompletionAmount(float) [ group="Animinteractable" ] : "Initial Completion Amount" : 0 : "The completion amount of the prop on spawn. A value between 0-1 with 0 being the beginning of the animation/interaction and 1 then end."
+    TargetCompletionValueA(float) [ group="Animinteractable" ] : "Target Completion Value A" : -1 : "The value of completion to fire OnCompletionA and its related events. -1 to disable."
+    TargetCompletionValueB(float) [ group="Animinteractable" ] : "Target Completion Value B" : -1 : "The value of completion to fire OnCompletionB and its related events. -1 to disable."
+    TargetCompletionValueC(float) [ group="Animinteractable" ] : "Target Completion Value C" : -1 : "The value of completion to fire OnCompletionC and its related events. -1 to disable."
+    TargetCompletionValueD(float) [ group="Animinteractable" ] : "Target Completion Value D" : -1 : "The value of completion to fire OnCompletionD and its related events. -1 to disable."
+    TargetCompletionValueE(float) [ group="Animinteractable" ] : "Target Completion Value E" : -1 : "The value of completion to fire OnCompletionE and its related events. -1 to disable."
+    TargetCompletionValueF(float) [ group="Animinteractable" ] : "Target Completion Value F" : -1 : "The value of completion to fire OnCompletionF and its related events. -1 to disable."
     TargetCompletionThreshold(float) [ group="Animinteractable" ] : "Target Completion Threshold" : 0 : "The value at which the prop will complete itself when this far away from the target."
-    PositiveResistance(float) [ group="Animinteractable" ] : "Positive Resistance" : 0 : ""
-    ReturnToCompletion(boolean) [ group="Animinteractable" ] : "Return To Completion" : 0 : ""
-    ReturnToCompletionAmount(float) [ group="Animinteractable" ] : "Return To Completion Amount" : 0 : ""
-    ReturnToCompletionThreshold(float) [ group="Animinteractable" ] : "Return To Completion Threshold" : 0 : ""
-    ReturnToCompletionDelay(float) [ group="Animinteractable" ] : "Return To Completion Delay" : 0 : ""
-    AnimationDuration(float) [ group="Animinteractable" ] : "Animation Duration" : 0 : ""
-    SoundVolume(float) [ group="Animinteractable" ] : "Sound Volume" : 0 : ""
-    StartDisabled(boolean) [ group="Animinteractable" ] : "Start Disabled" : 0 : ""
-    InteractionDisabled(boolean) [ group="Animinteractable" ] : "Interaction Disabled" : 0 : ""
-    StartLocked(boolean) [ group="Animinteractable" ] : "Start Locked" : 0 : ""
-    OnlyRunForward(boolean) [ group="Animinteractable" ] : "Only Run Forward" : 0 : "Only move forward."
-    OnlyRunBackward(boolean) [ group="Animinteractable" ] : "Only Run Backward" : 0 : "Only move backward."
-    LimitForward(float) [ group="Animinteractable" ] : "Limit Forward" : 0 : "Limits how far the completion can travel forward."
-    LimitBackward(float) [ group="Animinteractable" ] : "Limit Backward" : 0 : "Limits how far the completion can travel backward."
+    
+    ReturnToCompletion(boolean) [ group="Animinteractable" ] : "Return To Completion" : 0 : "Whether or not the prop should return back to a default completion amount."
+    ReturnToCompletionAmount(float) [ group="Animinteractable" ] : "Return To Completion Amount" : 0 : "The default completion amount the prop should return back to."
+    ReturnToCompletionThreshold(float) [ group="Animinteractable" ] : "Return To Completion Threshold" : -1 : "Threshold away from the default completion amount before the prop starts returning. -1 to disable."
+    ReturnToCompletionDelay(float) [ group="Animinteractable" ] : "Return To Completion Delay" : 0 : "Time before it starts returning."
+    ReturnToCompletionStyle(integer) [ group="Animinteractable" ] : "Return To Completion Style" : 0 : ""
+    
+    StartLocked(boolean) [ group="Animinteractable" ] : "Start Locked" : 0 : "Make the prop start in a locked state."
+    OnlyRunForward(boolean) [ group="Animinteractable" ] : "Only Run Forward" : 0 : "Can only move in the forwards direction."
+    OnlyRunBackward(boolean) [ group="Animinteractable" ] : "Only Run Backward" : 0 : "Can only move in the backwards direction."
+    LimitForward(float) [ group="Animinteractable" ] : "Limit Forward" : 1 : "Limits how far forward the prop can travel."
+    LimitBackward(float) [ group="Animinteractable" ] : "Limit Backward" : 0 : "Limits how far backward the prop can travel."
     LimitLocked(float) [ group="Animinteractable" ] : "Limit Locked" : 0 : "Limits how far the completion can travel when locked."
-    LimitStop(float) [ group="Animinteractable" ] : "Limit Stop" : 0 : "Limits how far the completion can travel when stopped."
-    InteractionBoneName(string) [ group="Animinteractable" ] : "Interaction Bone Name" : "" : ""
-    InteractionAttachmentName(string) [ group="Animinteractable" ] : "Interaction Attachment Name" : "" : ""
-    CreateNavObstacle(boolean) [ group="Animinteractable" ] : "Create Nav Obstacle" : 0 : ""
-    SetNavIgnore(boolean) [ group="Animinteractable" ] : "Set Nav Ignore" : 0 : ""
-    StartSound(sound) [ group="Animinteractable" ] : "Start Sound" : "" : ""
-    MoveSound(sound) [ group="Animinteractable" ] : "Move Sound" : "" : ""
-    StopSound(sound) [ group="Animinteractable" ] : "Stop Sound" : "" : ""
+    LimitStop(float) [ group="Animinteractable" ] : "Limit Stop" : -1 : "Limits far much the completion can travel when stopped. -1 to disable."
+    
+    AnimationDuration(float) [ group="Animinteractable" ] : "Animation Duration" : 0 : "How long the animation should last."
+    
+    InteractionDisabled(boolean) [ group="Animinteractable" ] : "Interaction Disabled" : 0 : "Prevents the player from interacting with this prop."
+    InteractionBoneName(string) [ group="Animinteractable" ] : "Interaction Bone Name" : "" : "The name of the model's bone to interact with."
+    InteractionAttachmentName(string) [ group="Animinteractable" ] : "Interaction Attachment Name" : "" : "The name fo the model's attachment to interact with."
+    
+    IgnoreHandPosition(boolean) [ group="Animinteractable" ] : "Ignore Hand Position" : 0 : "Ignore the hand position when interacting with this prop."
+    IgnoreHandRotation(boolean) [ group="Animinteractable" ] : "Ignore Hand Rotation" : 0 : "Ignore the hand rotation when interacting with this prop."
+    
+    SoundVolume(float) [ group="Animinteractable" ] : "Sound Volume" : 1 : "The volume the sounds should be played at."
+    StartSound(sound) [ group="Animinteractable" ] : "Start Sound" : "" : "Sound played player starts interacting with this prop."
+    MoveSound(sound) [ group="Animinteractable" ] : "Move Sound" : "" : "Sound played while prop is moving or being moved."
+    StopSound(sound) [ group="Animinteractable" ] : "Stop Sound" : "" : "Sound played player stops interacting with this prop."
     OpenCompleteSound(sound) [ group="Animinteractable" ] : "Open Complete Sound" : "" : ""
     CloseCompleteSound(sound) [ group="Animinteractable" ] : "Close Complete Sound" : "" : ""
-    BounceSound(sound) [ group="Animinteractable" ] : "Bounce Sound" : "" : ""
-    LockedSound(sound) [ group="Animinteractable" ] : "Locked Sound" : "" : ""
-    ReturnForwardMoveSound(sound) [ group="Animinteractable" ] : "Return Forward Move Sound" : "" : ""
-    ReturnBackwardMoveSound(sound) [ group="Animinteractable" ] : "Return Backward Move Sound" : "" : ""
+    BounceSound(sound) [ group="Animinteractable" ] : "Bounce Sound" : "" : "Sound played when movement reaches a limit and bounces back."
+    LockedSound(sound) [ group="Animinteractable" ] : "Locked Sound" : "" : "Sound played when locked and movement reaches the locked limit."
+    ReturnForwardMoveSound(sound) [ group="Animinteractable" ] : "Return Forward Move Sound" : "" : "Sound played when returning in the forwards direction."
+    ReturnBackwardMoveSound(sound) [ group="Animinteractable" ] : "Return Backward Move Sound" : "" : "Sound played when returning in the backwards direction."
+    
     ReactToDynamicPhysics(boolean) [ group="Animinteractable" ] : "React To Dynamic Physics" : 0 : ""
     DoHapticsOnBothHands(boolean) [ group="Animinteractable" ] : "Do Haptics On Both Hands" : 0 : ""
     ReleaseOnPlayerDamage(boolean) [ group="Animinteractable" ] : "Release On Player Damage" : 0 : ""
     BehaveAsPropPhysics(boolean) [ group="Animinteractable" ] : "Behave As Prop Physics" : 0 : ""
-    ReturnToCompletionStyle(integer) [ group="Animinteractable" ] : "Return To Completion Style" : 0 : ""
-    AllowGravityGunPull(boolean) [ group="Animinteractable" ] : "Allow Gravity Gun Pull" : 0 : ""
+    AllowGravityGunPull(boolean) [ group="Animinteractable" ] : "Allow Gravity Gun Pull" : 1 : ""
+    PositiveResistance(float) [ group="Animinteractable" ] : "Positive Resistance" : 0 : ""
     RetainVelocity(boolean) [ group="Animinteractable" ] : "Retain Velocity" : 0 : ""
-    IgnoreHandRotation(boolean) [ group="Animinteractable" ] : "Ignore Hand Rotation" : 0 : ""
-    IgnoreHandPosition(boolean) [ group="Animinteractable" ] : "Ignore Hand Position" : 0 : ""
+
+    CreateNavObstacle(boolean) [ group="Animinteractable" ] : "Create Nav Obstacle" : 0 : ""
+    SetNavIgnore(boolean) [ group="Animinteractable" ] : "Set Nav Ignore" : 0 : ""
+    
     UpdateChildModels(boolean) [ group="Animinteractable" ] : "Update Child Models" : 0 : ""
     NormalizeChildModelUpdates(boolean) [ group="Animinteractable" ] : "Normalize Child Model Updates" : 0 : ""
     ChildModelAnimgraphParameter(string) [ group="Animinteractable" ] : "Child Model Animgraph Parameter" : "" : ""
  
     // Outputs
-    output OnInteractStart(void) : ""
-    output OnInteractStop(void) : ""
-    output OnGravityGunPull(void) : ""
-    output OnCompletionA(void) : ""
-    output OnCompletionB(void) : ""
-    output OnCompletionC(void) : ""
-    output OnCompletionD(void) : ""
-    output OnCompletionE(void) : ""
-    output OnCompletionF(void) : ""
-    output OnCompletionA_Forward(void) : ""
-    output OnCompletionB_Forward(void) : ""
-    output OnCompletionC_Forward(void) : ""
-    output OnCompletionD_Forward(void) : ""
-    output OnCompletionE_Forward(void) : ""
-    output OnCompletionF_Forward(void) : ""
-    output OnCompletionA_Backward(void) : ""
-    output OnCompletionB_Backward(void) : ""
-    output OnCompletionC_Backward(void) : ""
-    output OnCompletionD_Backward(void) : ""
-    output OnCompletionE_Backward(void) : ""
-    output OnCompletionF_Backward(void) : ""
+    output OnInteractStart(void) : "When the player starts interacting with this prop."
+    output OnInteractStop(void) : "When the player stops interacting with this prop."
+    output OnGravityGunPull(void) : "When pulled by the gravity gun."
+
+    output OnCompletionA(void) : "When the specified completion A target is reached."
+    output OnCompletionB(void) : "When the specified completion B target is reached."
+    output OnCompletionC(void) : "When the specified completion C target is reached."
+    output OnCompletionD(void) : "When the specified completion D target is reached."
+    output OnCompletionE(void) : "When the specified completion E target is reached."
+    output OnCompletionF(void) : "When the specified completion F target is reached."
+    output OnCompletionA_Forward(void) : "When the specified completion A target is reached in the forwards direction."
+    output OnCompletionB_Forward(void) : "When the specified completion B target is reached in the forwards direction."
+    output OnCompletionC_Forward(void) : "When the specified completion C target is reached in the forwards direction."
+    output OnCompletionD_Forward(void) : "When the specified completion D target is reached in the forwards direction."
+    output OnCompletionE_Forward(void) : "When the specified completion E target is reached in the forwards direction."
+    output OnCompletionF_Forward(void) : "When the specified completion F target is reached in the forwards direction."
+    output OnCompletionA_Backward(void) : "When the specified completion A target is reached in the backwards direction."
+    output OnCompletionB_Backward(void) : "When the specified completion B target is reached in the backwards direction."
+    output OnCompletionC_Backward(void) : "When the specified completion C target is reached in the backwards direction."
+    output OnCompletionD_Backward(void) : "When the specified completion D target is reached in the backwards direction."
+    output OnCompletionE_Backward(void) : "When the specified completion E target is reached in the backwards direction."
+    output OnCompletionF_Backward(void) : "When the specified completion F target is reached in the backwards direction."
+
     output OnCompletionExitA(void) : ""
     output OnCompletionExitB(void) : ""
     output OnCompletionExitC(void) : ""
@@ -698,17 +859,15 @@
     output PositionInitialLimitsRemap(void) : ""
  
     // Inputs
-    input EnableOnlyRunForward(void) : ""
-    input DisableOnlyRunForward(void) : ""
-    input Enable(void) : ""
-    input Disable(void) : ""
-    input SetCompletionValue(float) : ""
-    input SetCompletionValueA(float) : ""
-    input SetCompletionValueB(float) : ""
-    input SetCompletionValueC(float) : ""
-    input SetCompletionValueD(float) : ""
-    input SetCompletionValueE(float) : ""
-    input SetCompletionValueF(float) : ""
+    input EnableOnlyRunForward(void) : "Makes it so the prop can only move in the forwards direction."
+    input DisableOnlyRunForward(void) : "Stops the prop from only moving in the forwards direction."
+    input SetCompletionValue(float) : "Sets the current completion value directly."
+    input SetCompletionValueA(float) : "Sets a new target value for CompletionA"
+    input SetCompletionValueB(float) : "Sets a new target value for CompletionB"
+    input SetCompletionValueC(float) : "Sets a new target value for CompletionC"
+    input SetCompletionValueD(float) : "Sets a new target value for CompletionD"
+    input SetCompletionValueE(float) : "Sets a new target value for CompletionE"
+    input SetCompletionValueF(float) : "Sets a new target value for CompletionF"
     input SetReturnToCompletionAmount(float) : ""
     input EnableReturnToCompletion(void) : ""
     input DisableReturnToCompletion(void) : ""
@@ -731,7 +890,7 @@
     input SetPositiveResistance(float) : ""
 ]
 
-@PointClass base(Targetname, Parentname, EnableDisable) = combine_attached_armor_prop :
+@PointClass base(prop_dynamic) = combine_attached_armor_prop :
 [
 	SubtleEffects(boolean) : "Subtle Effects" : 1
 ]
@@ -873,95 +1032,6 @@
 	output OnPlayerHasTwoVodkaBottlesInWristPockets(void) : ""
 ]
 
-@PointClass base(Targetname, EnableDisable) tags( Logic ) editormodel("models/props_combine/combine_power/power_stake_a.vmdl") = info_hlvr_toner_port : "Port for the electric wire puzzles."
-[
-	initial_orientation(choices) : "Initial Orientation" : 0 : "The initial orientation of the " =
-	[
-		0 : "0 degrees"
-		1 : "90 degrees"
-		2 : "180 degrees"
-		3 : "270 degrees"
-	]
-	
-	desired_orientation(choices) : "Desired Orientation" : "2" : "East" =
-	[
-		0 : "0 degrees"
-		1 : "90 degrees"
-		2 : "180 degrees"
-		3 : "270 degrees"
-	]
-	
-	StartPortVisible(boolean) : "Start Port Visible" : 1
-	StartVisible(boolean) : "Start Visible" : 1
-	
-	// Inputs
-	input SetVisible(boolean) : "Sets the visibility of the toner's particle effects."
-	input SetPortVisible(boolean) : "Opens and closes the aperture for the plug."
-	input SetComplete(boolean) : "Sets if the puzzle is complete."
-	input OnPlugRotated(void) : "" //Listed as an input in-engine, shouldn't this be an output?
-]
-
-@PointClass base(Targetname, EnableDisable) tags( Logic ) iconsprite("editor/light.vmat")
-	line( 255 255 255, targetname, start_entity )
-	line( 255 255 255, targetname, end_entity )
-	selected_line( 255 0 0, targetname, first_path_node )
- = info_hlvr_toner_path : "A path for the toner puzzles."
-[
-	start_entity(target_destination) : "Start Entity" : "" : "The toner port or previous junction in the toner."
-	end_entity(target_destination) : "End Entity" : "" : "The next junction in the toner."
-	first_path_node(target_destination) : "First Path Node" : "" : "Put the first info_hlvr_toner_path_node of the path here."
-	
-	// Inputs
-	input PlayFanfare(void) : "Plays a sound?"
-	
-	// Outputs
-	output OnPowerOn(void) : "Outputted when the path gets power."
-	output OnPowerOff(void) : "Outputted when the path gets power."
-]
-
-@PointClass base(Targetname, EnableDisable) tags( Logic ) iconsprite("editor/logic_relay.vmat") selected_line( 255 0 0, targetname, target ) = info_hlvr_toner_path_node : "The different points the toner path is visualized as in-game."
-[
-	target(target_destination) : "Target" : "" : "Next path node to continue the current path."
-	inset_distance(float) : "Inset Distance" : 0
-	is_spline_node(boolean) : "Is Spline" : 1 : "Treats the line to the target as a spline."
-]
-
-@PointClass base(Targetname, EnableDisable) tags( Logic ) size(-4 -4 -4, 4 4 4)
-	selected_line( 255 255 255, targetname, connection_0 )
-	selected_line( 255 255 255, targetname, connection_1 )
-	selected_line( 255 255 255, targetname, connection_2 )
-	selected_line( 255 255 255, targetname, connection_3 )
- = info_hlvr_toner_junction : "The interactable junctions for toner puzzles."
-[	
-	connection_0(target_destination) : "East Path"
-	connection_1(target_destination) : "North Path"
-	connection_2(target_destination) : "West Path"
-	connection_3(target_destination) : "South Path"
-	
-	inset_distance(float) : "Inset Distance" : 0
-
-	junction_toplogy(choices) : "Junction Topology" : 0 : "Determines the type of the junction. Not working?" = 
-	[
-		0 : "I (line)"
-		1 : "L (90 degree)"
-		2 : "T (3 way)"
-		3 : "L Dual (dual line)"
-		4 : "Static T"
-		5 : "Static 4-way"
-	]
-	
-	junction_orientation(choices) : "Junction Orientation" : 0 : "Starting rotation of the junction." =
-	[
-		0 : "0 degrees"
-		1 : "90 degrees"
-		2 : "180 degrees"
-		3 : "270 degrees"
-	]
-	
-	// Outputs
-	output OnPass(void) : "When the junction is completed."
-]
-
 @PointClass base(Targetname, EnableDisable) tags( Logic ) = logic_handsup_listener : ""
 [
 
@@ -984,6 +1054,120 @@
 	output OnQuerySingleControllerModeDisabled(void)
 	output OnSingleControllerModeEnabled(void)
 	output OnSingleControllerModeDisabled(void)
+]
+
+@PointClass base(Targetname) = player_weaponstrip : "Strips the player of their ammo."
+[
+	// Inputs
+	input Strip(void) : "Removes all the ammo in the player's backpack."
+	input StripWeaponsAndSuit(void) : "Removes all the ammo in the player's backpack."
+	input StripActiveWeapon(void)
+	input StripWeaponByClassname(string)
+]
+
+@PointClass base(Targetname) = player_speedmod : "Increases the player's movement speed during continuous locomotion"
+[
+	// Inputs
+	input ModifySpeed(float) : "Multiplies the player's speed with this value. 1 is default speed."
+]
+
+@PointClass base(Targetname) = point_hlvr_player_input_modifier
+[
+	start_enabled(boolean) : "Start enabled" : 0
+	disable_teleport(boolean) : "Disable teleport" : 1
+	hide_hands(boolean) : "Hide hands" : 0
+
+	// Inputs
+	input Enable(void)
+	input Disable(void)
+	input Toggle(void)
+]
+
+// ----------------------------------------- TONER PUZZLE -----------------------------------------
+
+@PointClass base(Targetname, EnableDisable) tags( Logic ) model("models/props_combine/combine_power/power_stake_a.vmdl") = info_hlvr_toner_port : "Port for the toner puzzles."
+[
+	initial_orientation(choices) : "Initial Orientation" : "2" : "The initial orientation of the wire within the port. Always does a 90 degree counter-clockwise rotation when activated by the multitool. Numbers are increasing in the counter-clockwise direction. The axis direction the wire is pointing in is given in parentheses. The axes are in the entities local coordinate system." =
+	[
+		"0" : "0 (+Y)"
+		"1" : "1 (-X)"
+		"2" : "2 (-Y)"
+		"3" : "3 (+X)"
+	]
+	
+	desired_orientation(choices) : "Desired Orientation" : "3" : "The orientation the port will output power to. Also the side on which the path will connect to. This should always be a 90 degree counter-clockwise rotation or +1 of whatever the Initial Orientation is set to. If set to anything else it will either fail to provide power to the wires or be closed and already powering the other wires (if the same)." =
+	[
+		"0" : "0 (+Y)"
+		"1" : "1 (-X)"
+		"2" : "2 (-Y)"
+		"3" : "3 (+X)"
+	]
+	
+	StartPortVisible(boolean) : "Start Port Visible" : 1 : "Starts with the port wire visible to the multitool. Use Start Disabled instead to have the port start closed."
+	StartVisible(boolean) : "Start Puzzle Visible" : 0 : "Starts with all puzzle wires visible to the multitool."
+
+	// Inputs
+	input SetVisible(boolean) : "Sets the visibility of the all the puzzle wires."
+	input SetPortVisible(boolean) : "Sets the visibility of the port wire. Use Enable/Disable instead to open and close the port."
+	input SetComplete(boolean) : "Marks the puzzle as complete, playing the finished puzzle animation and sound, then disables the puzzle."
+	// Outputs
+	input OnPlugRotated(void) : "Makes the port wire rotate 90 degrees counter-clockwise, even when disabled. Does nothing after the wire hits the desired orientation."
+]
+
+@PointClass base(Targetname, EnableDisable) tags( Logic ) toner_path_node() = info_hlvr_toner_path_node : "Additional points used to extend and curve the toner path."
+[
+	target(target_destination) : "Target" : "" : "Next path node to continue the current path."
+	inset_distance(float) : "Inset Distance" : 0 : "How far into the wall, etc., the node should appear."
+	is_spline_node(boolean) : "Is Spline" : 0 : "Makes a spline path between this node and its two neighbouring nodes instead of a straight line. Use it to create curved paths."
+]
+
+@PointClass base(Targetname, EnableDisable) tags( Logic ) toner_path()
+	iconsprite("materials/editor/info_hlvr_toner_path.vmat") = info_hlvr_toner_path : "A single path for the toner puzzles connecting two entities."
+[
+	start_entity(target_destination) : "Start Entity" : "" : "The entity to start the path from. Usually a toner junction or toner port."
+	end_entity(target_destination) : "End Entity" : "" : "The entity that should be the end point of the path. Usually a toner junction or the final entity like a lamp or force field."
+	first_path_node(target_destination) : "First Path Node" : "" : "The name of the first toner path node in your path or the same as Start Entity if you don't have any additional toner path nodes; if you don't, the start and end enities will be connected by a straight line."
+	
+	// Inputs
+	input PlayFanfare(void) : "Lights up this path. Can only be triggered once."
+	
+	// Outputs
+	output OnPowerOn(void) : "Triggered when this path receives power."
+	output OnPowerOff(void) : "Triggered when this path loses power."
+]
+
+
+
+@PointClass base(Targetname, EnableDisable) tags( Logic ) toner_junction()
+ = info_hlvr_toner_junction : "The interactable junctions for toner puzzles."
+[	
+	connection_0(target_destination) : "Connection 0" : : "Toner path entity connected to 0. Empty for unconnected."
+	connection_1(target_destination) : "Connection 1" : : "Toner path entity connected to 1. Empty for unconnected."
+	connection_2(target_destination) : "Connection 2" : : "Toner path entity connected to 2. Empty for unconnected."
+	connection_3(target_destination) : "Connection 3" : : "Toner path entity connected to 3. Empty for unconnected."
+	
+	inset_distance(float) : "Inset Distance" : 0 : "How far into the wall, etc., the junction should appear."
+
+	junction_toplogy(choices) : "Junction Topology" : 0 : "The shape of the junction. Static shapes can't be rotated by the player." = 
+	[
+		0 : "I"
+		1 : "L"
+		2 : "T"
+		3 : "L dual"
+		4 : "Static T"
+		5 : "Static 4-way"
+	]
+	
+	junction_orientation(choices) : "Junction Orientation" : 0 : "Starting counter-clockwise rotation of the junction." =
+	[
+		0 : "0 degrees"
+		1 : "90 degrees"
+		2 : "180 degrees"
+		3 : "270 degrees"
+	]
+	
+	// Outputs
+	output OnPass(void) : "When the junction is completed."
 ]
 
 // ----------------------------------------- POINTS -----------------------------------------
@@ -1019,6 +1203,67 @@
 	
 	input Enabled(void): ""
 	input Disabled(void): ""
+]
+
+@PointClass base(Targetname, EnableDisable) tags( Info ) iconsprite("editor/info_target.vmat") = info_offscreen_panorama_texture : "An entity that lets you draw panorama elements on objects throughout the world."
+[
+	layout_file(string) : "Layout File" :  : "Path to a layout file. (XML)"
+
+	targets(target_destination) : "Target" : "" : ""
+
+	render_attr_name(string) [ group="Render Properties" ] : "Render Attribute Name" : "colorAttr" : "Name of the Dynamic Expression this should render to."
+	resolution_x(integer) [ group="Render Properties" ] : "Resolution (X)" : 720 : "Width"
+	resolution_y(integer) [ group="Render Properties" ] : "Resolution (Y)" : 480 : "Height"
+
+	// Inputs
+	input AddCSSClass(string) : "Adds specified CSS Class"
+	input RemoveCSSClass(string) : "Remove CSS Class"
+]
+
+@PointClass base(info_offscreen_panorama_texture) tags( Info ) iconsprite("editor/info_target.vmat") = info_offscreen_movie_texture : "An entity that allows you to play videos on objects throughout the world."
+[
+	visible_range_check(float) : "Visible Range" : 300 : "Visible range of video."
+	src_movie(string) : "Source Movie" :  : "Path to a video to playback. (.webm)"
+	repeat(boolean) : "Repeats" : 0 : "Determines whether or not this video will repeat upon completion."
+	auto_play(boolean) : "Plays Automatically" : 0 : "Determines whether or not this video will play automatically."
+
+	// Inputs
+	input Play(void) : "Play the video"
+	input Pause(void) : "Pause playback of video"
+	input TogglePlayPause(void) : "Toggle video playback"
+]
+
+@PointClass base(BaseCurveOverTime) = point_render_attr_curve : "Entity to drive a render attribute over time when triggered."
+[
+	attribute_name(string) : "Render Attribute Name" : "The attribute to affect."
+	active_combo_name(string) : "Active Combo Name" : ""
+]
+
+@PointClass base(Targetname, BaseCurveOverTime) = point_entity_fader : "Entity to fade an object over time when triggered."
+[
+	target(target_destination) : "Target" : "" : ""
+	curve(curve) : "Fade Curve" : "<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->\n{\n\tm_spline = \n\t[\n\t\t{\n\t\t\tx = 0.0\n\t\t\ty = 1.0\n\t\t\tm_flSlopeIncoming = -1.0\n\t\t\tm_flSlopeOutgoing = -1.0\n\t\t},\n\t\t{\n\t\t\tx = 1.0\n\t\t\ty = -0.0\n\t\t\tm_flSlopeIncoming = -1.0\n\t\t\tm_flSlopeOutgoing = -1.0\n\t\t},\n\t]\n\tm_tangents = \n\t[\n\t\t{\n\t\t\tm_nIncomingTangent = \"CURVE_TANGENT_SPLINE\"\n\t\t\tm_nOutgoingTangent = \"CURVE_TANGENT_SPLINE\"\n\t\t},\n\t\t{\n\t\t\tm_nIncomingTangent = \"CURVE_TANGENT_SPLINE\"\n\t\t\tm_nOutgoingTangent = \"CURVE_TANGENT_SPLINE\"\n\t\t},\n\t]\n\tm_vDomainMins = [ 0.0, 0.0 ]\n\tm_vDomainMaxs = [ 1.0, 1.0 ]\n}" : "The curve to use for the fade."
+]
+
+@PointClass base(Targetname, EnableDisable) = env_spherical_vignette : "Placeholder."
+[
+	startdisabled(boolean) : "Start Disabled" : 0
+	vignettestart(float) : "Vignette Start" : 64
+	vignetteend(float) : "Vignette End" : 256
+	farz(float) : "FarZ" : 0
+	vignettemaxopacity(float) : "Vignette Max Opacity" : 1
+	vignettefalloffexponent(float) : "Vignette Falloff Exponet" : 1
+	vignettecolor(color255) : "Vignette Color" : "0, 0, 0"
+	vignettestrength(float) : "Vignette Strength" : 1
+	fadetime(float) : "Fade Time" : 1
+
+	// Inputs
+	input SetVignetteStartDistance(float) : ""
+	input SetVignetteEndDistance(float) : ""
+	input SetVignetteMaxOpacity(float) : ""
+	input SetVignetteFalloffExponent(float) : ""
+	input SetVignetteColor(color255) : ""
+	input SetVignetteStrength(float) : ""
 ]
 
 // ----------------------------------------- TRIGGERS -----------------------------------------
@@ -1060,6 +1305,30 @@
 	// Inputs
 ]
 
+@SolidClass base(Trigger) tags(Trigger) metadata { auto_apply_material = "materials/tools/toolstrigger.vmat" } = trigger_physics : "Changes physics for entities that enter."
+[
+	spawnflags(flags) =
+	[
+		1: "Clients" : 0
+		8: "Physics Objects" : 1
+	]
+
+	SetGravityScale(float) : "Gravity scale" : 1 : "Gravity is multiplied by this value. 1 for normal, 0 for no gravity, -1 for inverted gravity."
+	SetVelocityLimit(float) : "Velocity limit" : -1 : "Upper limit on how fast entities can move within the trigger. -1 means no limit"
+	SetVelocityDamping(float) : "Velocity dampining" : 0
+	SetAngVelocityLimit(float) : "Angular velocity limit" : -1 : "Upper limit on how fast entities can rotate within the trigger. -1 means no limit"
+	SetAngVelocityDamping(float) : "Angular velocity damping" : 0
+	SetLinearForce(float) : "Linear force" : 0 : "Constant force applied to all entities within this trigger. Normal gravity is 386."
+	LinearForcePointAt(vector) : "Linear force point at" : "0 0 0" : "The direction the force is pointing in."
+	CollapseToForcePoint(boolean) : "Collapse to force point" : 0
+	SetFrequency(float) : "Frequency" : 1
+	SetDampingRatio(float) : "Damping ratio" : 1
+	ConvertToDebrisWhenPossible(boolean) : "Convert to debris when possible" : 1
+
+	// Inputs
+	input SetLinearForcePointAt(string)
+]
+
 @SolidClass base(Trigger) tags(Trigger) metadata { auto_apply_material = "materials/tools/toolstrigger.vmat" } = trigger_blind_zombie_wander_area : "If a Blind Zombie is inside this volume, it will wander inside it or in adjacent volumes of the same entity."
 [
 	companion_trigger(string) : "Companion Trigger" : "" : "?"
@@ -1087,6 +1356,33 @@
 	wooden(boolean) : "Is Ladder Wooden" : 0 : "Unknown"
 	object_type(int) : "Object Type" : 0 : "Unknown"
 	window_shatter(boolean) : "Should shatter window" : 0 : "Unknown"
+]
+
+@SolidClass base(Trigger) tags(Trigger) metadata { auto_apply_material = "materials/tools/toolstrigger.vmat" } = trigger_traversal_invalid_spot :
+	"Trigger defining a volume inside of which the player is unable to teleport to. " +
+	"It's still possible to teleport through the trigger to the other side or simply " +
+	"walk through using the continuous movement option."
+[
+]
+
+@SolidClass base(Trigger) tags(Trigger) metadata { auto_apply_material = "materials/tools/toolstrigger.vmat" } = trigger_traversal_tp_interrupt
+[
+	capture_on_interrupt(boolean) : "Capture on interrupt" : 1
+	capture_on_touch(boolean) : "Capture on touch" : 0
+	interrupt_sound(sound) : "Interrupt sound" : ""
+	landing_entity_name(target_destination) : "Landing entity" : ""
+	landing_relative_offset(vector) : "Landing relative offset" : "0 0 0"
+	tp_suppress_sound(sound) : "Teleport suppress sound" : ""
+	tp_suppress_remind_interval(float) : "Teleport suppress remind interval" : 0
+
+	landing_no_interrupt_modify(boolean) : "Landing no interrupt" : 0
+	capture_ignore_continuous(boolean) : "Ignore continuous" : 0
+	
+	// Inputs
+	input ReleasePlayer(void)
+	
+	// Output
+	output OnTPInterrupted(string)
 ]
 
 // ----------------------------------------- FILTERS -----------------------------------------
@@ -1138,6 +1434,7 @@
 	fogstartheight(float) : "Fog Start Height" : "0.0"
 	fogendheight(float) : "Fog End Height" : "200.0"
 	farz(string) : "Far Z Clip Plane" : "-1"
+	fogverticalexponent(float) : "Fog Vertical Exponet" : "2.0" : ""
 	gradientfogtexture(resource:texture) : "Fog Gradient Texture" : "materials/effects/example_gradient_fog.vtex"
 	input Enable(void) : "Enable the fog."
 	input Disable(void) : "Disable the fog."
@@ -1156,4 +1453,46 @@
 	cubemapfogheightwidth(float) : "Height Fog Width" : "0.0"
 	cubemapfogheightstart(float) : "Height Fog Start" : "2000.0"
 	cubemapfogheightexponent(float) : "Height Fog Exponent" : "2.0"
+]
+
+@OverrideClass = env_combined_light_probe_volume
+[
+	voxel_size(choices) : "Voxel Size" : "12.0" : "" = 
+	[
+		"12.0" : "Very High Resolution"
+		"24.0" : "High Resolution"
+		"48.0" : "Medium Resolution"
+		"108.0" : "Low Resolution"
+	]
+	
+	hmd_brightness_level(string) : "HMD Brightness Level" : "0" : "On supported headsets, setting this value will change the brightness of the HMD while within this volume."
+]
+
+// Other
+@SolidClass base(func_nav_markup) tags( NavMarkup )
+	metadata
+	{
+		auto_apply_material = "materials/tools/toolsnavattribute.vmat"
+	}
+= func_l4d_nav_markup : "Tagged NAV markup volume entity, used during export and can be queried in-game by tag/name/type/location. For Left 4 Dead."
+[
+]
+
+@SolidClass base(func_nav_markup) tags( NavMarkup )
+	metadata
+	{
+		auto_apply_material = "materials/tools/toolsnavattribute.vmat"
+	}
+= func_hlvr_nav_markup : "Tagged NAV markup volume entity, used during export and can be queried in-game by tag/name/type/location. For HLVR."
+[
+	tagFieldNames(string) : "<internal>" : "navProperty_NavAttributes,navProperty_NavGen" : "<internal>"
+]
+
+@SolidClass base(markup_volume_with_ref) tags( NavMarkup )
+	metadata
+	{
+		auto_apply_material = "materials/tools/toolsnavattribute.vmat"
+	}
+= func_nav_markup_citadel : "Tagged NAV markup volume entity, used during export and can be queried in-game by tag/name/type/location. For Citadel."
+[
 ]

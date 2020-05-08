@@ -16,6 +16,10 @@
 		"2" : "Unknown"
 		"3" : "Unknown"
 	]
+	
+	baked_light_indexing(boolean) : "Add To Baked Light Index" : 0 : "If this light is baked and this option is enabled, then this light will be added to the baked light index."
+	
+	pvs_modify_entity(boolean) [ group = "Render Properties" ] : "PVS Modify Entity" : 0 : ""
 
 	color(color255) : "Color" : "255 255 255"
 	brightness(float) : "Brightness" : "1.0"
@@ -91,6 +95,12 @@
 		"1" : "On"
 		"2" : "Bake into cubemaps"
 	]
+	
+	rendertransmissive(choices) : "Render Transmissive" : "1" : "" =
+	[
+		"0" : "Off"
+		"1" : "On"
+	]
 
 	directlight(choices) : "Direct Lighting" : "2" : "How direct lighting should be represented" =
 	[
@@ -132,6 +142,7 @@
 	"4. Adjust angle and brightness of the sunlight as you see fit"
 [
 	angulardiameter(float) : "SunSpreadAngle" : "1.0" : "The angular extent of the sun for casting soft shadows. Higher numbers are more diffuse. 1 is a good starting value."
+	range(float) : "Range" : "0" : "Distance range for light. 0=infinite"
 
 	numcascades(integer) [ group = "Shadows" ] : "Cascade Count" : 3 : "Number of shadow cascades to use."
 	shadowcascadedistance0(float) [ group = "Shadows" ] : "Cascade Distance 0" : "0.0"

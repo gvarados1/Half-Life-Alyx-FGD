@@ -1,0 +1,20 @@
+// ------ IGNORE ------
+
+// Ignore everything by default
+*
+
+// ------ DO NOT IGNORE ------
+
+// The FGD files
+!/*.fgd
+
+// The readme
+!/README.md
+
+// The additional editor textures
+!/materials/
+!/materials/editor/
+!/materials/editor/*
+
+// The .gitignore file itself
+!.gitignore
