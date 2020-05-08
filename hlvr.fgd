@@ -1336,6 +1336,26 @@
 [
 ]
 
+@SolidClass base(Trigger) tags(Trigger) metadata { auto_apply_material = "materials/tools/toolstrigger.vmat" } = trigger_traversal_tp_interrupt
+[
+	capture_on_interrupt(boolean) : "Capture on interrupt" : 1
+	capture_on_touch(boolean) : "Capture on touch" : 0
+	interrupt_sound(sound) : "Interrupt sound" : ""
+	landing_entity_name(target_destination) : "Landing entity" : ""
+	landing_relative_offset(vector) : "Landing relative offset" : "0 0 0"
+	tp_suppress_sound(sound) : "Teleport suppress sound" : ""
+	tp_suppress_remind_interval(float) : "Teleport suppress remind interval" : 0
+
+	landing_no_interrupt_modify(boolean) : "Landing no interrupt" : 0
+	capture_ignore_continuous(boolean) : "Ignore continuous" : 0
+	
+	// Inputs
+	input ReleasePlayer(void)
+	
+	// Output
+	output OnTPInterrupted(string)
+]
+
 // ----------------------------------------- FILTERS -----------------------------------------
 @FilterClass base(BaseFilter) iconsprite("editor/filter_name.vmat") = filter_vr_grenade : "A filter that filters grenades and their state."
 [
