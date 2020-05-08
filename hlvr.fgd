@@ -1053,6 +1053,11 @@
 	start_enabled(boolean) : "Start enabled" : 0
 	disable_teleport(boolean) : "Disable teleport" : 1
 	hide_hands(boolean) : "Hide hands" : 0
+
+	// Inputs
+	input Enable(void)
+	input Disable(void)
+	input Toggle(void)
 ]
 
 // ----------------------------------------- TONER PUZZLE -----------------------------------------
