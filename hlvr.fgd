@@ -1348,8 +1348,8 @@
 ]
 
 @SolidClass base(Trigger) tags(Trigger)
-	vecline_local(bottom_point)
-	vecline_local(top_point)
+	vecline_local(bottom_point, 60, 200, 60)
+	vecline_local(top_point, 60, 200, 200)
 	metadata { auto_apply_material = "materials/tools/toolstrigger.vmat" } = trigger_traversal_modifier : "Trigger used to reposition player, used for ladders"
 [
 	target_point(vector) : "Target Point" : "0 0 0" : "Unknown"
