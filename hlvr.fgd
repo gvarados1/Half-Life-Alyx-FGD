@@ -696,7 +696,7 @@
 	rendercolor(color255) : "Marker Tip Color" : "255 0 0" : "The color used to render the tip of the pen. This is purely a visual change to the model and should match MarkerColor.\nFor a block eraser, set this to white (255,255,255) "
 ]
 
-@PointClass base(Targetname, Parentname, Global, Studiomodel, Glow, EnableDisable) model() = prop_handpose :
+@PointClass base(Targetname, Parentname, Global, Studiomodel, Glow, EnableDisable) model() vecline_local(Extent) = prop_handpose :
 	"Overrides the default hand pose to this one whenever the player hands " +
 	"gets within proximity. Also used by trigger_traversal_modifier to specify " +
 	"where the player can grab onto, e.g. with ladders, and climb inside the trigger. " +
@@ -1347,7 +1347,10 @@
 	output OnLerpFinished(void) : ""
 ]
 
-@SolidClass base(Trigger) tags(Trigger) metadata { auto_apply_material = "materials/tools/toolstrigger.vmat" } = trigger_traversal_modifier : "Trigger used to reposition player, used for ladders"
+@SolidClass base(Trigger) tags(Trigger)
+	vecline_local(bottom_point)
+	vecline_local(top_point)
+	metadata { auto_apply_material = "materials/tools/toolstrigger.vmat" } = trigger_traversal_modifier : "Trigger used to reposition player, used for ladders"
 [
 	target_point(vector) : "Target Point" : "0 0 0" : "Unknown"
 	top_point(vector) : "Ladder Top Exit" : "0 0 70" : "Location player will teleport to when going up the ladder, this is relative to the origin of this trigger."
