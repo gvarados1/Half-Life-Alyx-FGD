@@ -6370,6 +6370,7 @@
 	output OnPlayerUse(void) : "Fired when the player tries to +USE the prop. This output will fire only if the Generate output on +USE spawnflag is set."
 	output OnPlayerPickup(void) : "Fired whenever the player picks up this prop (with the physcannon or with +USE)."
 	output OnOutOfWorld(void) : "Fired whenever the prop is out of the allowed world bounds."
+	output OnGlovePulled(void) : "Called when the prop is pulled by the gloves."
 ]
 
 @PointClass base(BasePropPhysics, BaseFadeProp, BasePhysicsSimulated) model() sphere(fademindist) sphere(fademaxdist) = prop_physics_override :
@@ -6435,9 +6436,6 @@
 	input IgniteLifetime(float) : "Ignite, with a parameter lifetime."
 	input IgniteNumHitboxFires(integer) : "Ignite, with a parameternumber of hitbox fires."
 	input IgniteHitboxFireScale(float) : "Ignite, with a parameter hitbox fire scale."
-	
-	// Outputs
-	output OnGlovePulled(void) : "Called when the prop is pulled by the gloves."
 ]
 
 @PointClass base(prop_physics) model() sphere(fademindist) sphere(fademaxdist) = prop_physics_multiplayer :

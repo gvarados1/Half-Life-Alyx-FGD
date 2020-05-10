@@ -579,7 +579,6 @@
 	input ArmGrenade(void) : "Arms the grenade."
 	
 	// Outputs
-	output OnPlayerPickup(void) : "When the player picks up the grenade. May only work with the pancake HL2 player."
 	output OnExplode(void) : "When the grenade explodes."
 ]
 
