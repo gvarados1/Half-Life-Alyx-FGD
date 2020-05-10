@@ -603,7 +603,6 @@
 	input DeactivateMine(void) : ""
 ]
 
-// ----------------------------------------- PICKUPS -----------------------------------------
 @PointClass base(BasePropPhysics, Targetname, DamageFilter, BaseFadeProp) model("models/props/supplycrate/supplycrate_01.vmdl") = item_item_crate : "A crate that contains a specified item."
 [
 	CrateAppearance(choices) : "Crate Appearance" : 2 =
@@ -632,7 +631,7 @@
 
 	output OnCacheInteraction(void) : "This output fires when the player proves they have 'found' this crate. Fires on: Picked up by +USE, Picked up by Physcannon, Punted by Physcannon, Broken."
 ]
-
+// ----------------------------------------- PICKUPS -----------------------------------------
 @PointClass base(Targetname) editormodel("models/weapons/vr_alyxhealth/vr_health_pen.vmdl") = item_healthvial : "Placeholder"
 [
 	ammobalancing_removable(boolean) : "Removable For Ammo Balancing" : 0
@@ -1184,6 +1183,17 @@
 	
 	// Outputs
 	output OnEnergyPulled(void) : "Called when energy is pulled from the energy node."
+]
+
+@PointClass base(Targetname) = point_hlvr_strip_player : "Placeholder."
+[
+	EnablePhysicsDelay(float) : "Enable Physics Delay" : "1"
+	DissolveItemsDelay(float) : "Dissolve Items Delay" : "5"
+	ItemVelocity(float) : "Item Velocity" : "40"
+	
+	// Inputs
+	input StripPlayer(void) : ""
+	input StripPlayerQuiet(void) : ""
 ]
 
 @PointClass base(Targetname) editormodel("models/editor/cone_helper.vmdl") = point_zombie_noise_generator : "?"
