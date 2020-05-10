@@ -586,7 +586,7 @@
 @PointClass base(VRGrenadeFrag) editormodel("models/weapons/vr_xen_grenade/vr_xen_grenade.vmdl") = item_hlvr_grenade_xen : "Placeholder" []
 @PointClass base(VRGrenadeFrag) editormodel("models/props/combine/combine_truck_gun_projectile.vmdl") = item_hlvr_grenade_bomb : "The grenade fired from the cannon during the last chapter of the game." []
 
-@PointClass base(Targetname) editormodel("models/weapons/vr_tripmine/tripmine.vmdl") = item_hlvr_weapon_tripmine : "A tripmine. It can be activated and hacked when placed on a wall otherwise it could be used by the player."
+@PointClass base(BasePropPhysics) editormodel("models/weapons/vr_tripmine/tripmine.vmdl") = item_hlvr_weapon_tripmine : "A tripmine. It can be activated and hacked when placed on a wall otherwise it could be used by the player."
 [
 	PreventTripping(boolean) : "Prevent Tripping" : 0 : "Prevent the tripmine from exploding when touching the laser."
 	StartActivated(boolean) : "Start Activated" : 1 : "Turn on the red lights and add the hack port. - Wall: Activates the laser and remains attached to the wall. - Loose: Field Ignored."
@@ -631,7 +631,7 @@
 	output OnCacheInteraction(void) : "This output fires when the player proves they have 'found' this crate. Fires on: Picked up by +USE, Picked up by Physcannon, Punted by Physcannon, Broken."
 ]
 // ----------------------------------------- PICKUPS -----------------------------------------
-@PointClass base(Targetname) editormodel("models/weapons/vr_alyxhealth/vr_health_pen.vmdl") = item_healthvial : "Placeholder"
+@PointClass base(BasePropPhysics) editormodel("models/weapons/vr_alyxhealth/vr_health_pen.vmdl") = item_healthvial : "Placeholder"
 [
 	ammobalancing_removable(boolean) : "Removable For Ammo Balancing" : 0
 ]
@@ -641,7 +641,7 @@
 	vial_level(float) : "Vial Level" : 1 : "Set the level of health the grub is at on crush."
 ]
 
-@BaseClass base(Targetname) = CraftingCurrency
+@BaseClass base(BasePropPhysics) = CraftingCurrency
 [
 	remove_over_amount(integer) : "Remove Over Amount" : -1 : "Removes this resin when the player has more than N resin."
 	
@@ -655,7 +655,7 @@
 @PointClass base(CraftingCurrency) editormodel("models/items/crafting_metal/resin_puck01.vmdl") = item_hlvr_crafting_currency_small : "Small resin." []
 @PointClass base(CraftingCurrency) editormodel("models/items/crafting_metal/resin_puck_stack.vmdl") = item_hlvr_crafting_currency_large : "Large resin." []
 
-@BaseClass base(Targetname) = PropBattery
+@BaseClass base(BasePropPhysics) = PropBattery
 [
 	battery_level(float) : "Battery Level" : 1 : "No clue, doesn't seem like anything can drain it?"
 	show_battery_level(boolean) : "Show Battery Level" : 0 : "Shows the battery level as a point text. Wouldn't recommend using."
