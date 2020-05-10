@@ -545,7 +545,18 @@
 
 // ----------------------------------------- WEAPONS -----------------------------------------
 
-@BaseClass base(Targetname, Parentname) = ItemHLVRWeapon
+@BaseClass base(Targetname, Parentname) = Item
+[
+	phys_start_asleep(boolean) : "Start asleep" : 0 : "Physics start asleep."
+
+	// Output
+	output OnPlayerPickup(string)
+	output OnPlayerTouch(string)
+	output OnGlovePulled(string)
+	output OnCacheInteraction(string)
+]
+
+@BaseClass base(Item) = ItemHLVRWeapon
 [
 	set_spawn_ammo(integer) : "Spawn Ammo" : 0 : "The ammount of ammo the weapon has on spawn."
 ]
