@@ -1085,11 +1085,12 @@
 	input ModifySpeed(float) : "Multiplies the player's speed with this value. 1 is default speed."
 ]
 
-@PointClass base(Targetname) = point_hlvr_player_input_modifier
+@PointClass base(Targetname) = point_hlvr_player_input_modifier :
+	"An entity used to modify the player's input. That is by Disabling player teleportation or / and completely disabling the player's movement input and hiding the hands model."
 [
 	start_enabled(boolean) : "Start enabled" : 0
-	disable_teleport(boolean) : "Disable teleport" : 1
-	hide_hands(boolean) : "Hide hands" : 0
+	disable_teleport(boolean) : "Disable teleport" : 1 : "Prevents the player from teleporting (That is in any locomotion setting even continuous)"
+	hide_hands(boolean) : "Hide hands" : 0 : "Hides the hands models and disables all movement input made by the player"
 
 	// Inputs
 	input Enable(void)
