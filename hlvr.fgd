@@ -565,6 +565,11 @@
 @PointClass base(ItemHLVRWeapon) model("models/weapons/vr_shotgun/vr_flip_shotgun_body.vmdl") = item_hlvr_weapon_shotgun : "The shotgun." []
 @PointClass base(ItemHLVRWeapon) model("models/weapons/vr_ipistol/vr_ipistol.vmdl") = item_hlvr_weapon_rapidfire : "The SMG (rapidfire)." []
 
+@PointClass base(Item) model("models/weapons/vr_alyxtool/alyx_tool.vmdl") = item_hlvr_multitool :
+	"Alyx's hacker tool. Unfortunately can't be held or equiped."
+[
+]
+
 @BaseClass base(BasePropPhysics) = ItemHLVRWeapon_Clip
 [
 	ammobalancing_removable(boolean) : "Removable For Ammo Balancing" : 0
