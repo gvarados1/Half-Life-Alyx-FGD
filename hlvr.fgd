@@ -1331,6 +1331,12 @@
 	// Inputs
 ]
 
+@SolidClass base(Trigger) tags(Trigger) metadata { auto_apply_material = "materials/tools/toolstrigger.vmat" } = trigger_resource_analyzer : "Fired whenever the player is inside the volume."
+[
+	// Properties
+	data_name(string) : "Data Name"
+]
+
 @SolidClass base(Trigger) tags(Trigger) metadata { auto_apply_material = "materials/tools/toolstrigger.vmat" } = trigger_physics : "Changes physics for entities that enter."
 [
 	spawnflags(flags) =
