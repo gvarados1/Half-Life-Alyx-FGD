@@ -1420,6 +1420,8 @@
 	output OnTPInterrupted(string)
 ]
 
+@SolidClass base(trigger_traversal_tp_interrupt) = vr_barnacle_tp_interrupt []
+
 // ----------------------------------------- FILTERS -----------------------------------------
 @FilterClass base(BaseFilter) iconsprite("editor/filter_name.vmat") = filter_vr_grenade : "A filter that filters grenades and their state."
 [
