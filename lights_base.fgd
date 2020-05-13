@@ -4,7 +4,7 @@
 //
 //==================================================================================================
 
-@BaseClass base(Targetname, Parentname) tags( Lighting ) = light_base
+@BaseClass base(Targetname, Parentname) tags( Lighting ) bakeambientocclusion( 1, 80, 1.0, 1.0 ) = light_base
 [
 	enabled(boolean) : "Enabled" : 1
 	
@@ -17,13 +17,20 @@
 		"3" : "Unknown"
 	]
 	
-	baked_light_indexing(boolean) : "Add To Baked Light Index" : 0 : "If this light is baked and this option is enabled, then this light will be added to the baked light index."
+	baked_light_indexing(boolean) : "Assign Index To Baked Light" : 0 : "Whether to assign this light an index. Use only with baked lights."
+
+	bakelightindex(string) : "Baked Light Index" : 0 : "The index of this light. If not set, the light will be automatically assigned an index when lightmaps are built at compile time if the option \"Assign Index To Baked Light\" is enabled."
 	
 	pvs_modify_entity(boolean) [ group = "Render Properties" ] : "PVS Modify Entity" : 0 : ""
 
 	color(color255) : "Color" : "255 255 255"
 	brightness(float) : "Brightness" : "1.0"
 	range(float) : "Range" : "512" : "Distance range for light. 0=infinite"
+
+	ambient_occlusion(boolean) [ group = "Ambient Occlusion" ] : "Ambient Occlusion" : "0"
+	max_occlusion_distance(float) [ group = "Ambient Occlusion" ] : "Ambient Occlusion Max Distance" : "16.0"
+	fully_occluded_fraction(float) [ group = "Ambient Occlusion" ] : "Ambient Occlusion Fully Occluded Fraction" : "1.0"
+	occlusion_exponent(float) [ group = "Ambient Occlusion" ] : "Ambient Occlusion Exponent" : "1.0"
 
 	castshadows(choices) [ group = "Shadows" ] : "Cast Shadows" : "1" : "Whether this light casts shadow" =
 	[
@@ -131,7 +138,6 @@
 	editormodel( "models/editor/sun", lightModeTint, "255 255 0", "255 64 64" )
 	global( sun )
 	bakeskylight( skycolor, skyintensity, lower_hemisphere_is_black, skytexture, skytexturescale, skyambientbounce, sunlightminbrightness )
-	bakeambientocclusion( ambient_occlusion, max_occlusion_distance, fully_occluded_fraction, occlusion_exponent )
 	bakeambientlight( ambient_color )
 	= light_environment : 
 	"Sets the color and angle of the light from the sun and sky.<br><br>" +
