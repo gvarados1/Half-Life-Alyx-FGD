@@ -8,7 +8,7 @@
 [
 	enabled(boolean) : "Enabled" : 1
 	
-	fogcontributionstrength(float) : "Fog Contribution Strength" : "1.0" : "The strength of the fog that this light contributes to"
+	fogcontributionstrength(float) : "Fog Lighting Strength" : "1.0" : "The strength of the light that this light source casts upon volumetric fog."
 	fog_lighting(choices) : "Fog Lighting Mode" : "1" : =
 	[
 		"0" : "None"
