@@ -6412,7 +6412,7 @@
 
 	SilentToZombies(boolean) : "Silent To Zombies" : 0 : "Should this prop generate sounds that blind zombies can hear."
 	CanDepositInItemHolder(boolean) : "Wrist Pocketable" : 0 : "If set, prop can be stored in wrist pocket."
-	AddToSpatialPartition(boolean) : "Add To Spatial Partition" : 0 : "Makes this prop interact in its own partition, prevents collision errors when colliding with other props."
+	AddToSpatialPartition(boolean) : "Add To Spatial Partition" : 1 : "Makes this prop interact in its own partition, prevents collision errors when colliding with other props."
 	forcenpcexclude(boolean) : "Force NPC Exclude" : 0
 	mute_impact_effects(boolean) : "Mute Impact Effects" : 0 : "Mutes collision sounds."
 	forceteleportacknowledge(boolean) : "Force Teleport Acknowledge" : 0
