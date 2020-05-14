@@ -6,7 +6,7 @@
 
 @include "lights_base.fgd"
 
-@PointClass light() base(light_base, light_base_legacy_params, light_base_attenuation_params) editormodel( "models/editor/spot", lightModeTint, "0 255 192", "255 64 64" ) leansphere(lightsourceradius,255,255,255) sphere(range,255,255,0) = light_omni : "A point light source."
+@PointClass light() base(light_base, light_base_legacy_params, light_base_attenuation_params) editormodel( "models/editor/spot", lightModeTint, "0 255 192", "255 64 64" ) leansphere(lightsourceradius,255,255,255) sphere(range,255,255,0) bakeambientocclusion( ambient_occlusion, max_occlusion_distance, fully_occluded_fraction, occlusion_exponent ) = light_omni : "A point light source."
 [
 	castshadows(choices) [ group = "Shadows" ] : "Cast Shadows" : "0" : "Whether this light casts shadow" =
 	[
@@ -16,8 +16,7 @@
 	]
 ]
 
-
-@PointClass light() base(light_base, light_base_legacy_params, light_base_attenuation_params, CanBeClientOnly) editormodel( "models/editor/spot", lightModeTint, "0 255 192", "255 64 64" ) leansphere(lightsourceradius,255,255,255) lightcone() = light_spot : "A spot light source."
+@PointClass light() base(light_base, light_base_legacy_params, light_base_attenuation_params, CanBeClientOnly) editormodel( "models/editor/spot", lightModeTint, "0 255 192", "255 64 64" ) leansphere(lightsourceradius,255,255,255) lightcone() bakeambientocclusion( ambient_occlusion, max_occlusion_distance, fully_occluded_fraction, occlusion_exponent ) = light_spot : "A spot light source."
 [
 	lightcookie(string) : "Light Cookie" : "" : "light cookie name in effects/lightcookies.vtex"
 
@@ -32,7 +31,7 @@
 	shadowtextureheight(integer) [ group = "Shadows" ] : "Shadow Texture Height" : 0 : "0 = use default texture resolution"
 ]
 
-@PointClass light() base(light_base, light_base_legacy_params, CanBeClientOnly) editormodel( "models/editor/spot", lightModeTint, "0 255 192", "255 64 64" ) lightortho() = light_ortho : "An orthographic spot light source."
+@PointClass light() base(light_base, light_base_legacy_params, CanBeClientOnly) editormodel( "models/editor/spot", lightModeTint, "0 255 192", "255 64 64" ) lightortho() bakeambientocclusion( ambient_occlusion, max_occlusion_distance, fully_occluded_fraction, occlusion_exponent ) = light_ortho : "An orthographic spot light source."
 [
 	lightcookie(string) : "Light Cookie" : "" : "light cookie name in effects/lightcookies.vtex"
 	ortholightwidth(float) : "Width" : "512.0" : "Ortho light rectangle width"
@@ -117,10 +116,9 @@
 @PointClass
 	base( Targetname, Parentname, EnableDisable, BaseCubemap, IndoorOutdoorLevel )
 	tags( VisPreview )
-	//editormodel( "models/editor/env_cubemap" )
-	editormodel( "models/editor/spot" )
+	editormodel( "models/editor/env_cubemap" )
 	leansphere( influenceradius, 128, 128, 255 )
-	//bakeresource( cubemaptexture, vtex, env_cubemap, "ToolObjects/CubeMap" )
+	bakeresource( cubemaptexture, vtex, env_cubemap, "ToolObjects/CubeMap" )
 = env_cubemap :	"Cubemap for sampling indirect specular reflection."
 [
 	influenceradius(float) : "Influence Radius" : "512.0" : "The radius of influence for this cubemap"
@@ -129,10 +127,9 @@
 @PointClass
 	base( Targetname, Parentname, EnableDisable, BaseCubemap, IndoorOutdoorLevel )
 	tags( VisPreview )
-	//editormodel( "models/editor/env_cubemap" )
-	editormodel( "models/editor/spot" )
+	editormodel( "models/editor/env_cubemap" )
 	box_oriented( box_mins, box_maxs )
-	//bakeresource( cubemaptexture, vtex, env_cubemap, "ToolObjects/CubeMap" )
+	bakeresource( cubemaptexture, vtex, env_cubemap, "ToolObjects/CubeMap" )
 = env_cubemap_box : "An env_cubemap with box projection."
 [
 	box_mins(vector) : "Box Projection Mins" : "-72 -72 -72"
@@ -142,11 +139,10 @@
 @PointClass
 	base( Targetname, Parentname, EnableDisable, BaseCubemap, BaseLightProbeVolume, SetBrightnessColor, IndoorOutdoorLevel )
 	tags( VisPreview )
-	//editormodel( "models/editor/env_cubemap" )
-	editormodel( "models/editor/spot" )
+	editormodel( "models/editor/env_cubemap" )
 	box_oriented( box_mins, box_maxs )
 	bakeresource( lightprobetexture, vtex, env_light_probe_volume, "ToolObjects/LightProbeVolume" )
-	//bakeresource( cubemaptexture, vtex, env_cubemap, "ToolObjects/CubeMap" )
+	bakeresource( cubemaptexture, vtex, env_cubemap, "ToolObjects/CubeMap" )
 = env_combined_light_probe_volume : "Combination of an env_cubemap_box and an env_light_probe_volume"
 [
 ]
