@@ -16,6 +16,7 @@
 	]
 ]
 
+
 @PointClass light() base(light_base, light_base_legacy_params, light_base_attenuation_params, CanBeClientOnly) editormodel( "models/editor/spot", lightModeTint, "0 255 192", "255 64 64" ) leansphere(lightsourceradius,255,255,255) lightcone() bakeambientocclusion( ambient_occlusion, max_occlusion_distance, fully_occluded_fraction, occlusion_exponent ) = light_spot : "A spot light source."
 [
 	lightcookie(string) : "Light Cookie" : "" : "light cookie name in effects/lightcookies.vtex"
@@ -116,7 +117,8 @@
 @PointClass
 	base( Targetname, Parentname, EnableDisable, BaseCubemap, IndoorOutdoorLevel )
 	tags( VisPreview )
-	editormodel( "models/editor/env_cubemap" )
+	//editormodel( "models/editor/env_cubemap" )
+	editormodel( "models/editor/spot" )
 	leansphere( influenceradius, 128, 128, 255 )
 	bakeresource( cubemaptexture, vtex, env_cubemap, "ToolObjects/CubeMap" )
 = env_cubemap :	"Cubemap for sampling indirect specular reflection."
@@ -127,7 +129,8 @@
 @PointClass
 	base( Targetname, Parentname, EnableDisable, BaseCubemap, IndoorOutdoorLevel )
 	tags( VisPreview )
-	editormodel( "models/editor/env_cubemap" )
+	//editormodel( "models/editor/env_cubemap" )
+	editormodel( "models/editor/spot" )
 	box_oriented( box_mins, box_maxs )
 	bakeresource( cubemaptexture, vtex, env_cubemap, "ToolObjects/CubeMap" )
 = env_cubemap_box : "An env_cubemap with box projection."
@@ -139,7 +142,8 @@
 @PointClass
 	base( Targetname, Parentname, EnableDisable, BaseCubemap, BaseLightProbeVolume, SetBrightnessColor, IndoorOutdoorLevel )
 	tags( VisPreview )
-	editormodel( "models/editor/env_cubemap" )
+	//editormodel( "models/editor/env_cubemap" )
+	editormodel( "models/editor/spot" )
 	box_oriented( box_mins, box_maxs )
 	bakeresource( lightprobetexture, vtex, env_light_probe_volume, "ToolObjects/LightProbeVolume" )
 	bakeresource( cubemaptexture, vtex, env_cubemap, "ToolObjects/CubeMap" )
