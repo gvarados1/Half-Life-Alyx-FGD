@@ -120,7 +120,7 @@
 	//editormodel( "models/editor/env_cubemap" )
 	editormodel( "models/editor/spot" )
 	leansphere( influenceradius, 128, 128, 255 )
-	//bakeresource( cubemaptexture, vtex, env_cubemap, "ToolObjects/CubeMap" )
+	bakeresource( cubemaptexture, vtex, env_cubemap, "ToolObjects/CubeMap" )
 = env_cubemap :	"Cubemap for sampling indirect specular reflection."
 [
 	influenceradius(float) : "Influence Radius" : "512.0" : "The radius of influence for this cubemap"
@@ -132,7 +132,7 @@
 	//editormodel( "models/editor/env_cubemap" )
 	editormodel( "models/editor/spot" )
 	box_oriented( box_mins, box_maxs )
-	//bakeresource( cubemaptexture, vtex, env_cubemap, "ToolObjects/CubeMap" )
+	bakeresource( cubemaptexture, vtex, env_cubemap, "ToolObjects/CubeMap" )
 = env_cubemap_box : "An env_cubemap with box projection."
 [
 	box_mins(vector) : "Box Projection Mins" : "-72 -72 -72"
@@ -146,7 +146,7 @@
 	editormodel( "models/editor/spot" )
 	box_oriented( box_mins, box_maxs )
 	bakeresource( lightprobetexture, vtex, env_light_probe_volume, "ToolObjects/LightProbeVolume" )
-	//bakeresource( cubemaptexture, vtex, env_cubemap, "ToolObjects/CubeMap" )
+	bakeresource( cubemaptexture, vtex, env_cubemap, "ToolObjects/CubeMap" )
 = env_combined_light_probe_volume : "Combination of an env_cubemap_box and an env_light_probe_volume"
 [
 ]
