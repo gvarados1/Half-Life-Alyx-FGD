@@ -1611,7 +1611,14 @@
 	output OnPhotographNPC(void) : "Fired any time the scanner takes a picture of an NPC."
 ]
 
-@NPCClass base(BaseNPC,AlyxInteractable) editormodel("models/creatures/manhack/manhack.vmdl") = npc_manhack : "Manhack"
+@NPCClass base(BaseNPC,AlyxInteractable) editormodel("models/creatures/manhack/manhack.vmdl")
+	metadata
+	{
+		entity_tool_name = "Manhack"
+		entity_tool_tip = "Manhack"
+		entity_tool_group = "NPCs"
+	}
+	= npc_manhack : "Manhack"
 [
 	spawnflags(Flags) = 
 	[
