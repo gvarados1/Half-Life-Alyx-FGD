@@ -6,7 +6,7 @@ This used to be the community placeholder FGD before the official workshop came 
 
 ## HOW TO INSTALL
 
-Drop relevant all FGD files into game\hlvr
+Drop relevant FGD files into game\hlvr
 
 ## ADVERTISEMENT
 
