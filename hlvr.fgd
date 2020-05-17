@@ -41,7 +41,7 @@
 @exclude env_blood
 @exclude env_bubbles
 @exclude env_citadel_energy_core
-@exclude env_clock
+//@exclude env_clock
 @exclude env_credits
 @exclude env_dof_controller
 @exclude env_dustpuff
@@ -138,7 +138,7 @@
 @exclude info_radial_link_controller
 @exclude info_target_advisor_roaming_crash
 @exclude info_target_vehicle_transition
-@exclude info_teleport_destination
+//@exclude info_teleport_destination
 @exclude info_teleporter_countdown
 @exclude item_dynamic_resupply
 @exclude keyframe_track
