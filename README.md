@@ -1,8 +1,6 @@
 ## INFO
 
-Valve left a few things out of their FGD. This brings them back and adds some quality of life improvments.
-
-This used to be the community placeholder FGD before the official workshop came out. You can find that in the legacy folder.
+This is the legacy version from before the official tools released.
 
 ## HOW TO INSTALL
 
