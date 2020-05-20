@@ -1,12 +1,14 @@
-## INFO
+## DISCLAIMER
 
-Valve left a few things out of their FGD. This brings them back and adds some quality of life improvments.
+Note: This is now a legacy branch and is not supported in any form. This is provided solely so users can maintain old installations of the bootleg tools.
 
-This used to be the community placeholder FGD before the official workshop came out. You can find that in the legacy folder.
+This is a barebones placeholder FGD. You can place the entities, but I have not setup all of the options and settings for them. Obviously, It's missing a lot.
+I have not tested all of these! Not everything is guaranteed to work!!
 
 ## HOW TO INSTALL
 
-Drop relevant FGD files into game\hlvr
+Drop all FGD files and gameinfo.gi into game\hlvr
+Note: This now includes the gameinfo.
 
 ## ADVERTISEMENT
 
