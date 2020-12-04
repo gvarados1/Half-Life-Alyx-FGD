@@ -41,7 +41,6 @@
 @exclude env_blood
 @exclude env_bubbles
 @exclude env_citadel_energy_core
-//@exclude env_clock
 @exclude env_credits
 @exclude env_dof_controller
 @exclude env_dustpuff
@@ -138,14 +137,12 @@
 @exclude info_radial_link_controller
 @exclude info_target_advisor_roaming_crash
 @exclude info_target_vehicle_transition
-//@exclude info_teleport_destination
 @exclude info_teleporter_countdown
 @exclude item_dynamic_resupply
 @exclude keyframe_track
 @exclude logic_achievement
 @exclude logic_active_autosave
 @exclude logic_lineto
-@exclude logic_measure_movement
 @exclude logic_playmovie
 @exclude logic_scene_list_manager
 @exclude material_modify_control
@@ -410,6 +407,52 @@
 	set_spawn_ammo(integer) : "Number of bullets in the clip (Default is no clip)" : "-1"
 ]
 
+@PointClass base(Item, VRHandAttachment) editormodel("models/weapons/vr_alyxgun/vr_alyxgun.vmdl") = item_hlvr_weapon_generic_pistol
+[	
+	inventory_name(string): "Inventory name (should be unique)" : "generic_pistol"
+	inventory_model(resource:model) : "Inventory model" : "models/interface/inventory/pistol_interface_ui.vmdl"
+	inventory_position(choices) : "Inventory position" : "8" =
+	[
+		"1" : "Top"
+		"4" : "Bottom"
+		"8" : "Right"
+		"9" : "Left"
+	]
+	set_spawn_ammo(integer) : "Number of bullets in the clip (Default is no clip)" : "-1"
+	ammo_per_clip(integer) : "Ammo per clip" : "10"
+	damage(integer) : "Damage" : "8"
+	attack_interval(float) : "Attack interval (seconds)" : "0.175"	
+	clip_grab_dist(float) : "Clip grab distance (inches)" : "8.0"
+	bullet_count_anim_rate(float) : "Bullet count anim rate" : "1.0"	
+	slide_interact_min_dist(float) : "Slide interaction min distance (inches)" : "6.0"
+	slide_interact_max_dist(float) : "Slide interaction max distance (inches)" : "6.0"
+	bottom_grip_min_dist(float) : "Bottom grip min distance (inches)" : "4.0"
+	bottom_grip_max_dist(float) : "Bottom grip max distance (inches)" : "4.5"
+	bottom_grip_disengage_dist(float): "Bottom grip disengage distance (inches)" : "5.0"
+	model_right_handed(resource:model) : "Model right handed" : "models/weapons/vr_alyxgun/vr_alyxgun.vmdl"
+	model_left_handed(resource:model) : "Model left handed" : "models/weapons/vr_alyxgun/vr_alyxgun_lhand.vmdl"
+	slide_model_right_handed(resource:model) : "Slide model right handed" : "models/weapons/vr_alyxgun/vr_alyxgun_slide_anim_interact.vmdl"
+	slide_model_left_handed(resource:model) : "Slide model left handed" : "models/weapons/vr_alyxgun/vr_alyxgun_slide_anim_interact_lhand.vmdl"
+	clip_model_right_handed(resource:model) : "Clip model right handed" : "models/weapons/vr_alyxgun/vr_alyxgun_clip.vmdl"
+	clip_model_left_handed(resource:model) : "Clip model left handed" : "models/weapons/vr_alyxgun/vr_alyxgun_clip_lhand.vmdl"
+	single_bullet_model(resource:model): "Single bullet model": "models/weapons/vr_alyxgun/vr_alyxgun_bullet.vmdl"
+	eject_shell_model(resource:model) : "Eject shell model" : "models/weapons/vr_shellcases/pistol_shellcase01.vmdl"
+	shoot_sound(sound) : "Shoot sound" : "AlyxPistol.Fire"
+	no_ammo_sound(sound) : "No ammo sound" : "AlyxPistol.CarryingNoAmmo"
+	last_shot_chambered(sound) : "Last shot chambered sound" : "Pistol.LastShotChambered"
+	slide_lock_sound(sound): "Slide lock sound" : "Pistol.SlideLock"
+	slide_back_sound(sound): "Slide back sound" : "AlyxPistol.Slideback"
+	slide_close_sound(sound): "Slide close sound" : "Pistol.CloseSlide"
+	clip_insert_sound(sound): "Clip insert sound" : "Pistol.ClipInsert"
+	clip_release_sound(sound): "Clip release sound" : "Pistol.ClipRelease"
+	muzzle_flash_effect(particlesystem) : "Muzzle flash effect" : "particles/weapon_fx/muzzleflash_pistol_small.vpcf"
+	tracer_effect(particlesystem) : "Tracer effect" : "particles/tracer_fx/pistol_tracer.vpcf"	
+	eject_shell_smoke_effect(particlesystem) : "Eject shell smoke effect" : "particles/weapon_fx/weapon_shell_smoke.vpcf"
+	glow_effect(particlesystem) : "Glow effect" : "models/weapons/vr_alyxgun/vr_alyxgun_worlditem_glow.vpcf"
+	barrel_smoke_effect(particlesystem) : "Barrel smoke effect" : "particles/weapon_fx/weapon_pistol_barrel_smoke.vpcf"
+	clip_glow_effect(particlesystem) : "Clip glow effect" : "models/weapons/vr_alyxgun/vr_alyxgun_clip_glow.vpcf"	
+]
+
 @PointClass base(Item) model() = hlvr_weapon_crowbar
 [
 	model(studio) : "Model" : "models/weapons/w_crowbar.vmdl"
@@ -524,6 +567,35 @@
 = item_hlvr_clip_shotgun_multiple
 [
 	
+]
+
+@PointClass base(BaseItemPhysics,HLVRAmmo) model("models/weapons/vr_alyxgun/vr_alyxgun_clip.vmdl") 
+	metadata
+	{
+		entity_tool_name = "Generic Pistol Ammo"
+		entity_tool_tip = "Single ammo clip for the pistol"
+		entity_tool_group = "Ammo"
+	}
+= item_hlvr_clip_generic_pistol
+[
+	ammo_per_clip(integer): "Ammo per clip" : "8"
+	model_right_handed(resource:model): "Model right handed" : "models/weapons/vr_alyxgun/vr_alyxgun_clip.vmdl"
+	model_left_handed(resource:model): "Model left handed" : "models/weapons/vr_alyxgun/vr_alyxgun_clip_lhand.vmdl"
+	glow_effect(particlesystem): "Glow effect" : "models/weapons/vr_alyxgun/vr_alyxgun_clip_glow.vpcf"
+]
+
+@PointClass base(BaseItemPhysics,HLVRAmmo) model("models/weapons/vr_alyxgun/pistol_clip_holder.vmdl")
+	metadata
+	{
+		entity_tool_name = "Generic Pistol Ammo Pack"
+		entity_tool_tip = "Four ammo clips for generic"
+		entity_tool_group = "Ammo"
+	}
+= item_hlvr_clip_generic_pistol_multiple
+[
+	ammo_per_clip(integer): "Ammo per clip" : "32"
+	model(resource:model): "Model" : "models/weapons/vr_alyxgun/pistol_clip_holder.vmdl"
+	glow_effect(particlesystem): "Glow effect" : "models/weapons/vr_alyxgun/vr_alyxgun_clip_holder_glow.vpcf"
 ]
 
 @PointClass base(BaseItemPhysics,Parentname) model("models/weapons/vr_alyxhealth/vr_health_pen.vmdl") 
@@ -839,7 +911,7 @@
 	metadata
 	{
 		entity_tool_name = "Item Crate"
-		entity_tool_tip = "Crate whcih can be configured to contain other items"
+		entity_tool_tip = "Crate which can be configured to contain other items"
 		entity_tool_group = "Items"
 	}
 = item_item_crate : "Item Crate"
@@ -1936,6 +2008,7 @@
 	]
 
 	IntroVariation( integer ) : "Intro Variation" : "0" : "The variation of the intro animation to use. Only used by some of the hack types. (0: Default)"
+	ShowIntro( boolean ) : "Show Intro" : "1" : "Whether or not to show the hologram intro animation for the hacking puzzle."
 	HackDifficultyName( string ) : "Hack Difficulty Name" : "Medium" : "The name for this hack that matches the difficulty values specified in holo_hacking_difficulty.txt."
 
 	StartHacked( integer ) : "Start Hacked" : "0" : "The plug will start in a state where it has already been hacked."
